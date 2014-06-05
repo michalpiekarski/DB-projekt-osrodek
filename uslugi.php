@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -6,11 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="css/progres.css" />
 </head>
 <body>
-	
+
 	<?php
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb"); 
+		$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb");
 
 		$klient = oci_parse($con,"Select ID,imie, nazwisko from klienci");
 		oci_execute($klient);
@@ -20,7 +21,7 @@
 
 	<form action='uslugi.php' method='post' class='basic-grey'>
 		<h1>Wybierz klienta</h1>
-		
+
 		<h2>
 			<div class="wizard-steps">
 				<div class="active-step">
@@ -38,7 +39,7 @@
 		<label>
 			<span>Klient :</span>
 			<select name='selection'>
-				
+
 				<?php
 					while($row = oci_fetch_array($klient))
 						echo"<option value='".$row['ID']."'>".$row['IMIE']." ".$row['NAZWISKO']."</option>";
@@ -81,7 +82,7 @@
 		<label>
 			<span>Usługa :</span>
 			<select name='usluga'>
-				
+
 				<?php
 					while($row = oci_fetch_array($usluga))
 						echo"<option value='".$row['NAZWA']."'>".$row['NAZWA']." - ".$row['CENA']." zł</option>";

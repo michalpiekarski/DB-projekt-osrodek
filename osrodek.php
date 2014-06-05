@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -18,7 +19,7 @@
 	<?php
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2", "localhost:1521/XE") or die ("could not connect to oracledb"); 
+		$con = oci_connect("tomek", "2", "localhost:1521/XE") or die ("could not connect to oracledb");
 		$osrodek = oci_parse($con,"Select * from OSRODKI");
 		oci_execute($osrodek);
 		$osrodek2 = oci_parse($con,"Select * from OSRODKI");
@@ -29,7 +30,7 @@
 	?>
 
 	<form action='add.php' method='post' class='basic-grey'>
-		
+
 
 		<h1>Wybierz ośrodek lub istniejącego klienta</h1>
 
@@ -47,11 +48,11 @@
 			</div>
 		</h2>
 		Czy klient znajduje się w bazie?
-		
+
 
 		<input type="radio" onclick="showStuff('answer1'); hideStuff('przycisk1'); showStuff('przycisk2'); hideStuff('s1');" name="radio1" value="tak" />Tak
 		<input type="radio" onclick="hideStuff('answer1'); showStuff('przycisk1'); hideStuff('przycisk2'); showStuff('s1');" name="radio1" value="nie" checked/>Nie
-		
+
 		<label id="s1">
 			<span>Ośrodek :</span>
 			<select name='selection' >
@@ -63,16 +64,16 @@
 
 			</select>
 		</label>
-		
-		
 
-		
+
+
+
 		<label id="przycisk1">
 			<span>&nbsp;</span>
 			<input type="SUBMIT" class="button" value="Dalej" />
 		</label>
 	</form>
-	
+
 	<form action="add_exist.php" method="post" class="basic-grey" id="answer1">
 	<h1>Wybierz Klienta</h1>
 
@@ -88,7 +89,7 @@
 
 			</select>
 		</label>
-		
+
 
 	<label>
 			<span >Klient: </span>
@@ -96,7 +97,7 @@
 				<?php
 					while($row = oci_fetch_array($klient))
 						echo"<option value='".$row['ID']."'>".$row['IMIE']." ".$row['NAZWISKO']."</option>";
-						
+
 				?>
 			</select>
 		</label>
@@ -110,6 +111,6 @@
 	<?php
 		oci_close($con);
 	?>
-	
+
 </body>
 </html>

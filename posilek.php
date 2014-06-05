@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -10,7 +11,7 @@
 	<?php
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb"); 
+		$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb");
 		$klient = oci_parse($con,"Select ID,imie, nazwisko from klienci");
 		oci_execute($klient);
 
@@ -98,7 +99,7 @@
 		<?php
 			echo"<input type='hidden' name='ID' value='$id_klienta' />";
 		?>
-		
+
 		<label>
 			<span>&nbsp;</span>
 			<input type='SUBMIT' class='button' value='Dodaj posiłek' />
@@ -108,6 +109,6 @@
 	<?php
 		oci_close($con); }
 	?>
-	
+
 </body>
 </html>

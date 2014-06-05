@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -27,7 +28,7 @@
         </h2>
 
         <?php
-            $con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb"); 
+            $con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb");
 
             $usluga = $_POST['usluga'];
             $usluga_ilosc = $_POST['usluga_ilosc'];
