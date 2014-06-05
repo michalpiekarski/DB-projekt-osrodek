@@ -54,9 +54,9 @@
 			while($row = oci_fetch_array($rachunki)) {
 				$id_rachunku = $row['ID'];
 				echo "<tr>";
-				echo "<th rowspan='2' style='font-size: 1.5em;'>".$id_rachunku."</th>";
-				echo "<th colspan='2'>Klient</th>";
-				echo "<th colspan='2'>Pracownik</th>";
+				echo "<th style='font-size: 1.5em;'>".$id_rachunku."</th>";
+				echo "<th colspan='2' style='background-color: lightgrey;'>Klient</th>";
+				echo "<th colspan='2' style='background-color: lightgrey;'>Pracownik</th>";
 				echo "</tr>";
 
 				$id_klienta = $row['KLIENCI_ID'];
@@ -70,6 +70,7 @@
 				$pracownik_array = oci_fetch_array($sql_pracownik);
 
 				echo"<tr>";
+				echo"<td></td>";
 				echo"<td>".$klient_array['IMIE']."</td>";
 				echo"<td>".$klient_array['NAZWISKO']."</td>";
 				echo"<td>".$pracownik_array['IMIE']."</td>";
@@ -78,7 +79,7 @@
 
 				echo"<tr>";
 				echo"<td></td>";
-				echo"<th colspan='4'>Posiłki</th>";
+				echo"<th colspan='4' style='background-color: lightgrey;'>Posiłki</th>";
 				echo"</tr>";
 
 				$zamowienia_posilkow = oci_parse($con, "SELECT * FROM ZAMOWIENIA_POSILKOW WHERE RACHUNKI_ID = '$id_rachunku'");
@@ -101,7 +102,7 @@
 
 				echo"<tr>";
 				echo"<td></td>";
-				echo"<th colspan='4'>Usługi</th>";
+				echo"<th colspan='4' style='background-color: lightgrey;'>Usługi</th>";
 				echo"</tr>";
 
 				$zamowienia_uslug = oci_parse($con, "SELECT * FROM ZAMOWIENIA_USLUG WHERE RACHUNKI_ID = '$id_rachunku'");
@@ -125,7 +126,7 @@
 
 				echo"<tr>";
 				echo"<td></td>";
-				echo"<th colspan='4'>Wypożyczenia</th>";
+				echo"<th colspan='4' style='background-color: lightgrey;'>Wypożyczenia</th>";
 				echo"</tr>";
 
 				$zamowienia_wypozyczen = oci_parse($con, "SELECT * FROM ZAMOWIENIA_WYPOZYCZEN WHERE RACHUNKI_ID = '$id_rachunku'");

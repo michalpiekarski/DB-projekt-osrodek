@@ -23,8 +23,8 @@
 			while($row = oci_fetch_array($rezerwacja)) {
 				echo "<tr>";
 				echo "<th rowspan='3' style='font-size: 1.5em;'>".$row['ID']."</th>";
-				echo "<th colspan='2'>Klient</th>";
-				echo "<th colspan='2'>Obiekt</th>";
+				echo "<th colspan='2' style='background-color: lightgrey;'>Klient</th>";
+				echo "<th colspan='2' style='background-color: lightgrey;'>Obiekt</th>";
 				echo "</tr>";
 
 				$id_rachunku = $row['RACHUNKI_ID'];
