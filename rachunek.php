@@ -52,13 +52,88 @@
 
 		<?php
 			while($row = oci_fetch_array($rachunki)) {
+				$id_rachunku = $row['ID'];
 				echo "<tr>";
-				echo "<td rowspan='2' style='font-size: 1.5em;'>".$row['ID']."</td>";
-				echo "<td>ID Klienta: ".$row['KLIENCI_ID']."</td>";
-				echo "<td>ID Pracownika: ".$row['PRACOWNICY_ID']."</td>";
+				echo "<th rowspan='2' style='font-size: 1.5em;'>".$id_rachunku."</th>";
+				echo "<th colspan='2'>Klient</th>";
+				echo "<th colspan='2'>Pracownik</th>";
 				echo "</tr>";
+
+				$id_klienta = $row['KLIENCI_ID'];
+				$sql_klient = oci_parse($con, "SELECT * FROM KLIENCI WHERE ID = '$id_klienta'");
+				oci_execute($sql_klient);
+				$klient_array = oci_fetch_array($sql_klient);
+
+				$id_pracownika = $row['PRACOWNICY_ID'];
+				$sql_pracownik = oci_parse($con, "SELECT * FROM PRACOWNICY WHERE ID = '$id_pracownika'");
+				oci_execute($sql_pracownik);
+				$pracownik_array = oci_fetch_array($sql_pracownik);
+
+				echo"<tr>";
+				echo"<td>".$klient_array['IMIE']."</td>";
+				echo"<td>".$klient_array['NAZWISKO']."</td>";
+				echo"<td>".$pracownik_array['IMIE']."</td>";
+				echo"<td>".$pracownik_array['NAZIWSKO']/*<-- Typo in DB*/."</td>";
+				echo"</tr>";
+
+				echo"<tr>";
+				echo"<td></td>";
+				echo"<th colspan='4'>Posiłki</th>";
+				echo"</tr>";
+
+				$zamowienia_posilkow = oci_parse($con, "SELECT * FROM ZAMOWIENIA_POSILKOW WHERE RACHUNKI_ID = '$id_rachunku'");
+				oci_execute($zamowienia_posilkow);
+
+				while($posilek = oci_fetch_array($zamowienia_posilkow)) {
+					echo"<tr>";
+					echo"<td></td>";
+					echo"<td>".$posilek['POSILKI_NAZWA']."</td>";
+					echo"<td>".$posilek['ILOSC']."</td>";
+					echo"<td>".$posilek['DATA']."</td>";
+					echo"<td>CENA</td>";//<--UZUPEŁNIĆ
+					echo"</tr>";
+				}
+
+				echo"<tr>";
+				echo"<td></td>";
+				echo"<th colspan='4'>Usługi</th>";
+				echo"</tr>";
+
+				$zamowienia_uslug = oci_parse($con, "SELECT * FROM ZAMOWIENIA_USLUG WHERE RACHUNKI_ID = '$id_rachunku'");
+				oci_execute($zamowienia_uslug);
+
+				while($usluga = oci_fetch_array($zamowienia_uslug)) {
+					echo"<tr>";
+					echo"<td></td>";
+					echo"<td>".$usluga['USLUGI_NAZWA']."</td>";
+					echo"<td>".$usluga['ILOSC']."</td>";
+					echo"<td>".$usluga['DATA']."</td>";
+					echo"<td>CENA</td>";//<--UZUPEŁNIĆ
+					echo"</tr>";
+				}
+
+				echo"<tr>";
+				echo"<td></td>";
+				echo"<th colspan='4'>Wypożyczenia</th>";
+				echo"</tr>";
+
+				$zamowienia_wypozyczen = oci_parse($con, "SELECT * FROM ZAMOWIENIA_WYPOZYCZEN WHERE RACHUNKI_ID = '$id_rachunku'");
+				oci_execute($zamowienia_wypozyczen);
+
+				while($wypozyczenie = oci_fetch_array($zamowienia_wypozyczen)) {
+					echo"<tr>";
+					echo"<td></td>";
+					echo"<td>".$wypozyczenie['WYPOZYCZENIA_NAZWA']."</td>";
+					echo"<td>".$wypozyczenie['ILOSC']."</td>";
+					echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
+					echo"<td>CENA</td>";//<--UZUPEŁNIĆ
+					echo"</tr>";
+				}
+
 				echo "<tr>";
-				echo "<td colspan='2' style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>Kwota: ".$row['KWOTA']." zł</td>";
+				echo "<td></td>";
+				echo "<th colspan='2' style='border-bottom: solid 1px lightgrey;'>Kwota:</th>";
+				echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
 				echo "</tr>";
 			}
 			oci_close($con); }
