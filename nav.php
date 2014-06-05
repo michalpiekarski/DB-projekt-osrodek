@@ -20,13 +20,20 @@
 			</div>
 		</li>
 		<li>
-			<a href="uslugi.php">Zamów usługę dla klienta</a>
-		</li>
-		<li>
-			<a href="posilek.php">Zamów posiłek dla klienta</a>
-		</li>
-		<li>
-			<a href="wypozyczenie.php">Wypożycz</a>
+			<a>Zamówienia<span class="caret"></span></a>
+			<div>
+				<ul>
+					<li>
+						<a href="uslugi.php">Zamów usługę dla klienta</a>
+					</li>
+					<li>
+						<a href="posilek.php">Zamów posiłek dla klienta</a>
+					</li>
+					<li>
+						<a href="wypozyczenie.php">Wypożycz</a>
+					</li>
+				</ul>
+			</div>
 		</li>
 		<li>
 			<a href="rachunek.php">Rachunek</a>
