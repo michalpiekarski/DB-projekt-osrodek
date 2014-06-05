@@ -85,12 +85,17 @@
 				oci_execute($zamowienia_posilkow);
 
 				while($posilek = oci_fetch_array($zamowienia_posilkow)) {
+					$nazwa_posilku = $posilek['POSILKI_NAZWA'];
+					$ilosc_posilku = $posilek['ILOSC'];
+					$sql_cena_posilku = oci_parse($con, "SELECT (CENA * '$ilosc_posilku') CENA_RAZEM FROM POSILKI WHERE NAZWA = '$nazwa_posilku'");
+					oci_execute($sql_cena_posilku);
+					$cena = oci_fetch_array($sql_cena_posilku);
 					echo"<tr>";
 					echo"<td></td>";
-					echo"<td>".$posilek['POSILKI_NAZWA']."</td>";
-					echo"<td>".$posilek['ILOSC']."</td>";
+					echo"<td>".$nazwa_posilku."</td>";
+					echo"<td>".$ilosc_posilku."</td>";
 					echo"<td>".$posilek['DATA']."</td>";
-					echo"<td>CENA</td>";//<--UZUPEŁNIĆ
+					echo"<td>".$cena." zł</td>";
 					echo"</tr>";
 				}
 
@@ -103,12 +108,18 @@
 				oci_execute($zamowienia_uslug);
 
 				while($usluga = oci_fetch_array($zamowienia_uslug)) {
+					$nazwa_uslugi = $usluga['USLUGI_NAZWA'];
+					$ilosc_uslugi = $usluga['ILOSC'];
+					$sql_cena_uslugi = oci_parse($con, "SELECT (CENA * '$ilosc_uslugi') CENA_RAZEM FROM USLUGI WHERE NAZWA = '$nazwa_uslugi'");
+					oci_execute($sql_cena_uslugi);
+					$cena = oci_fetch_array($sql_cena_uslugi);
+
 					echo"<tr>";
 					echo"<td></td>";
-					echo"<td>".$usluga['USLUGI_NAZWA']."</td>";
-					echo"<td>".$usluga['ILOSC']."</td>";
+					echo"<td>".$nazwa_uslugi."</td>";
+					echo"<td>".$ilosc_uslugi."</td>";
 					echo"<td>".$usluga['DATA']."</td>";
-					echo"<td>CENA</td>";//<--UZUPEŁNIĆ
+					echo"<td>".$cena['CENA_RAZEM']." zł</td>";
 					echo"</tr>";
 				}
 
@@ -121,12 +132,17 @@
 				oci_execute($zamowienia_wypozyczen);
 
 				while($wypozyczenie = oci_fetch_array($zamowienia_wypozyczen)) {
+					$nazwa_wypozyczenia = $wypozyczenie['WYPOZYCZENIA_NAZWA'];
+					$ilosc_wypozyczenia = $wypozyczenie['ILOSC'];
+					$sql_cena_wypozyczenia = oci_parse($con, "SELECT (CENA * '$ilosc_wypozyczenia') CENA_RAZEM FROM WYPOZYCZENIA WHERE NAZWA = '$nazwa_wypozyczenia'");
+					oci_execute($sql_cena_wypozyczenia);
+					$cena = oci_fetch_array($sql_cena_wypozyczenia);
 					echo"<tr>";
 					echo"<td></td>";
 					echo"<td>".$wypozyczenie['WYPOZYCZENIA_NAZWA']."</td>";
 					echo"<td>".$wypozyczenie['ILOSC']."</td>";
 					echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
-					echo"<td>CENA</td>";//<--UZUPEŁNIĆ
+					echo"<td>".$cena." zł/dzień</td>";
 					echo"</tr>";
 				}
 
