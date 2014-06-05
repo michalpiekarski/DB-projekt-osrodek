@@ -30,13 +30,13 @@
 		<?php
 			$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb");
 
-			$posilki = $_POST['posilek'];
+			$posilek_nazwa = $_POST['posilek'];
 			$posilek_ilosc = $_POST['posilek_ilosc'];
 			$posilek_data = $_POST['posilek_data'];
 
 			$id_klienta = $_POST['ID'];
 
-			$cena_posilki = oci_parse($con, "Select cena from posilki where nazwa = '$posilki'");
+			$cena_posilki = oci_parse($con, "Select cena from posilki where nazwa = '$posilek_nazwa'");
 			oci_execute($cena_posilki);
 			$cena_posilki2 = oci_fetch_array($cena_posilki);
 			$posilki_cena=$cena_posilki2['CENA'];
@@ -60,8 +60,8 @@
 		    oci_execute($id_rachunku);
 		    $id_rachunku2 = oci_fetch_array($id_rachunku);
 		    $id_rachunek = $id_rachunku2['ID'];
-
-		    $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_POSILKOW (ID,RACHUNKI_ID,ILOSC,POSILKI_NAZWA,DATA) VALUES ('$id_posilek','$id_rachunek','$posilek_ilosc','$posilki','$posilek_data')");
+		    echo "$posilki";
+		    $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_POSILKOW (ID,RACHUNKI_ID,ILOSC,POSILKI_NAZWA,DATA) VALUES ('$id_posilek','$id_rachunek','$posilek_ilosc','$posilek_nazwa','$posilek_data')");
 		    oci_execute($dodaj_usluge);
 			oci_close($con);
 		?>
