@@ -97,7 +97,7 @@
 					echo"<td>".$nazwa_posilku."</td>";
 					echo"<td>".$ilosc_posilku."</td>";
 					echo"<td>".$posilek['DATA']."</td>";
-					echo"<td>".$cena." zł</td>";
+					echo"<td>".$cena['CENA_RAZEM']." zł</td>";
 					echo"</tr>";
 				}
 
@@ -144,7 +144,7 @@
 					echo"<td>".$wypozyczenie['WYPOZYCZENIA_NAZWA']."</td>";
 					echo"<td>".$wypozyczenie['ILOSC']."</td>";
 					echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
-					echo"<td>".$cena." zł/dzień</td>";
+					echo"<td>".$cena['CENA_RAZEM']." zł/dzień</td>";
 					echo"</tr>";
 				}
 
