@@ -10,7 +10,7 @@
     <?php
         include('nav.php');
 
-        $con = oci_connect("tomek", "2", "localhost:1521/XE") or die ("could not connect to oracledb");
+        $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
         if(!isset($_POST['button']) and !isset($_POST['button2'])) {
             $osrodki = oci_parse($con, "SELECT * FROM OSRODKI");
             oci_execute($osrodki);

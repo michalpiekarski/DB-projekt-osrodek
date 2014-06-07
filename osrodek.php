@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-16">
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="css/form.css" />
 	<link rel="stylesheet" type="text/css" href="css/progres.css" />
@@ -19,7 +19,7 @@
 	<?php
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2", "localhost:1521/XE") or die ("could not connect to oracledb");
+		$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
 		$osrodek = oci_parse($con,"Select * from OSRODKI");
 		oci_execute($osrodek);
 		$osrodek2 = oci_parse($con,"Select * from OSRODKI");

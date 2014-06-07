@@ -11,7 +11,7 @@
 	<?php
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2", "localhost:1521/XE") or die ("could not connect to oracledb");
+		$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
 		$klient = oci_parse($con,"SELECT ID, IMIE, NAZWISKO FROM KLIENCI");
 		oci_execute($klient);
 

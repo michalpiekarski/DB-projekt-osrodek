@@ -10,7 +10,7 @@
 	<?php
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb");
+		$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");
 		$rezerwacja = oci_parse($con,"SELECT * FROM REZERWACJE WHERE DATA_DO < sysdate");
 		oci_execute($rezerwacja);
 	?>

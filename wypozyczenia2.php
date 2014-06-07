@@ -27,7 +27,7 @@
 		</h2>
 
 		<?php
-			$con = oci_connect("tomek", "2", "localhost:1521/XE")or die ("could not connect to oracledb");
+			$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");
 
 			$wypozyczenia_nazwa = $_POST['wypozyczenia'];
 			$wypozyczenia_ilosc = $_POST['wypozyczenia_ilosc'];
@@ -72,8 +72,8 @@
 		<label>
 			Wypożyczono
 		</label>
-		
+
 	</form>
-	
+
 </body>
 </html>
