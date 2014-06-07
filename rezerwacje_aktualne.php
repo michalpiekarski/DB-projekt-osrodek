@@ -28,17 +28,17 @@
 				echo "<th colspan='2' style='background-color: lightgrey;'>Obiekt</th>";
 				echo "</tr>";
 
-				$id_rachunku = $row['RACHUNKI_ID'];
+				$id_rachunku = $row['RACHUNEK'];
 				$sql_id_klienta = oci_parse($con, "SELECT * FROM RACHUNKI WHERE ID = '$id_rachunku'");
 				oci_execute($sql_id_klienta);
 				$id_klienta_array = oci_fetch_array($sql_id_klienta);
 
-				$id_klienta = $id_klienta_array['KLIENCI_ID'];
+				$id_klienta = $id_klienta_array['KLIENT'];
 				$sql_klient = oci_parse($con, "SELECT * FROM KLIENCI WHERE ID = '$id_klienta'");
 				oci_execute($sql_klient);
 				$klient_array = oci_fetch_array($sql_klient);
 
-				$id_obiektu = $row['OBIEKTY_ID'];
+				$id_obiektu = $row['OBIEKT'];
 
 				echo"<tr>";
 				echo"<td>".$klient_array['IMIE']."</td>";

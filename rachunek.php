@@ -4,6 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="css/form.css" />
+	<link rel="stylesheet" type="text/css" href="css/progres.css">
 </head>
 <body>
 
@@ -19,6 +20,17 @@
 
 	<form action='rachunek.php' method='post' class='basic-grey'>
 			<h1>Wybierz klienta</h1>
+
+			<h2>
+				<div class="wizard-steps">
+					<div class="active-step">
+						<a><span>1</span> Klient</a>
+					</div>
+					<div>
+						<a><span>2</span> Rachunki klienta</a>
+					</div>
+				</div>
+			</h2>
 
 			<label>
 				<span>Klient :</span>
@@ -42,12 +54,23 @@
 
 		if(isset($_POST['button'])) {
 			$id_klienta = $_POST['selection'];
-			$rachunki = oci_parse($con,"Select * from rachunki where klienci_id = '$id_klienta' and zaplacony = 0");
+			$rachunki = oci_parse($con,"Select * from rachunki where klient = '$id_klienta' and zaplacony = 0");
 			oci_execute($rachunki);
 	?>
 
 	<div class='basic-grey'>
 		<h1>Aktualne rachunki klienta</h1>
+
+		<h2>
+			<div class="wizard-steps">
+				<div class="complete-step">
+					<a><span>1</span> Klient</a>
+				</div>
+				<div class="active-step">
+					<a><span>2</span> Rachunki klienta</a>
+				</div>
+			</div>
+		</h2>
 
 		<table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 
@@ -60,12 +83,12 @@
 				echo "<th colspan='2' style='background-color: lightgrey;'>Pracownik</th>";
 				echo "</tr>";
 
-				$id_klienta = $row['KLIENCI_ID'];
+				$id_klienta = $row['KLIENT'];
 				$sql_klient = oci_parse($con, "SELECT * FROM KLIENCI WHERE ID = '$id_klienta'");
 				oci_execute($sql_klient);
 				$klient_array = oci_fetch_array($sql_klient);
 
-				$id_pracownika = $row['PRACOWNICY_ID'];
+				$id_pracownika = $row['PRACOWNIK'];
 				$sql_pracownik = oci_parse($con, "SELECT * FROM PRACOWNICY WHERE ID = '$id_pracownika'");
 				oci_execute($sql_pracownik);
 				$pracownik_array = oci_fetch_array($sql_pracownik);
@@ -75,7 +98,7 @@
 				echo"<td>".$klient_array['IMIE']."</td>";
 				echo"<td>".$klient_array['NAZWISKO']."</td>";
 				echo"<td>".$pracownik_array['IMIE']."</td>";
-				echo"<td>".$pracownik_array['NAZIWSKO']/*<-- Typo in DB*/."</td>";
+				echo"<td>".$pracownik_array['NAZWISKO']."</td>";
 				echo"</tr>";
 
 				echo"<tr>";
@@ -83,7 +106,7 @@
 				echo"<th colspan='4' style='background-color: lightgrey;'>Posiłki</th>";
 				echo"</tr>";
 
-				$zamowienia_posilkow = oci_parse($con, "SELECT * FROM ZAMOWIENIA_POSILKOW WHERE RACHUNKI_ID = '$id_rachunku'");
+				$zamowienia_posilkow = oci_parse($con, "SELECT * FROM ZAMOWIENIA_POSILKOW WHERE RACHUNEK = '$id_rachunku'");
 				oci_execute($zamowienia_posilkow);
 
 				while($posilek = oci_fetch_array($zamowienia_posilkow)) {
@@ -106,7 +129,7 @@
 				echo"<th colspan='4' style='background-color: lightgrey;'>Usługi</th>";
 				echo"</tr>";
 
-				$zamowienia_uslug = oci_parse($con, "SELECT * FROM ZAMOWIENIA_USLUG WHERE RACHUNKI_ID = '$id_rachunku'");
+				$zamowienia_uslug = oci_parse($con, "SELECT * FROM ZAMOWIENIA_USLUG WHERE RACHUNEK = '$id_rachunku'");
 				oci_execute($zamowienia_uslug);
 
 				while($usluga = oci_fetch_array($zamowienia_uslug)) {
@@ -130,7 +153,7 @@
 				echo"<th colspan='4' style='background-color: lightgrey;'>Wypożyczenia</th>";
 				echo"</tr>";
 
-				$zamowienia_wypozyczen = oci_parse($con, "SELECT * FROM ZAMOWIENIA_WYPOZYCZEN WHERE RACHUNKI_ID = '$id_rachunku'");
+				$zamowienia_wypozyczen = oci_parse($con, "SELECT * FROM ZAMOWIENIA_WYPOZYCZEN WHERE RACHUNEK = '$id_rachunku'");
 				oci_execute($zamowienia_wypozyczen);
 
 				while($wypozyczenie = oci_fetch_array($zamowienia_wypozyczen)) {
