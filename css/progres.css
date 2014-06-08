@@ -67,10 +67,10 @@
     top: 0px;
     right: -12px;
 }
- 
+
 /* = COMPLETED STEPS
 ----------------------------*/
- 
+
 .wizard-steps .completed-step a {
     color:#163038;
     background: #A3C1C9;
@@ -86,6 +86,21 @@
     border: 2px solid #163038;
     color: #163038;
     text-shadow:none;
+}
+.wizard-steps .completed-step.hoverable:hover a {
+    color:#fff;
+    background: #E48F8F;
+    text-shadow:1px 1px 1px rgba(0,0,0, 0.8);
+}
+.wizard-steps .completed-step.hoverable:hover span {
+    color:#E48F8F;
+}
+.wizard-steps .completed-step.hoverable:hover a:before {
+    border-top: 12px solid #E48F8F;
+    border-bottom: 12px solid #E48F8F;
+}
+.wizard-steps .completed-step.hoverable:hover a:after {
+    border-left: 12px solid #E48F8F;
 }
 /* = ACTIVE STEPS
 ----------------------------*/
@@ -108,21 +123,4 @@
     box-shadow:0px 0px 2px rgba(0,0,0, 0.8);
     text-shadow:none;
     border: 2px solid #A3C1C9;
-}
-/* = HOVER STATES
-----------------------------*/
-.wizard-steps .completed-step:hover a, .wizard-steps .active-step:hover a {
-    color:#fff;
-    background: #E48F8F;
-    text-shadow:1px 1px 1px rgba(0,0,0, 0.8);
-}
-.wizard-steps .completed-step:hover span, .wizard-steps .active-step:hover span {
-    color:#E48F8F;
-}
-.wizard-steps .completed-step:hover a:before, .wizard-steps .active-step:hover a:before {
-    border-top: 12px solid #E48F8F;
-    border-bottom: 12px solid #E48F8F;
-}
-.wizard-steps .completed-step:hover a:after, .wizard-steps .active-step:hover a:after {
-    border-left: 12px solid #E48F8F;
 }

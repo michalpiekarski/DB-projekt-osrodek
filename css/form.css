@@ -1,6 +1,6 @@
 /* Basic Grey */
 .basic-grey {
-    width: 420px;
+    width: 600px;
     margin-right: auto;
     margin-left: auto;
     background: #EEE;
@@ -28,7 +28,7 @@
     font: 25px Georgia, "Times New Roman", Times, serif;
     padding: 0px 0px 10px 40px;
     display: block;
-   
+
     margin: -10px -30px 30px -30px;
     color: #888;
 }
@@ -67,7 +67,7 @@
     background: #FFF url('down-arrow.png') no-repeat right;
     background: #FFF url('down-arrow.png') no-repeat right);
     appearance:none;
-    -webkit-appearance:none; 
+    -webkit-appearance:none;
     -moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';

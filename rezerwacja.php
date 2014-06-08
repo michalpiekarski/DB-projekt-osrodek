@@ -35,7 +35,7 @@
 		<h2>
 			<div class="wizard-steps">
 				<div class="active-step">
-					<a><span>1</span> Ośrodek</a>
+					<a><span>1</span> Ośrodek / Klient</a>
 				</div>
 				<div>
 					<a><span>2</span> Formularz dodania</a>

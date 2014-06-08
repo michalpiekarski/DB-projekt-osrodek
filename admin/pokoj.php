@@ -35,10 +35,10 @@
 
         <label>
             <span>Ośrodek :</span>
-            <select name="osrodek_id">
+            <select name="osrodek">
                 <?php
                     while($row = oci_fetch_array($osrodki)) {
-                        echo "<option value='".$row['ID']."'>".$row['NAZWA']."</option>";
+                        echo "<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
                     }
                 ?>
             </select>
@@ -52,18 +52,21 @@
     <?php
         }
         else if(isset($_POST['button']) and !isset($_POST['button2'])) {
-            $osrodek_id = $_POST['osrodek_id'];
-            $typy_obiektow = oci_parse($con, "SELECT * FROM TYPY_OBIEKTOW");
-            oci_execute($typy_obiektow);
+            $osrodek = $_POST['osrodek'];
+            $typy_pokojow = oci_parse($con, "SELECT * FROM TYPY_OBIEKTOW WHERE NAZWA LIKE '%pokój' OR NAZWA LIKE 'Pokój%'");
+            oci_execute($typy_pokojow);
+            $sql_maxid = oci_parse($con, "SELECT MAX(ID)+1 MAXID FROM OBIEKTY");
+            oci_execute($sql_maxid);
+            $maxid = oci_fetch_array($sql_maxid);
     ?>
 
     <form action="pokoj.php" method="post" class="basic-grey">
-        <h1>Dodaj pokój</h1>
+        <h1>Dodaj domek</h1>
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Ośrodek</a>
+                <div class="completed-step hoverable">
+                    <a href="pokoj.php"><span>1</span> Ośrodek</a>
                 </div>
                 <div class="active-step">
                     <a><span>2</span> Pokój</a>
@@ -75,31 +78,29 @@
         </h2>
 
         <?php
-            echo"<input type='hidden' name='osrodek_id_obiektu' value='$osrodek_id' />";
+            echo"<input type='hidden' name='osrodek' value='$osrodek' />";
+            echo"<input type='hidden' name='id' value='".$maxid['MAXID']."'' />";
         ?>
-        <!-- Do zmiany na sekwencję SQL -->
-        <label>
-            <span>ID :</span>
-            <input type="number" name="id" value="0" />
-        </label>
-        <!-- Do zmiany na sekwencję SQL -->
-        <label>
-            <span>Numer :</span>
-            <input type="number" name="numer" value="0" />
-        </label>
-        <label>
-            <span>Budynek :</span>
-            <input type="number" name="budynek" value="0" />
-        </label>
+
         <label>
             <span>Typ obiektu :</span>
-            <select name="typ_obiektu">
+            <select name="typ">
                 <?php
-                    while($row = oci_fetch_array($typy_obiektow)) {
+                    while($row = oci_fetch_array($typy_pokojow)) {
                         echo "<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
                     }
                 ?>
             </select>
+        </label>
+        <!-- Do zmiany na sekwencję SQL czy coś -->
+        <label>
+            <span>Budynek :</span>
+            <input type="text" name="budynek" placeholder="Budynek" />
+        </label>
+        <!-- Do zmiany na sekwencję SQL czy coś -->
+        <label>
+            <span>Numer :</span>
+            <input type="text" name="numer" placeholder="Numer pokoju" />
         </label>
         <label>
             <span>&nbsp;</span>
@@ -110,20 +111,15 @@
     <?php
         }
         else {
-            $osrodek_id_obiektu = $_POST['osrodek_id_obiektu'];
+            $osrodek = $_POST['osrodek'];
             $id = $_POST['id'];
+            $budynek = $_POST['budynek'];
+            $numer = $_POST['numer'];
+            $typ = $_POST['typ'];
 
-            $sql_obiektu = "INSERT INTO OBIEKTY (ID, OSRODKI_ID) VALUES ('$id', '$osrodek_id_obiektu')";
+            $sql_obiektu = "INSERT INTO OBIEKTY (ID, OSRODEK, TYP, BUDYNEK, NUMER) VALUES ($id, '$osrodek', '$typ', '$budynek', '$numer')";
             $sql_obiektu_parsed = oci_parse($con, $sql_obiektu);
             oci_execute($sql_obiektu_parsed);
-
-            $numer = $_POST['numer'];
-            $budynek = $_POST['budynek'];
-            $typ_obiektu = $_POST['typ_obiektu'];
-
-            $sql = "INSERT INTO POKOJE (ID, NUMER, BUDYNEK, TYPY_OBIEKTOW_NAZWA) VALUES ('$id', '$numer', '$budynek', '$typ_obiektu')";
-            $sql_parsed = oci_parse($con, $sql);
-            oci_execute($sql_parsed);
     ?>
 
     <div class="basic-grey">
@@ -131,8 +127,8 @@
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Ośrodek</a>
+                <div class="completed-step hoverable">
+                    <a href="pokoj.php"><span>1</span> Ośrodek</a>
                 </div>
                 <div class="completed-step">
                     <a><span>2</span> Pokój</a>
@@ -143,7 +139,7 @@
             </div>
         </h2>
 
-        <p>Dodano pokój</p>
+        <h3>Dodano pokój</h3>
     </div>
 
     <?php

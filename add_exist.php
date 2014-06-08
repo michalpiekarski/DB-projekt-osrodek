@@ -12,7 +12,6 @@
         include ('nav.php');
 
         $con = oci_connect("tomek", "2") or die("could not connect to oracledb");
-
         $wynik = oci_parse($con, "Select * From klienci");
         oci_execute($wynik);
         $osrodek = $_POST['selection'];
@@ -39,8 +38,8 @@
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Ośrodek</a>
+                <div class="completed-step hoverable">
+                    <a href="rezerwacja.php"><span>1</span> Ośrodek</a>
                 </div>
                 <div class="active-step">
                     <a><span>2</span> Formularz dodania</a>

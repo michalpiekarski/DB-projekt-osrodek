@@ -28,18 +28,29 @@
             </div>
         </h2>
 
-        <!-- Do zmiany na sekwencję SQL -->
-        <label>
-            <span>ID:</span>
-            <input type="number" name="id_osrodka" value="0" />
-        </label>
         <label>
             <span>Nazwa :</span>
             <input type="text" name="nazwa" placeholder="Nazwa ośrodka" />
         </label>
         <label>
-            <span>Adres :</span>
-            <textarea name="adres" placeholder="Adres ośrodka"></textarea>
+            <span>Ulica :</span>
+            <input type="text" name="ulica" placeholder="Ulica" />
+        </label>
+        <label>
+            <span>Kod pocztowy :</span>
+            <input type="text" name="kod_pocztowy" placeholder="Kod pocztowy" />
+        </label>
+        <label>
+            <span>Miasto :</span>
+            <input type="text" name="miasto" placeholder="Miasto" />
+        </label>
+        <label>
+            <span>Telefon :</span>
+            <input type="text" name="telefon" placeholder="Telefon" />
+        </label>
+        <label>
+            <span>E-mail :</span>
+            <input type="text" name="email" placeholder="E-mail" />
         </label>
         <label>
             <span>Otwarty :</span>
@@ -54,16 +65,27 @@
     <?php
         }
         else {
-            $id_osrodka = $_POST['id_osrodka'];
             $nazwa = $_POST['nazwa'];
-            $adres = $_POST['adres'];
+            $ulica = $_POST['ulica'];
+            $kod_pocztowy = $_POST['kod_pocztowy'];
+            $miasto = $_POST['miasto'];
+            $telefon = null;
+            if(isset($_POST['telefon']))
+            {
+                $telefon = $_POST['telefon'];
+            }
+            $email = null;
+            if(isset($_POST['email']))
+            {
+                $email = $_POST['email'];
+            }
             $otwarty = 0;
             if(isset($_POST['otwarty']))
             {
                 $otwarty = 1;
             }
 
-            $sql = "INSERT INTO OSRODKI (ID, NAZWA, ADRES, OTWARTY) VALUES ('$id_osrodka', '$nazwa', '$adres', '$otwarty')";
+            $sql = "INSERT INTO OSRODKI (NAZWA, ULICA, KOD_POCZTOWY, MIASTO, TELEFON, EMAIL, OTWARTY) VALUES ('$nazwa', '$ulica', '$kod_pocztowy', '$miasto', '$telefon', '$email', $otwarty)";
             $sql_parsed = oci_parse($con, $sql);
             oci_execute($sql_parsed);
     ?>
@@ -73,8 +95,8 @@
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Ośrodek</a>
+                <div class="completed-step hoverable">
+                    <a href="osrodek.php"><span>1</span> Ośrodek</a>
                 </div>
                 <div class="active-step">
                     <a><span>2</span> Podsumowanie</a>
@@ -82,7 +104,7 @@
             </div>
         </h2>
 
-        <p>Dodano ośrodek</p>
+        <h3>Dodano ośrodek</h3>
     </div>
 
     <?php

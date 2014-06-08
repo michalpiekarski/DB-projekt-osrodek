@@ -63,8 +63,8 @@
 
 		<h2>
 			<div class="wizard-steps">
-				<div class="complete-step">
-					<a><span>1</span> Klient</a>
+				<div class="completed-step hoverable">
+					<a href="rachunek.php"><span>1</span> Klient</a>
 				</div>
 				<div class="active-step">
 					<a><span>2</span> Rachunki klienta</a>

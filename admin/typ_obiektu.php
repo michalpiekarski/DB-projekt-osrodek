@@ -53,7 +53,7 @@
             $ilosc_miejsc = $_POST['ilosc_miejsc'];
             $cena = $_POST['cena'];
 
-            $sql = "INSERT INTO TYPY_OBIEKTOW (NAZWA, ILOSC_MIEJSC, CENA) VALUES ('$nazwa', '$ilosc_miejsc', '$cena')";
+            $sql = "INSERT INTO TYPY_OBIEKTOW (NAZWA, ILOSC_MIEJSC, CENA) VALUES ('$nazwa', $ilosc_miejsc, $cena)";
             $sql_parsed = oci_parse($con, $sql);
             oci_execute($sql_parsed);
     ?>
@@ -63,8 +63,8 @@
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Typ obiektu</a>
+                <div class="completed-step hoverable">
+                    <a href="typ_obiektu.php"><span>1</span> Typ obiektu</a>
                 </div>
                 <div class="active-step">
                     <a><span>2</span> Podsumowanie</a>
@@ -72,7 +72,7 @@
             </div>
         </h2>
 
-        <p>Dodano typ obiektu</p>
+        <h3>Dodano typ obiektu</h3>
     </div>
 
     <?php

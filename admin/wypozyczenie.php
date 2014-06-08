@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/progres.css">
 </head>
 <body>
+
     <?php
         include('nav.php');
 
@@ -34,7 +35,7 @@
         </label>
         <label>
             <span>Cena :</span>
-            <input type="number" name="cena" value="10" step="any" />
+            <input type="number" name="cena" value="10" step="0.01" />
         </label>
         <label>
             <span>&nbsp;</span>
@@ -48,7 +49,7 @@
             $nazwa = $_POST['nazwa'];
             $cena = $_POST['cena'];
 
-            $sql = "INSERT INTO WYPOZYCZENIA (NAZWA, CENA) VALUES ('$nazwa', '$cena')";
+            $sql = "INSERT INTO WYPOZYCZENIA (NAZWA, CENA) VALUES ('$nazwa', $cena)";
             $sql_parsed = oci_parse($con, $sql);
             oci_execute($sql_parsed);
     ?>
@@ -58,8 +59,8 @@
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Wypożyczenie</a>
+                <div class="completed-step hoverable">
+                    <a href="wypozyczenie.php"><span>1</span> Wypożyczenie</a>
                 </div>
                 <div class="active-step">
                     <a><span>2</span> Podsumowanie</a>
@@ -67,7 +68,7 @@
             </div>
         </h2>
 
-        <p>Dodano typ wypożyczenia</p>
+        <h3>Dodano typ wypożyczenia</h3>
     </div>
 
     <?php

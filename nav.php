@@ -4,7 +4,7 @@
 			<a href="index.php">Home</a>
 		</li>
 		<li>
-			<a href="osrodek.php">Dodaj klienta</a>
+			<a href="rezerwacja.php">Dodaj rezerwację</a>
 		</li>
 		<li>
 			<a>Rezerwacje<span class="caret"></span></a>

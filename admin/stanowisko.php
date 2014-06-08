@@ -53,7 +53,7 @@
             $placa_od = $_POST['placa_od'];
             $placa_do = $_POST['placa_do'];
 
-            $sql = "INSERT INTO STANOWISKA (NAZWA, PLACA_OD, PLACA_DO) VALUES ('$nazwa', '$placa_od', '$placa_do')";
+            $sql = "INSERT INTO STANOWISKA (NAZWA, PLACA_OD, PLACA_DO) VALUES ('$nazwa', $placa_od, $placa_do)";
             $sql_parsed = oci_parse($con, $sql);
             oci_execute($sql_parsed);
     ?>
@@ -63,8 +63,8 @@
 
         <h2>
             <div class="wizard-steps">
-                <div class="completed-step">
-                    <a><span>1</span> Stanowisko</a>
+                <div class="completed-step hoverable">
+                    <a href="stanowisko.php"><span>1</span> Stanowisko</a>
                 </div>
                 <div class="active-step">
                     <a><span>2</span> Podsumowanie</a>
@@ -72,7 +72,7 @@
             </div>
         </h2>
 
-        <p>Dodano stanowisko</p>
+        <h3>Dodano stanowisko</h3>
     </div>
 
     <?php
