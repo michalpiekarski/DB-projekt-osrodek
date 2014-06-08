@@ -4,10 +4,17 @@
 			<a href="index.php">Home</a>
 		</li>
 		<li>
-			<a href="osrodek.php">Dodaj ośrodek</a>
+			<a href="osrodki.php">Ośrodki<span class="caret"></span></a>
+			<div>
+				<ul>
+					<li>
+						<a href="osrodek.php">Dodaj ośrodek</a>
+					</li>
+				</ul>
+			</div>
 		</li>
 		<li>
-			<a>Obiekty<span class="caret"></span></a>
+			<a href="obiekty.php">Obiekty<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -27,7 +34,7 @@
 			</div>
 		</li>
 		<li>
-			<a>Pracownicy<span class="caret"></span></a>
+			<a href="pracownicy.php">Pracownicy<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -41,7 +48,7 @@
 			</div>
 		</li>
 		<li>
-			<a>Typy zamówień<span class="caret"></span></a>
+			<a href="typy_zamowien.php">Typy zamówień<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
