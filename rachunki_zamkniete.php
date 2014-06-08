@@ -18,7 +18,7 @@
 		if(!isset($_POST['button'])) {
 	?>
 
-	<form action='rachunek.php' method='post' class='basic-grey'>
+	<form action='rachunki_zamkniete.php' method='post' class='basic-grey'>
 			<h1>Wybierz klienta</h1>
 
 			<h2>
@@ -54,17 +54,17 @@
 
 		if(isset($_POST['button'])) {
 			$id_klienta = $_POST['selection'];
-			$rachunki = oci_parse($con,"Select * from rachunki where klient = '$id_klienta' and zaplacony = 0");
+			$rachunki = oci_parse($con,"SELECT * FROM RACHUNKI WHERE KLIENT = $id_klienta AND ZAPLACONY != 0");
 			oci_execute($rachunki);
 	?>
 
 	<div class='basic-grey'>
-		<h1>Aktualne rachunki klienta</h1>
+		<h1>Zamknięte rachunki klienta</h1>
 
 		<h2>
 			<div class="wizard-steps">
 				<div class="completed-step hoverable">
-					<a href="rachunek.php"><span>1</span> Klient</a>
+					<a href="rachunki_zamkniete.php"><span>1</span> Klient</a>
 				</div>
 				<div class="active-step">
 					<a><span>2</span> Rachunki klienta</a>
@@ -110,7 +110,7 @@
 				oci_execute($zamowienia_posilkow);
 
 				while($posilek = oci_fetch_array($zamowienia_posilkow)) {
-					$nazwa_posilku = $posilek['POSILKI_NAZWA'];
+					$nazwa_posilku = $posilek['TYP'];
 					$ilosc_posilku = $posilek['ILOSC'];
 					$sql_cena_posilku = oci_parse($con, "SELECT (CENA * '$ilosc_posilku') CENA_RAZEM FROM POSILKI WHERE NAZWA = '$nazwa_posilku'");
 					oci_execute($sql_cena_posilku);
@@ -133,7 +133,7 @@
 				oci_execute($zamowienia_uslug);
 
 				while($usluga = oci_fetch_array($zamowienia_uslug)) {
-					$nazwa_uslugi = $usluga['USLUGI_NAZWA'];
+					$nazwa_uslugi = $usluga['TYP'];
 					$ilosc_uslugi = $usluga['ILOSC'];
 					$sql_cena_uslugi = oci_parse($con, "SELECT (CENA * '$ilosc_uslugi') CENA_RAZEM FROM USLUGI WHERE NAZWA = '$nazwa_uslugi'");
 					oci_execute($sql_cena_uslugi);
@@ -157,15 +157,15 @@
 				oci_execute($zamowienia_wypozyczen);
 
 				while($wypozyczenie = oci_fetch_array($zamowienia_wypozyczen)) {
-					$nazwa_wypozyczenia = $wypozyczenie['WYPOZYCZENIA_NAZWA'];
+					$nazwa_wypozyczenia = $wypozyczenie['TYP'];
 					$ilosc_wypozyczenia = $wypozyczenie['ILOSC'];
 					$sql_cena_wypozyczenia = oci_parse($con, "SELECT (CENA * '$ilosc_wypozyczenia') CENA_RAZEM FROM WYPOZYCZENIA WHERE NAZWA = '$nazwa_wypozyczenia'");
 					oci_execute($sql_cena_wypozyczenia);
 					$cena = oci_fetch_array($sql_cena_wypozyczenia);
 					echo"<tr>";
 					echo"<td></td>";
-					echo"<td>".$wypozyczenie['WYPOZYCZENIA_NAZWA']."</td>";
-					echo"<td>".$wypozyczenie['ILOSC']."</td>";
+					echo"<td>".$nazwa_wypozyczenia."</td>";
+					echo"<td>".$ilosc_wypozyczenia."</td>";
 					echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
 					echo"<td>".$cena['CENA_RAZEM']." zł/dzień</td>";
 					echo"</tr>";
@@ -173,8 +173,8 @@
 
 				echo "<tr>";
 				echo "<td></td>";
-				echo "<th colspan='2' style='border-bottom: solid 1px lightgrey;'>Kwota:</th>";
-				echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
+				echo "<th colspan='2' style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey;'>Kwota:</th>";
+				echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
 				echo "</tr>";
 			}
 			oci_close($con); }

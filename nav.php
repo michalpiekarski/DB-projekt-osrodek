@@ -25,19 +25,36 @@
 			<div>
 				<ul>
 					<li>
-						<a href="uslugi.php">Zamów usługę</a>
-					</li>
-					<li>
 						<a href="posilek.php">Zamów posiłek</a>
 					</li>
 					<li>
+						<a href="uslugi.php">Zamów usługę</a>
+					</li>
+					<li>
 						<a href="wypozyczenie.php">Wypożycz</a>
+					</li>
+					<hr/>
+					<li>
+						<a href="zamowienia_aktualne.php">Aktualne</a>
+					</li>
+					<li>
+						<a href="zamowienia_zakonczone.php">Zakończone</a>
 					</li>
 				</ul>
 			</div>
 		</li>
 		<li>
-			<a href="rachunek.php">Rachunki</a>
+			<a>Rachunki<span class="caret"></span></a>
+			<div>
+				<ul>
+					<li>
+						<a href="rachunki_otwarte.php">Otwarte</a>
+					</li>
+					<li>
+						<a href="rachunki_zamkniete.php">Zamknięte</a>
+					</li>
+				</ul>
+			</div>
 		</li>
 	</ul>
 </nav>

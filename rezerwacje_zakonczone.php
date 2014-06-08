@@ -15,10 +15,10 @@
 		oci_execute($rezerwacja);
 	?>
 
-	<div class='basic-grey' style="width: 60%;">
+	<div class='basic-grey'>
 		<h1>Zakończone rezerwacje</h1>
 
-		<table class='basic-grey' style='border: none; padding: 0; text-align: center; width: 100%;' cellpadding='5em'>
+		<table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 
 		<?php
 			while($row = oci_fetch_array($rezerwacja)) {
