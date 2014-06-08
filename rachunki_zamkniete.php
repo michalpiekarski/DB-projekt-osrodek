@@ -27,7 +27,7 @@
 						<a><span>1</span> Klient</a>
 					</div>
 					<div>
-						<a><span>2</span> Rachunki klienta</a>
+						<a><span>2</span> Zamknięte rachunki klienta</a>
 					</div>
 				</div>
 			</h2>
@@ -67,7 +67,7 @@
 					<a href="rachunki_zamkniete.php"><span>1</span> Klient</a>
 				</div>
 				<div class="active-step">
-					<a><span>2</span> Rachunki klienta</a>
+					<a><span>2</span> Zamknięte rachunki klienta</a>
 				</div>
 			</div>
 		</h2>
