@@ -44,27 +44,27 @@
 			$cena_wypozyczenia2 = oci_fetch_array($cena_wypozyczenia);
 			$wypozyczenia_cena=$cena_wypozyczenia2['CENA'];
 
-			$rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENCI_ID = '$id_klienta'");
+			$rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$id_klienta'");
 			oci_execute($rachunek_kwota);
 			$rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
 			$rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
 
 			$nowa_kwota = ($wypozyczenia_cena * $wypozyczenia_ilosc) + $rachunek_kwota3;
-			$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENCI_ID = '$id_klienta'");
+			$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
 			oci_execute($dodaj);
 
-			$id_wypozyczenia = oci_parse($con," select ID FROM ZAMOWIENIA_WYPOZYCZEN where ID in (select max(ID) from ZAMOWIENIA_WYPOZYCZEN)");
+			$id_wypozyczenia = oci_parse($con," SELECT MAX(ID)+1 MAXID FROM ZAMOWIENIA_WYPOZYCZEN");
 		    oci_execute($id_wypozyczenia);
 		    $id_wypozyczenia2 = oci_fetch_array($id_wypozyczenia);
-		    $wypozyczenia = $id_wypozyczenia2['ID'];
-		    $id_wypozyczenie = $wypozyczenia+1;
+		    $wypozyczenia =
+		    $id_wypozyczenie = $id_wypozyczenia2['MAXID'];
 
-		    $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENCI_ID = '$id_klienta'");
+		    $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta'");
 		    oci_execute($id_rachunku);
 		    $id_rachunku2 = oci_fetch_array($id_rachunku);
 		    $id_rachunek = $id_rachunku2['ID'];
 
-		    $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_WYPOZYCZEN (ID,RACHUNKI_ID,ILOSC,WYPOZYCZENIA_NAZWA,DATA_OD,DATA_DO) VALUES ('$id_wypozyczenie','$id_rachunek','$wypozyczenia_ilosc','$wypozyczenia_nazwa','$wypozyczenia_data_od','$wypozyczenia_data_do')");
+		    $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_WYPOZYCZEN (ID,RACHUNEK,ILOSC,TYP,DATA_OD,DATA_DO) VALUES ('$id_wypozyczenie','$id_rachunek','$wypozyczenia_ilosc','$wypozyczenia_nazwa','$wypozyczenia_data_od','$wypozyczenia_data_do')");
 		    oci_execute($dodaj_usluge);
 			oci_close($con);
 		?>

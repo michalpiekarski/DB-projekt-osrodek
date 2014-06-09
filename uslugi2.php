@@ -40,27 +40,27 @@
             $cena_usluga2 = oci_fetch_array($cena_usluga);
             $usluga_cena=$cena_usluga2['CENA'];
 
-            $rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENCI_ID = '$id_klienta'");
+            $rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$id_klienta'");
             oci_execute($rachunek_kwota);
             $rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
             $rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
 
             $nowa_kwota = ($usluga_cena * $usluga_ilosc) + $rachunek_kwota3;
-            $dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENCI_ID = '$id_klienta'");
+            $dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
             oci_execute($dodaj);
 
-            $id_uslugi = oci_parse($con," select ID FROM ZAMOWIENIA_USLUG where ID in (select max(ID) from ZAMOWIENIA_USLUG)");
+            $id_uslugi = oci_parse($con,"SELECT MAX(ID)+1 MAXID FROM ZAMOWIENIA_USLUG");
             oci_execute($id_uslugi);
             $id_uslugi2 = oci_fetch_array($id_uslugi);
-            $uslugi = $id_uslugi2['ID'];
-            $id_usluga = $uslugi+1;
+            $id_usluga = $id_uslugi2['MAXID'];
 
-            $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENCI_ID = '$id_klienta'");
+
+            $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta'");
             oci_execute($id_rachunku);
             $id_rachunku2 = oci_fetch_array($id_rachunku);
             $id_rachunek = $id_rachunku2['ID'];
 
-            $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_USLUG (ID,RACHUNKI_ID,ILOSC,USLUGI_NAZWA,DATA) VALUES ('$id_usluga','$id_rachunek','$usluga_ilosc','$usluga','$usluga_data')");
+            $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_USLUG (ID,RACHUNEK,ILOSC,TYP,DATA) VALUES ('$id_usluga','$id_rachunek','$usluga_ilosc','$usluga','$usluga_data')");
             oci_execute($dodaj_usluge);
             oci_close($con);
         ?>
