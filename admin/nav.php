@@ -4,6 +4,9 @@
 			<a href="index.php">Home</a>
 		</li>
 		<li>
+			<a href="klienci.php">Klienci</a>
+		</li>
+		<li>
 			<a href="osrodki.php">Ośrodki<span class="caret"></span></a>
 			<div>
 				<ul>

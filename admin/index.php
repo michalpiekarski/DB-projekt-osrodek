@@ -26,7 +26,7 @@
         include('nav.php');
     ?>
 
-    <div class="basic-grey" style="margin-top: 100px;">
+    <div class="basic-grey" style="margin-top: 80px; width: 720px;">
             <a href="osrodki.php">
             <div class="imagelink">
                 TUTAJ LINK OBRAZKOWY
@@ -34,11 +34,24 @@
                 OŚRODKI
             </div>
         </a>
-        <a href="obiekty.php">
+        <a href="osrodek.php">
             <div class="imagelink">
                 TUTAJ LINK OBRAZKOWY
                 <hr width="50%" />
-                OBIEKTY
+                DODAJ OŚRODEK
+            </div>
+        </a>
+        <div class="imagelink" style="width: 404px; border: none; background-color: blue;">
+            <span style="font-size: 2em;">
+                LOGO
+            </span>
+        </div>
+        <div class="clear"></div>
+        <a href="klienci.php">
+            <div class="imagelink">
+                TUTAJ LINK OBRAZKOWY
+                <hr width="50%" />
+                KLIENCI
             </div>
         </a>
         <a href="pracownicy.php">
@@ -48,27 +61,6 @@
                 PRACOWNICY
             </div>
         </a>
-        <a href="typy_zamowien.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                TYPY ZAMÓWIEŃ
-            </div>
-        </a>
-        <div class="clear"></div>
-        <a href="osrodek.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                DODAJ OŚRODEK
-            </div>
-        </a>
-        <div class="imagelink">
-            <br/>
-            <span style="font-size: 3em;">
-                LOGO
-            </span>
-        </div>
         <a href="stanowisko.php">
             <div class="imagelink">
                 TUTAJ LINK OBRAZKOWY
@@ -83,7 +75,19 @@
                 DODAJ PRACOWNIKA
             </div>
         </a>
+        <div class="imagelink" style="margin-top: -12px; padding-top: 32px; border: none; background-color: blue;">
+            <span style="font-size: 2em;">
+                LOGO
+            </span>
+        </div>
         <div class="clear"></div>
+        <a href="obiekty.php">
+            <div class="imagelink">
+                TUTAJ LINK OBRAZKOWY
+                <hr width="50%" />
+                OBIEKTY
+            </div>
+        </a>
         <a href="typ_obiektu.php">
             <div class="imagelink">
                 TUTAJ LINK OBRAZKOWY
@@ -113,6 +117,13 @@
             </div>
         </a>
         <div class="clear"></div>
+        <a href="typy_zamowien.php">
+            <div class="imagelink">
+                TUTAJ LINK OBRAZKOWY
+                <hr width="50%" />
+                TYPY ZAMÓWIEŃ
+            </div>
+        </a>
         <a href="posilek.php">
             <div class="imagelink">
                 TUTAJ LINK OBRAZKOWY
@@ -134,10 +145,11 @@
                 DODAJ TYP WYPOŻYCZENIA
             </div>
         </a>
-        <div class="imagelink">
-            <br/>
-            <span style="line-height: 2em;">
-                TM - AUTOR MESSAGE
+        <div class="imagelink" style="border: none; padding-top: 40px;">
+            <span>
+                TM - AUTOR
+                <hr width="50%" />
+                PAGE INFO
             </span>
         </div>
         <div class="clear"></div>
