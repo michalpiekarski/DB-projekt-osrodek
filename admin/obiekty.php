@@ -5,13 +5,29 @@
 	<link rel="stylesheet" type="text/css" href="../css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="../css/form.css" />
 	<script type="text/javascript">
-	function SwitchView(show, hide, title)
-	{
-		document.getElementById(show).style.display = 'table';
-		document.getElementById(hide).style.display = 'none';
-		document.getElementById('title').innerHTML = title;
-	}
+		function SwitchView(show, hide, title)
+		{
+			document.getElementById(show).style.display = 'table';
+			document.getElementById(hide).style.display = 'none';
+			document.getElementById('title').innerHTML = title;
+		}
 	</script>
+	<style type="text/css">
+		#select input[type='radio'] {
+			width: 1.5em;
+			height: 1.5em;
+			margin: -5px 15px 0px -5px;
+			vertical-align: middle;
+		}
+		#select label {
+			display: inline;
+			float: none;
+		}
+		#select label > span {
+			float: none;
+			font-size: 1.2em;
+		}
+	</style>
 </head>
 <body>
 
@@ -27,11 +43,16 @@
 
 	<div class='basic-grey'>
 		<h1 id='title'>Obiekty</h1>
-		<form style="text-align: center;">
-			Obiekty :
-			<input type="radio" name="obiekty" value="Obiekty" checked onclick="SwitchView('obiekty', 'typy_obiektow', 'Obiekty');" />
-			Typy obiektów :
-			<input type="radio" name="obiekty" value="Typy obiektów" onclick="SwitchView('typy_obiektow', 'obiekty', 'Typy obiektów');" />
+
+		<form id='select' style="font-size: 1.2em; text-align: center; margin: -20px 0 10px;">
+			<label>
+				<span>Obiekty :</span>
+				<input type='radio' name='select' onclick="SwitchView('obiekty', 'typy_obiektow', 'Obiekty');" checked />
+			</label>
+			<label>
+				<span>Typy obiektów :</span>
+				<input type='radio' name='select' onclick="SwitchView('typy_obiektow', 'obiekty', 'Typy obiektów');" />
+			</label>
 		</form>
 
 		<table id='obiekty' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
