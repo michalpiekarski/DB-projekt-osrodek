@@ -11,6 +11,34 @@
 			document.getElementById(hide).style.display = 'none';
 			document.getElementById('title').innerHTML = title;
 		}
+
+	
+
+
+
+
+
+
+			  function ToggleEditable(button) 
+			  {
+          			
+			  	 
+          			
+	
+            if (div.contentEditable == "true") {
+            for(var i=0;i<document.getElementsByName('name').length;i++){
+			document.getElementsByName('name')[i].contentEditable=false;}
+                button.innerHTML = "Edytuj";
+            }
+            else {
+            	for(var i=0;i<document.getElementsByName(button).length;i++){
+				document.getElementsByName(button)[i].contentEditable=true;}
+                button.innerHTML = "Zakończ";
+            }
+        }
+
+
+		
 	</script>
 	<style type="text/css">
 		#select input[type='radio'] {
@@ -39,6 +67,7 @@
 		oci_execute($obiekty);
 		$typy_obiektow = oci_parse($con,"SELECT * FROM TYPY_OBIEKTOW");
 		oci_execute($typy_obiektow);
+		$licznik=0;
 	?>
 
 	<div class='basic-grey'>
@@ -62,16 +91,21 @@
 				<th style='background-color: lightgrey;'>Typ</th>
 				<th style='background-color: lightgrey;'>Budynek</th>
 				<th style='background-color: lightgrey;'>Numer</th>
+				<th style='background-color: lightgrey;' colspan="2">Edycja</th>
 			</tr>
 
 			<?php
 				while($row = oci_fetch_array($obiekty)) {
+					$licznik=$licznik+1;
 					echo"<tr>";
-					echo"<td>".$row['ID']."</td>";
-					echo"<td>".$row['OSRODEK']."</td>";
-					echo"<td>".$row['TYP']."</td>";
-					echo"<td>".$row['BUDYNEK']."</td>";
-					echo"<td>".$row['NUMER']."</td>";
+					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['ID']."</div></td>";
+					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['OSRODEK']."</div></td>";
+					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['TYP']."</div></td>";
+					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['BUDYNEK']."</div></td>";
+					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['NUMER']."</div></td>";
+					echo"<td><a href='delete.php?id=".$row['ID']."&typ=".$row['TYP']."&numer=".$row['NUMER']."'>Usuń</a></td>";
+					//echo"<td><a href='edit.php?id=".$row['ID']."&osrodek=".$row['OSRODEK']."&typ=".$row['TYP']."&budynek=".$row['BUDYNEK']."&numer=".$row['NUMER']."'>Edytuj</a></td>";
+					echo"<td><button value='Edit$licznik' onclick='ToggleEditable(this.value);'>Edytuj</button></td>";
 					echo"</tr>";
 				}
 			?>
