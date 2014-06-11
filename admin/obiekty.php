@@ -10,34 +10,7 @@
 			document.getElementById(show).style.display = 'table';
 			document.getElementById(hide).style.display = 'none';
 			document.getElementById('title').innerHTML = title;
-		}
-
-	
-
-
-
-
-
-
-			  function ToggleEditable(button) 
-			  {	
-			var div = document.getElementsByName(button);
-            if (div.contentEditable == "true") {
-            for(var i=0;i<document.getElementsByName(button).length;i++){
-			document.getElementsByName(button)[i].contentEditable=false;}
-               
-                button.innerHTML = "Edytuj";
-
-            }
-            else {
-            	for(var i=0;i<document.getElementsByName(button).length;i++){
-				document.getElementsByName(button)[i].contentEditable=true;}
-                button.innerHTML = "Zakończ";
-            }
-        }
-
-
-		
+		}		
 	</script>
 	<style type="text/css">
 		#select input[type='radio'] {
