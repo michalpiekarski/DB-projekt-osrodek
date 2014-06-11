@@ -5,46 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="../css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="../css/form.css" />
 
-	<script type="text/javascript">
-		var editMode = false;
-		var deleteMode = false;
-		function SwitchEditMode(id) {
-			if(!deleteMode) {
-				var editLink = document.getElementById(id.concat('edit')).firstChild;
-				var deleteLink = document.getElementById(id.concat('delete')).firstChild;
-				if(!editMode) {
-					editMode = true;
-					editLink.innerHTML = 'A';
-					deleteLink.removeEventListener('click', SwitchDeleteMode);
-				} else
-				{
-					editMode = false;
-					editLink.innerHTML = 'E';
-					deleteLink.addEventListener('click', SwitchDeleteMode);
-				}
-			}
-		}
-		function SwitchDeleteMode(id) {
-			if(!editMode) {
-				var editLink = document.getElementById(id.concat('edit')).firstChild;
-				var deleteLink = document.getElementById(id.concat('delete')).firstChild;
-				if(!deleteMode) {
-					deleteMode = true;
-					deleteLink.innerHTML = 'A';
-					editLink.removeEventListener('click', SwitchEditMode);
-				} else
-				{
-					deleteMode = false;
-					deleteLink.innerHTML = 'U';
-					editLink.addEventListener('click', SwitchEditMode);
-				}
-			}
-		}
-	</script>
+	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
 
 	<style type="text/css">
 		.mode a {
 			text-decoration: none;
+		}
+		.deletedRecord {
+			background-color: red;
 		}
 	</style>
 </head>
@@ -89,8 +57,12 @@
 							echo"<td>".$row['NAZWISKO']."</td>";
 							echo"<td>".$row['TELEFON']."</td>";
 							echo"<td>".$row['EMAIL']."</td>";
-							echo"<td id='".$row['ID']."edit' class='mode' rowspan='2'><a href='#edit' onclick='SwitchEditMode(\"".$row['ID']."\")'>E</a></td>";
-							echo"<td id='".$row['ID']."delete' class='mode' rowspan='2'><a href='#delete' onclick='SwitchDeleteMode(\"".$row['ID']."\")'>U</a></td>";
+							echo"<td id='".$row['ID']."edit' class='mode' rowspan='2'>";
+								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['ID']."\")'>E</a>";
+							echo"</td>";
+							echo"<td id='".$row['ID']."delete' class='mode' rowspan='2'>";
+								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['ID']."\")'>U</a>";
+							echo"</td>";
 						echo"</tr>";
 						echo"<tr>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']."</td>";

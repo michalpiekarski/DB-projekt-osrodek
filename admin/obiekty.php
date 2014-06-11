@@ -4,6 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="../css/form.css" />
+
+	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
+
+	<style type="text/css">
+		.mode a {
+			text-decoration: none;
+		}
+		.deletedRecord {
+			background-color: red;
+		}
+	</style>
+
 	<script type="text/javascript">
 		function SwitchView(show, hide, title)
 		{
@@ -12,6 +24,7 @@
 			document.getElementById('title').innerHTML = title;
 		}
 	</script>
+
 	<style type="text/css">
 		#select input[type='radio'] {
 			width: 1.5em;
@@ -56,42 +69,66 @@
 		</form>
 
 		<table id='obiekty' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
-			<tr>
-				<th style='background-color: lightgrey;'>ID</th>
-				<th style='background-color: lightgrey;'>Ośrodek</th>
-				<th style='background-color: lightgrey;'>Typ</th>
-				<th style='background-color: lightgrey;'>Budynek</th>
-				<th style='background-color: lightgrey;'>Numer</th>
-			</tr>
+			<thead>
+				<tr>
+					<th style='background-color: lightgrey;'>ID</th>
+					<th style='background-color: lightgrey;'>Ośrodek</th>
+					<th style='background-color: lightgrey;'>Typ</th>
+					<th style='background-color: lightgrey;'>Budynek</th>
+					<th style='background-color: lightgrey;'>Numer</th>
+					<th style='background-color: lightgrey;'>E</th>
+					<th style='background-color: lightgrey;'>U</th>
+				</tr>
+			</thead>
 
 			<?php
 				while($row = oci_fetch_array($obiekty)) {
-					echo"<tr>";
-					echo"<td>".$row['ID']."</td>";
-					echo"<td>".$row['OSRODEK']."</td>";
-					echo"<td>".$row['TYP']."</td>";
-					echo"<td>".$row['BUDYNEK']."</td>";
-					echo"<td>".$row['NUMER']."</td>";
-					echo"</tr>";
+					echo"<tbody id='".$row['ID']."'>";
+						echo"<tr>";
+							echo"<td>".$row['ID']."</td>";
+							echo"<td>".$row['OSRODEK']."</td>";
+							echo"<td>".$row['TYP']."</td>";
+							echo"<td>".$row['BUDYNEK']."</td>";
+							echo"<td>".$row['NUMER']."</td>";
+							echo"<td id='".$row['ID']."edit' class='mode'>";
+								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['ID']."\")'>E</a>";
+							echo"</td>";
+							echo"<td id='".$row['ID']."delete' class='mode'>";
+								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['ID']."\")'>U</a>";
+							echo"</td>";
+						echo"</tr>";
+					echo"</tbody>";
 				}
 			?>
 
 		</table>
 
 		<table id='typy_obiektow' class='basic-grey' style='border: none; padding: 0; text-align: center; display: none;' cellpadding='5em'>
-			<tr>
-				<th style='background-color: lightgrey;'>Nazwa</th>
-				<th style='background-color: lightgrey;'>Ilość miejsc</th>
-				<th style='background-color: lightgrey;'>Cena</th>
-			</tr>
+			<thead>
+				<tr>
+					<th style='background-color: lightgrey;'>Nazwa</th>
+					<th style='background-color: lightgrey;'>Ilość miejsc</th>
+					<th style='background-color: lightgrey;'>Cena</th>
+					<th style='background-color: lightgrey;'>E</th>
+					<th style='background-color: lightgrey;'>U</th>
+				</tr>
+			</thead>
 
 			<?php
 				while($row = oci_fetch_array($typy_obiektow)) {
-					echo"<tr>";
-					echo"<td>".$row['NAZWA']."</td>";
-					echo"<td>".$row['ILOSC_MIEJSC']."</td>";
-					echo"<td>".$row['CENA']." zł/dobę</td>";
-					echo"</tr>";
+					echo"<tbody id='".$row['NAZWA']."'>";
+						echo"<tr>";
+							echo"<td>".$row['NAZWA']."</td>";
+							echo"<td>".$row['ILOSC_MIEJSC']."</td>";
+							echo"<td>".$row['CENA']." zł/dobę</td>";
+							echo"<td id='".$row['NAZWA']."edit' class='mode'>";
+								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['NAZWA']."\")'>E</a>";
+							echo"</td>";
+							echo"<td id='".$row['NAZWA']."delete' class='mode'>";
+								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['NAZWA']."\")'>U</a>";
+							echo"</td>";
+						echo"</tr>";
+					echo"</tbody>";
 				}
 			?>
 
