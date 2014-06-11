@@ -6,14 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="css/form.css" />
     <style type="text/css">
         .imagelink {
-            border: solid 1px black;
             width: 150px;
-            height: 110px;
-            text-align: center;
+            height: 150px;
             float: left;
-            padding-top: 40px;
             margin-left: 20px;
             margin-bottom: 10px;
+        }
+        #logo {
+            width: 320px;
+            height: 150px;
         }
         .clear {
             clear: both;
@@ -27,59 +28,31 @@
 	?>
 
     <div class="basic-grey" style="margin-top: 100px;">
-            <a href="rezerwacje_aktualne.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                REZERWACJE AKTUALNE
-            </div>
+        <a href="rezerwacje_aktualne.php">
+            <img src="images/aktualne_rezerwacje.PNG" alt="Aktualne Rezerwacje" class="imagelink" />
         </a>
         <a href="zamowienia_aktualne.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                ZAMOWIENIA AKTUALNE
-            </div>
+            <img src="images/aktualne_zamowienia.PNG" alt="Aktualne Zamówienia" class="imagelink" />
         </a>
         <a href="rachunki_otwarte.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                RACHUNKI OTWARTE
-            </div>
+            <img src="images/rachunki_otwarte.PNG" alt="Otwarte Rachunki" class="imagelink" />
         </a>
         <div class="clear"></div>
         <a href="rezerwacja.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                NOWA REZERWACJA
-            </div>
+            <img src="images/nowa_rezerwacja.PNG" alt="Zarezerwuj" class="imagelink" />
         </a>
         <div class="imagelink" style="width: 322px;">
-            <span style="font-size: 5em;">LOGO</span>
+            <img id="logo" src="images/logo.PNG" alt="Logo" />
         </div>
         <div class="clear"></div>
         <a href="posilek.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                ZAMOW POSILEK
-            </div>
+            <img src="images/zamow_posilek.PNG" alt="Zamów Posiłek" class="imagelink" />
         </a>
         <a href="uslugi.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                ZAMÓW USŁUGĘ
-            </div>
+            <img src="images/zamow_usluge.PNG" alt="Zamów Usługę" class="imagelink" />
         </a>
         <a href="wypozyczenie.php">
-            <div class="imagelink">
-                TUTAJ LINK OBRAZKOWY
-                <hr width="50%" />
-                WYPOŻYCZ
-            </div>
+            <img src="images/wypozycz.PNG" alt="Wypożycz" class="imagelink" />
         </a>
         <div class="clear"></div>
     </div>
