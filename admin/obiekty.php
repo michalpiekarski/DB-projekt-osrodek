@@ -20,15 +20,14 @@
 
 
 			  function ToggleEditable(button) 
-			  {
-          			
-			  	 
-          			
-	
+			  {	
+			var div = document.getElementsByName(button);
             if (div.contentEditable == "true") {
-            for(var i=0;i<document.getElementsByName('name').length;i++){
-			document.getElementsByName('name')[i].contentEditable=false;}
+            for(var i=0;i<document.getElementsByName(button).length;i++){
+			document.getElementsByName(button)[i].contentEditable=false;}
+               
                 button.innerHTML = "Edytuj";
+
             }
             else {
             	for(var i=0;i<document.getElementsByName(button).length;i++){
@@ -104,8 +103,8 @@
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['BUDYNEK']."</div></td>";
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['NUMER']."</div></td>";
 					echo"<td><a href='delete.php?id=".$row['ID']."&typ=".$row['TYP']."&numer=".$row['NUMER']."'>Usuń</a></td>";
-					//echo"<td><a href='edit.php?id=".$row['ID']."&osrodek=".$row['OSRODEK']."&typ=".$row['TYP']."&budynek=".$row['BUDYNEK']."&numer=".$row['NUMER']."'>Edytuj</a></td>";
-					echo"<td><button value='Edit$licznik' onclick='ToggleEditable(this.value);'>Edytuj</button></td>";
+					echo"<td><a href='edit.php?id=".$row['ID']."&osrodek=".$row['OSRODEK']."&typ=".$row['TYP']."&budynek=".$row['BUDYNEK']."&numer=".$row['NUMER']."'>Edytuj</a></td>";
+					//echo"<td><button value='Edit$licznik' onclick='ToggleEditable(this.value);'>Edytuj</button></td>";
 					echo"</tr>";
 				}
 			?>
