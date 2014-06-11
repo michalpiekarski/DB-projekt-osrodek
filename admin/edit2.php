@@ -60,7 +60,7 @@
             
         </tr>
         <tr>
-            <th style='background-color: lightgrey;'><a href="obiekty.php">Wróć</a></th>
+            <th style='background-color: lightgrey;' colspan="5"><a href="obiekty.php">Wróć</a></th>
            
         </tr>
     </table>

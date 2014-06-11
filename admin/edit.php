@@ -30,10 +30,10 @@
          var budynek = Cells[3].innerText;
          var numer = Cells[4].innerText;
         
-        window.location.href="edit2.php?id="+ id +"&osrodek=" + osrodek;
+        window.location.href="edit2.php?id="+ id +"&osrodek=" + osrodek + "&typ=" + typ + "&budynek=" + budynek + "&numer=" + numer;
 
 
-        alert(id);
+        
         }
     </script>
 </head>
@@ -54,7 +54,7 @@
         
 
     ?>
-<form action="edit2.php">
+
     <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
         <tr>
             <th colspan = '5'style='background-color: lightgrey;'>Edycja</th>
@@ -81,11 +81,11 @@
         </tr>
     </table>
 
-</form>
 
 
 
-?>
+
+
 
 </body>
 </html>
