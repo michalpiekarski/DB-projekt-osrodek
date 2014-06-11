@@ -4,6 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="../css/form.css" />
+
+	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
+
+	<style type="text/css">
+		.mode a {
+			text-decoration: none;
+		}
+		.deletedRecord {
+			background-color: red;
+		}
+	</style>
+
 	<script type="text/javascript">
 		function SwitchView(show, hide, title)
 		{
@@ -12,6 +24,7 @@
 			document.getElementById('title').innerHTML = title;
 		}
 	</script>
+
 	<style type="text/css">
 		#select input[type='radio'] {
 			width: 1.5em;
@@ -56,50 +69,74 @@
 		</form>
 
 		<table id='pracownicy' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
-			<tr>
-				<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
-				<th style='background-color: lightgrey;'>Imie Nazwisko</th>
-				<th style='background-color: lightgrey;'>Stanowisko - Płaca</th>
-				<th style='background-color: lightgrey;'>Ośrodek</th>
-			</tr>
-			<tr>
-				<th style='background-color: lightgrey;'>Adres</th>
-				<th style='background-color: lightgrey;'>E-mail</th>
-				<th style='background-color: lightgrey;'>Telefon</th>
-			</tr>
+			<thead>
+				<tr>
+					<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
+					<th style='background-color: lightgrey;'>Imie Nazwisko</th>
+					<th style='background-color: lightgrey;'>Stanowisko - Płaca</th>
+					<th style='background-color: lightgrey;'>Ośrodek</th>
+					<th rowspan='2' style='background-color: lightgrey;'>E</th>
+					<th rowspan='2' style='background-color: lightgrey;'>U</th>
+				</tr>
+				<tr>
+					<th style='background-color: lightgrey;'>Adres</th>
+					<th style='background-color: lightgrey;'>E-mail</th>
+					<th style='background-color: lightgrey;'>Telefon</th>
+				</tr>
+			</thead>
 
 			<?php
 				while($row = oci_fetch_array($pracownicy)) {
-					echo"<tr>";
-					echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
-					echo"<td>".$row['IMIE']." ".$row['NAZWISKO']."</td>";
-					echo"<td>".$row['STANOWISKO']." - ".$row['PLACA']." zł/mies.</td>";
-					echo"<td>".$row['OSRODEK']."</td>";
-					echo"</tr>";
-					echo"<tr>";
-					echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']." ".$row['MIESZKANIE']." ".$row['KOD_POCZTOWY']." ".$row['MIASTO']."</td>";
-					echo"<td style='border-bottom: solid 1px lightgrey;' style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['EMAIL']."</td>";
-					echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['TELEFON']."</td>";
-					echo"</tr>";
+					echo"<tbody id='".$row['ID']."'>";
+						echo"<tr>";
+							echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
+							echo"<td>".$row['IMIE']." ".$row['NAZWISKO']."</td>";
+							echo"<td>".$row['STANOWISKO']." - ".$row['PLACA']." zł/mies.</td>";
+							echo"<td>".$row['OSRODEK']."</td>";
+							echo"<td id='".$row['ID']."edit' class='mode' rowspan='2'>";
+								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['ID']."\")'>E</a>";
+							echo"</td>";
+							echo"<td id='".$row['ID']."delete' class='mode' rowspan='2'>";
+								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['ID']."\")'>U</a>";
+							echo"</td>";
+						echo"</tr>";
+						echo"<tr>";
+							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']." ".$row['MIESZKANIE']." ".$row['KOD_POCZTOWY']." ".$row['MIASTO']."</td>";
+							echo"<td style='border-bottom: solid 1px lightgrey;' style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['EMAIL']."</td>";
+							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['TELEFON']."</td>";
+						echo"</tr>";
+					echo"</tbody>";
 				}
 			?>
 
 		</table>
 
 		<table id='stanowiska' class='basic-grey' style='border: none; padding: 0; text-align: center; display: none;' cellpadding='5em'>
-			<tr>
-				<th style='background-color: lightgrey;'>Nazwa</th>
-				<th style='background-color: lightgrey;'>Płaca od</th>
-				<th style='background-color: lightgrey;'>Płaca do</th>
-			</tr>
+			<thead>
+				<tr>
+					<th style='background-color: lightgrey;'>Nazwa</th>
+					<th style='background-color: lightgrey;'>Płaca od</th>
+					<th style='background-color: lightgrey;'>Płaca do</th>
+					<th style='background-color: lightgrey;'>E</th>
+					<th style='background-color: lightgrey;'>U</th>
+				</tr>
+			</thead>
 
 			<?php
 				while($row = oci_fetch_array($stanowiska)) {
-					echo"<tr>";
-					echo"<td>".$row['NAZWA']."</td>";
-					echo"<td>".$row['PLACA_OD']." zł/mies.</td>";
-					echo"<td>".$row['PLACA_DO']." zł/mies.</td>";
-					echo"</tr>";
+					echo"<tbody id='".$row['NAZWA']."'>";
+						echo"<tr>";
+							echo"<td>".$row['NAZWA']."</td>";
+							echo"<td>".$row['PLACA_OD']." zł/mies.</td>";
+							echo"<td>".$row['PLACA_DO']." zł/mies.</td>";
+							echo"<td id='".$row['NAZWA']."edit' class='mode'>";
+								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['NAZWA']."\")'>E</a>";
+							echo"</td>";
+							echo"<td id='".$row['NAZWA']."delete' class='mode'>";
+								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['NAZWA']."\")'>U</a>";
+							echo"</td>";
+						echo"</tr>";
+					echo"</tbody>";
 				}
 			?>
 
