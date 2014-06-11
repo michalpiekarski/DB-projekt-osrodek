@@ -5,6 +5,11 @@ div.basic-grey > a {
     width: 150px;
     height: 150px;
 }
+a:hover .imagelink {
+    width: 140px;
+    height: 140px;
+    border: solid 5px blue;
+}
 #logo {
     width: 303px;
     height: 150px;
