@@ -68,7 +68,7 @@
         </tr>
         <tr id="remove">
            
-            <td><div contenteditable="true"><?php echo $id;?></div></td>
+            <td><?php echo $id;?></td>
             <td><div contenteditable="true"><?php echo $osrodek;?></div></td>
             <td><div contenteditable="true"><?php echo $typ;?></div></td>
             <td><div contenteditable="true"><?php echo $budynek;?></div></td>

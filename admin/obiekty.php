@@ -97,7 +97,7 @@
 				while($row = oci_fetch_array($obiekty)) {
 					$licznik=$licznik+1;
 					echo"<tr>";
-					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['ID']."</div></td>";
+					echo"<td>".$row['ID']."</td>";
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['OSRODEK']."</div></td>";
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['TYP']."</div></td>";
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['BUDYNEK']."</div></td>";

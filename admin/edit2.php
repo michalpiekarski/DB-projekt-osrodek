@@ -33,6 +33,8 @@
         $budynek = $_GET['budynek'];
         $numer = $_GET['numer'];
        
+        $update = oci_parse($con,"UPDATE OBIEKTY SET OSRODEK='$osrodek', BUDYNEK='$budynek', NUMER='$numer' WHERE ID=$id");
+        oci_execute($update);
 
 
         
@@ -41,7 +43,7 @@
 
     <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
         <tr>
-            <th colspan = '5'style='background-color: lightgrey;'>Edycja</th>
+            <th colspan = '5'style='background-color: lightgrey;'>Zedytowano</th>
         </tr>
         <tr>
             <th style='background-color: lightgrey;'>ID</th>
