@@ -25,12 +25,14 @@
     <?php
         include('nav.php');
         $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
-
+        $tabela = $_GET['tabela'];
+        if(isset($_GET['id'])){
         $id = $_GET['id'];
         $typ = $_GET['typ'];
         $numer = $_GET['numer'];
-        $rm_obiekt = oci_parse($con,"DELETE FROM OBIEKTY WHERE ID = $id");
+        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = $id");
         oci_execute($rm_obiekt);
+       
 
         
 
@@ -54,6 +56,32 @@
             <th style='background-color: lightgrey;'><a href="obiekty.php">Wróć</a></th>
         </tr>
     </table>
-
+<?php 
+}
+else
+{
+    $nazwa = $_GET["nazwa"];
+    $ilosc = $_GET["ilosc"];
+    $cena = $_GET["cena"];
+    $rm_typ_obiektu=oci_parse($con, "DELETE FROM $tabela WHERE NAZWA = $nazwa");
+    oci_execute($rm_typ_obiektu);
+?>
+    <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
+        <tr>
+            <th colspan = '3'style='background-color: lightgrey;'>Usunięto</th>
+        </tr>
+        <tr>
+                <th style='background-color: lightgrey;'>Nazwa</th>
+                <th style='background-color: lightgrey;'>Ilość miejsc</th>
+                <th style='background-color: lightgrey;'>Cena</th>
+        </tr>
+        <tr>
+            <td><?php echo $nazwa;?></td>
+            <td><?php echo $ilosc;?></td>
+            <td><?php echo $cena;?></td>
+        </tr>
+<?php
+}
+?>
 </body>
 </html>

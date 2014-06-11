@@ -52,13 +52,13 @@
             <th style='background-color: lightgrey;'>Budynek</th>
             <th style='background-color: lightgrey;'>Numer</th>
         </tr>
-        <tr id="remove">
+        <tr>
            
-            <td><?php echo $id;?></div></td>
-            <td><?php echo $osrodek;?></div></td>
-            <td><?php echo $typ;?></div></td>
-            <td><?php echo $budynek;?></div></td>
-            <td><?php echo $numer;?></div></td>
+            <td><?php echo $id;?></td>
+            <td><?php echo $osrodek;?></td>
+            <td><?php echo $typ;?></td>
+            <td><?php echo $budynek;?></td>
+            <td><?php echo $numer;?></td>
             
         </tr>
         <tr>

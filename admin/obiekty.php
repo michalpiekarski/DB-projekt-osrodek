@@ -11,6 +11,13 @@
 			document.getElementById(hide).style.display = 'none';
 			document.getElementById('title').innerHTML = title;
 		}		
+
+		function show_confirm()
+		{
+			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
+			
+		}
+
 	</script>
 	<style type="text/css">
 		#select input[type='radio'] {
@@ -75,9 +82,9 @@
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['TYP']."</div></td>";
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['BUDYNEK']."</div></td>";
 					echo"<td><div name='Edit$licznik' contenteditable='false'>".$row['NUMER']."</div></td>";
-					echo"<td><a href='delete.php?id=".$row['ID']."&typ=".$row['TYP']."&numer=".$row['NUMER']."'>Usuń</a></td>";
+					echo"<td><a href='delete.php?id=".$row['ID']."&typ=".$row['TYP']."&numer=".$row['NUMER']."&tabela=OBIEKTY' onclick='show_confirm()';>Usuń</a></td>";
 					echo"<td><a href='edit.php?id=".$row['ID']."&osrodek=".$row['OSRODEK']."&typ=".$row['TYP']."&budynek=".$row['BUDYNEK']."&numer=".$row['NUMER']."'>Edytuj</a></td>";
-					//echo"<td><button value='Edit$licznik' onclick='ToggleEditable(this.value);'>Edytuj</button></td>";
+					
 					echo"</tr>";
 				}
 			?>
@@ -89,6 +96,7 @@
 				<th style='background-color: lightgrey;'>Nazwa</th>
 				<th style='background-color: lightgrey;'>Ilość miejsc</th>
 				<th style='background-color: lightgrey;'>Cena</th>
+				<th style='background-color: lightgrey;'>Edycja</th>
 			</tr>
 
 			<?php
@@ -97,6 +105,8 @@
 					echo"<td>".$row['NAZWA']."</td>";
 					echo"<td>".$row['ILOSC_MIEJSC']."</td>";
 					echo"<td>".$row['CENA']." zł/dobę</td>";
+					echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&ilosc=".$row['ILOSC_MIEJSC']."&cena=".$row['CENA']."&tabela=TYPY_OBIEKTOW'>Usuń</a></td>";
+					//echo"<td><a href='edit.php?id=".$row['ID']."&osrodek=".$row['OSRODEK']."&typ=".$row['TYP']."&budynek=".$row['BUDYNEK']."&numer=".$row['NUMER']."'>Edytuj</a></td>";
 					echo"</tr>";
 				}
 			?>
