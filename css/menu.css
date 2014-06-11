@@ -110,7 +110,3 @@ nav > ul > li > div ul > li:hover > a {
 #admin_link:hover {
   background-color: lightgrey;
 }
-a {
-    text-decoration: none;
-     color: #888; 
-}
