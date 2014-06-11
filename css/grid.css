@@ -1,0 +1,11 @@
+div.basic-grey > a {
+    text-decoration: none;
+}
+.imagelink {
+    width: 150px;
+    height: 150px;
+}
+#logo {
+    width: 303px;
+    height: 150px;
+}
