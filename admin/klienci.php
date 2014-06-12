@@ -7,6 +7,12 @@
 
 	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
 
+	<script type="text/javascript">
+		function show_confirm() {
+			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
+		}
+	</script>
+
 	<style type="text/css">
 		.mode a {
 			text-decoration: none;
@@ -37,8 +43,7 @@
 					<th style='background-color: lightgrey;'>Nazwisko</th>
 					<th style='background-color: lightgrey;'>Telefon</th>
 					<th style='background-color: lightgrey;'>E-mail</th>
-					<th rowspan='2' style='background-color: lightgrey;'>E</th>
-					<th rowspan='2' style='background-color: lightgrey;'>U</th>
+					<th style='background-color: lightgrey;' colspan="2" rowspan="2">Edycja</th>
 				</tr>
 				<tr>
 					<th style='background-color: lightgrey;'>Ulica</th>
@@ -57,18 +62,14 @@
 							echo"<td>".$row['NAZWISKO']."</td>";
 							echo"<td>".$row['TELEFON']."</td>";
 							echo"<td>".$row['EMAIL']."</td>";
-							echo"<td id='".$row['ID']."edit' class='mode' rowspan='2'>";
-								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['ID']."\")'>E</a>";
-							echo"</td>";
-							echo"<td id='".$row['ID']."delete' class='mode' rowspan='2'>";
-								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['ID']."\")'>U</a>";
-							echo"</td>";
+							echo"<td><a href='edit.php?id=".$row['ID']."&tabela=KLIENCI'>Edytuj</a></td>";
 						echo"</tr>";
 						echo"<tr>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['MIESZKANIE']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['KOD_POCZTOWY']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['MIASTO']."</td>";
+							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=KLIENCI' onclick='show_confirm()';>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

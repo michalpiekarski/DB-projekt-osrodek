@@ -7,6 +7,12 @@
 
 	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
 
+	<script type="text/javascript">
+		function show_confirm() {
+			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
+		}
+	</script>
+
 	<style type="text/css">
 		.mode a {
 			text-decoration: none;
@@ -36,13 +42,12 @@
 		<table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 			<thead>
 				<tr>
-					<th colspan='2' style="font-size: 1.8em; border-top: solid 1px lightgrey;">Posiłki</th>
+					<th colspan='4' style="font-size: 1.8em; border-top: solid 1px lightgrey;">Posiłki</th>
 				</tr>
 				<tr>
 					<th style='background-color: lightgrey;'>Nazwa</th>
 					<th style='background-color: lightgrey;'>Cena</th>
-					<th style='background-color: lightgrey;'>E</th>
-					<th style='background-color: lightgrey;'>U</th>
+					<th style='background-color: lightgrey;' colspan="2">Edycja</th>
 				</tr>
 			</thead>
 
@@ -52,12 +57,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td id='".$row['NAZWA']."edit' class='mode'>";
-								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['NAZWA']."\")'>E</a>";
-							echo"</td>";
-							echo"<td id='".$row['NAZWA']."delete' class='mode'>";
-								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['NAZWA']."\")'>U</a>";
-							echo"</td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=POSILKI'>Edytuj</a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' onclick='show_confirm()';>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -65,13 +66,12 @@
 
 			<thead>
 				<tr>
-					<th colspan='2' style="font-size: 1.8em; border-top: solid 1px lightgrey;">Usługi</th>
+					<th colspan='4' style="font-size: 1.8em; border-top: solid 1px lightgrey;">Usługi</th>
 				</tr>
 				<tr>
 					<th style='background-color: lightgrey;'>Nazwa</th>
 					<th style='background-color: lightgrey;'>Cena</th>
-					<th style='background-color: lightgrey;'>E</th>
-					<th style='background-color: lightgrey;'>U</th>
+					<th style='background-color: lightgrey;' colspan="2">Edycja</th>
 				</tr>
 			</thead>
 
@@ -81,12 +81,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td id='".$row['NAZWA']."edit' class='mode'>";
-								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['NAZWA']."\")'>E</a>";
-							echo"</td>";
-							echo"<td id='".$row['NAZWA']."delete' class='mode'>";
-								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['NAZWA']."\")'>U</a>";
-							echo"</td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=USLUGI'>Edytuj</a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=USLUGI' onclick='show_confirm()';>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -94,13 +90,12 @@
 
 			<thead>
 				<tr>
-					<th colspan='2' style="font-size: 1.8em; border-top: solid 1px lightgrey;">Wypożyczenia</th>
+					<th colspan='4' style="font-size: 1.8em; border-top: solid 1px lightgrey;">Wypożyczenia</th>
 				</tr>
 				<tr>
 					<th style='background-color: lightgrey;'>Nazwa</th>
 					<th style='background-color: lightgrey;'>Cena</th>
-					<th style='background-color: lightgrey;'>E</th>
-					<th style='background-color: lightgrey;'>U</th>
+					<th style='background-color: lightgrey;' colspan="2">Edycja</th>
 				</tr>
 			</thead>
 
@@ -110,12 +105,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td id='".$row['NAZWA']."edit' class='mode'>";
-								echo"<a href='#edit' onclick='SwitchEditMode(\"".$row['NAZWA']."\")'>E</a>";
-							echo"</td>";
-							echo"<td id='".$row['NAZWA']."delete' class='mode'>";
-								echo"<a href='#delete' onclick='SwitchDeleteMode(\"".$row['NAZWA']."\")'>U</a>";
-							echo"</td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA'>Edytuj</a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' onclick='show_confirm()';>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="../css/menu.css" />
     <link rel="stylesheet" type="text/css" href="../css/form.css" />
+
     <style type="text/css">
         .imagelink {
             border: solid 1px black;
@@ -19,23 +20,6 @@
             clear: both;
         }
     </style>
-        <script type="text/javascript">
-        function Table(){
-        var Row = document.getElementById("remove");
-        var Cells = Row.getElementsByTagName("td");
-       
-         var id = Cells[0].innerText;
-         var osrodek = Cells[1].innerText;
-         var typ = Cells[2].innerText;
-         var budynek = Cells[3].innerText;
-         var numer = Cells[4].innerText;
-        
-        window.location.href="edit2.php?id="+ id +"&osrodek=" + osrodek + "&typ=" + typ + "&budynek=" + budynek + "&numer=" + numer;
-
-
-        
-        }
-    </script>
 </head>
 <body>
 
@@ -43,49 +27,93 @@
         include('nav.php');
         $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
 
-        $id = $_GET['id'];
-        $osrodek = $_GET['osrodek'];
-        $typ = $_GET['typ'];
-        $budynek = $_GET['budynek'];
-        $numer = $_GET['numer'];
-       
+        if(!isset($_GET['zapis'])) {
+            $tabela = $_GET['tabela'];
+            $id = $_GET['id'];
 
+            // Uzyskaj nazwy kolumn tabeli
+            $col_names = oci_parse($con, "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = '$tabela'");
+            oci_execute($col_names);
+            $col_count = oci_fetch_all($col_names, $col_names, null, null, OCI_FETCHSTATEMENT_BY_COLUMN + OCI_NUM);
 
-        
-
+            // Uzyskaj dane rekordu
+            $dane = oci_parse($con, "SELECT * FROM $tabela WHERE ".$col_names[0][0]." = '$id'");
+            oci_execute($dane);
+            $dane = oci_fetch_array($dane);
     ?>
 
-    <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
-        <tr>
-            <th colspan = '5'style='background-color: lightgrey;'>Edycja</th>
-        </tr>
-        <tr>
-            <th style='background-color: lightgrey;'>ID</th>
-            <th style='background-color: lightgrey;'>Ośrodek</th>
-            <th style='background-color: lightgrey;'>Typ</th>
-            <th style='background-color: lightgrey;'>Budynek</th>
-            <th style='background-color: lightgrey;'>Numer</th>
-        </tr>
-        <tr id="remove">
-           
-            <td><?php echo $id;?></td>
-            <td><div contenteditable="true"><?php echo $osrodek;?></div></td>
-            <td><div contenteditable="true"><?php echo $typ;?></div></td>
-            <td><div contenteditable="true"><?php echo $budynek;?></div></td>
-            <td><div contenteditable="true"><?php echo $numer;?></div></td>
-            
-        </tr>
-        <tr>
-            <th style='background-color: lightgrey;'><a href="obiekty.php">Wróć</a></th>
-            <th style='background-color: lightgrey;'><input type='submit' name='button' onclick="Table();" value='Zapisz'></th>
-        </tr>
-    </table>
+    <div class='basic-grey'>
+        <h1>Edycja</h1>
 
+        <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
+            <thead>
+                <tr>
 
+                    <?php
+                        for($i=0; $i<$col_count; $i++) {
+                            echo"<th style='background-color: lightgrey;'>".$col_names[0][$i]."</th>";
+                        }
+                    ?>
 
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="remove">
+                    <td>
+                        <?php echo"<div id='".$id."'>".$id."</div>"; ?>
+                    </td>
 
+                    <?php
+                        for($i=1; $i<$col_count; $i++) {
+                            echo "<td><div id='".$col_names[0][$i]."' contenteditable='true'>".$dane[$i]."</div></td>";
+                        }
+                    ?>
 
+                </tr>
+            </tbody>
+        </table>
 
+        <h3>
+            <a href="obiekty.php">Wróć</a>
+            <input type='submit' name='button' onclick="ZapiszZmiany();" value='Zapisz'>
+        </h3>
+    </div>
+
+    <script type="text/javascript">
+        function ZapiszZmiany() {
+            if(confirm("Czy na pewno chcesz zapisać wprowadzone zmiany?\nUWAGA: Tej operacji nie będzie można cofcać!")) {
+                var Row = document.getElementById("remove");
+                var Cells = Row.getElementsByTagName("td");
+                var CellValues = {};
+                for (var i = 0; i < Cells.length; i++) {
+                    CellValues[Cells[i].firstChild.id] = Cells[i].innerText.trim();
+                }
+
+                window.location.href="edit.php?zapis=1&tabela=<?php echo $tabela; ?>&id=<?php echo $id; ?>&json="+JSON.stringify(CellValues);
+            }
+        }
+    </script>
+
+    <?php
+        } else {
+            $tabela = $_GET['tabela'];
+            $id = $_GET['id'];
+
+            // Uzyskaj nazwy kolumn tabeli
+            $col_names = oci_parse($con, "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = '$tabela'");
+            oci_execute($col_names);
+            $col_count = oci_fetch_all($col_names, $col_names, null, null, OCI_FETCHSTATEMENT_BY_COLUMN + OCI_NUM);
+
+            $json = json_decode($_GET['json'], true);
+
+            $sql = "UPDATE ".$tabela." SET ";
+            for ($i=1; $i < $col_count; $i++) {
+                $sql .= $col_names[0][$i]."='".$json[$col_names[0][$i]]."' ";
+            }
+            $sql .= "WHERE ".$col_names[0][0]."='".$id."'";
+            oci_execute($sql);
+        }
+    ?>
 
 </body>
 </html>
