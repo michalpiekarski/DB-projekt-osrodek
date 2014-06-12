@@ -108,11 +108,15 @@
 
             $sql = "UPDATE ".$tabela." SET ";
             for ($i=1; $i < $col_count; $i++) {
-                $sql .= $col_names[0][$i]."='".$json[$col_names[0][$i]]."' ";
+                $sql .= $col_names[0][$i]." = '".$json[$col_names[0][$i]]."'";
+                if($i < $col_count-1) {
+                    $sql .= ", ";
+                }
             }
-            $sql .= "WHERE ".$col_names[0][0]."='".$id."'";
-            $sql = oci_parse($sql);
-            oci_execute($con, $sql);
+            $sql .= "WHERE ".$col_names[0][0]." = ".$id;
+            echo $sql;
+            $sql = oci_parse($con, $sql);
+            oci_execute($sql);
         }
     ?>
 
