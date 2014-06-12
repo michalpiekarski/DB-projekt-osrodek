@@ -113,8 +113,7 @@
                     $sql .= ", ";
                 }
             }
-            $sql .= "WHERE ".$col_names[0][0]." = ".$id;
-            echo $sql;
+            $sql .= "WHERE ".$col_names[0][0]." = '".$id."'";
             $sql = oci_parse($con, $sql);
             oci_execute($sql);
         }
