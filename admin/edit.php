@@ -111,7 +111,8 @@
                 $sql .= $col_names[0][$i]."='".$json[$col_names[0][$i]]."' ";
             }
             $sql .= "WHERE ".$col_names[0][0]."='".$id."'";
-            oci_execute($sql);
+            $sql = oci_parse($sql);
+            oci_execute($con, $sql);
         }
     ?>
 
