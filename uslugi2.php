@@ -49,10 +49,7 @@
             $dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
             oci_execute($dodaj);
 
-            $id_uslugi = oci_parse($con,"SELECT MAX(ID)+1 MAXID FROM ZAMOWIENIA_USLUG");
-            oci_execute($id_uslugi);
-            $id_uslugi2 = oci_fetch_array($id_uslugi);
-            $id_usluga = $id_uslugi2['MAXID'];
+          
 
 
             $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta'");
@@ -60,7 +57,7 @@
             $id_rachunku2 = oci_fetch_array($id_rachunku);
             $id_rachunek = $id_rachunku2['ID'];
 
-            $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_USLUG (ID,RACHUNEK,ILOSC,TYP,DATA) VALUES ('$id_usluga','$id_rachunek','$usluga_ilosc','$usluga','$usluga_data')");
+            $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_USLUG (RACHUNEK,ILOSC,TYP,DATA) VALUES ('$id_rachunek','$usluga_ilosc','$usluga','$usluga_data')");
             oci_execute($dodaj_usluge);
             oci_close($con);
         ?>

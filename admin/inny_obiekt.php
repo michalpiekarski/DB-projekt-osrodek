@@ -55,9 +55,7 @@
             $osrodek = $_POST['osrodek'];
             $typy_innych_obiektow = oci_parse($con, "SELECT * FROM TYPY_OBIEKTOW WHERE NAZWA NOT LIKE '%domek' AND NAZWA NOT LIKE 'Domek%' AND NAZWA NOT LIKE '%pokój' AND NAZWA NOT LIKE 'Pokój%'");
             oci_execute($typy_innych_obiektow);
-            $sql_maxid = oci_parse($con, "SELECT MAX(ID)+1 MAXID FROM OBIEKTY");
-            oci_execute($sql_maxid);
-            $maxid = oci_fetch_array($sql_maxid);
+            
     ?>
 
     <form action="inny_obiekt.php" method="post" class="basic-grey">
@@ -123,7 +121,7 @@
             }
             $typ = $_POST['typ'];
 
-            $sql_obiektu = "INSERT INTO OBIEKTY (ID, OSRODEK, TYP, BUDYNEK, NUMER) VALUES ($id, '$osrodek', '$typ', '$budynek', '$numer')";
+            $sql_obiektu = "INSERT INTO OBIEKTY (OSRODEK, TYP, BUDYNEK, NUMER) VALUES ('$osrodek', '$typ', '$budynek', '$numer')";
             $sql_obiektu_parsed = oci_parse($con, $sql_obiektu);
             oci_execute($sql_obiektu_parsed);
     ?>

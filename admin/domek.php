@@ -55,9 +55,7 @@
             $osrodek = $_POST['osrodek'];
             $typy_domkow = oci_parse($con, "SELECT * FROM TYPY_OBIEKTOW WHERE NAZWA LIKE '%domek' OR NAZWA LIKE 'Domek%'");
             oci_execute($typy_domkow);
-            $sql_maxid = oci_parse($con, "SELECT MAX(ID)+1 MAXID FROM OBIEKTY");
-            oci_execute($sql_maxid);
-            $maxid = oci_fetch_array($sql_maxid);
+            
     ?>
 
     <form action="domek.php" method="post" class="basic-grey">
@@ -79,7 +77,7 @@
 
         <?php
             echo"<input type='hidden' name='osrodek' value='$osrodek' />";
-            echo"<input type='hidden' name='id' value='".$maxid['MAXID']."'' />";
+            
         ?>
 
         <label>
@@ -111,7 +109,7 @@
             $numer = $_POST['numer'];
             $typ = $_POST['typ'];
 
-            $sql_obiektu = "INSERT INTO OBIEKTY (ID, OSRODEK, TYP, BUDYNEK, NUMER) VALUES ($id, '$osrodek', '$typ', null, '$numer')";
+            $sql_obiektu = "INSERT INTO OBIEKTY (OSRODEK, TYP, BUDYNEK, NUMER) VALUES ('$osrodek', '$typ', null, '$numer')";
             $sql_obiektu_parsed = oci_parse($con, $sql_obiektu);
             oci_execute($sql_obiektu_parsed);
     ?>
