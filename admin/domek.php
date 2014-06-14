@@ -105,7 +105,6 @@
         }
         else {
             $osrodek = $_POST['osrodek'];
-            $id = $_POST['id'];
             $numer = $_POST['numer'];
             $typ = $_POST['typ'];
 
