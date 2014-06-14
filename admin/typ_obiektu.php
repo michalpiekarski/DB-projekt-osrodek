@@ -36,6 +36,13 @@
             <span>Ilość miejsc :</span>
             <input type="number" name="ilosc_miejsc" value="1" />
         </label>
+         <label>
+            <span>Typ :</span><select name="kategoria">
+            <option value="domek">Domek</option>
+            <option value="pokój">Pokój</option>
+            <option value="inny">Inny</option>
+            </select>
+        </label>
         <label>
             <span>Cena :</span>
             <input type="number" name="cena" value="10" />
@@ -52,8 +59,9 @@
             $nazwa = $_POST['nazwa'];
             $ilosc_miejsc = $_POST['ilosc_miejsc'];
             $cena = $_POST['cena'];
+            $kategoria = $_POST['kategoria'];
 
-            $sql = "INSERT INTO TYPY_OBIEKTOW (NAZWA, ILOSC_MIEJSC, CENA) VALUES ('$nazwa', $ilosc_miejsc, $cena)";
+            $sql = "INSERT INTO TYPY_OBIEKTOW (NAZWA, KATEGORIA, ILOSC_MIEJSC, CENA) VALUES ('$nazwa','$kategoria', $ilosc_miejsc, $cena)";
             $sql_parsed = oci_parse($con, $sql);
             oci_execute($sql_parsed);
     ?>

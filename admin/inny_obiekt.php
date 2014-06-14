@@ -77,7 +77,7 @@
 
         <?php
             echo"<input type='hidden' name='osrodek' value='$osrodek' />";
-            echo"<input type='hidden' name='id' value='".$maxid['MAXID']."'' />";
+            
         ?>
 
         <label>
@@ -110,7 +110,7 @@
         }
         else {
             $osrodek = $_POST['osrodek'];
-            $id = $_POST['id'];
+            
             $budynek = null;
             if(isset($_POST['budynek'])) {
                 $budynek = $_POST['budynek'];

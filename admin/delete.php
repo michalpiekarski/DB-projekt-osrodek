@@ -29,7 +29,6 @@
         if(isset($_GET['id'])){
         $id = $_GET['id'];
         $typ = $_GET['typ'];
-        $numer = $_GET['numer'];
         $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = $id");
         oci_execute($rm_obiekt);
        
@@ -45,12 +44,11 @@
         <tr>
             <th style='background-color: lightgrey;'>ID</th>
             <th style='background-color: lightgrey;'>Typ</th>
-            <th style='background-color: lightgrey;'>Numer</th>
-        </tr>
+                    </tr>
         <tr>
             <td><?php echo $id;?></td>
             <td><?php echo $typ;?></td>
-            <td><?php echo $numer;?></td>
+           
         </tr>
         <tr>
             <th style='background-color: lightgrey;'><a href="obiekty.php">Wróć</a></th>
@@ -61,8 +59,6 @@
 else
 {
     $nazwa = $_GET["nazwa"];
-    $ilosc = $_GET["ilosc"];
-    $cena = $_GET["cena"];
     $rm_typ_obiektu=oci_parse($con, "DELETE FROM $tabela WHERE NAZWA = $nazwa");
     oci_execute($rm_typ_obiektu);
 ?>
@@ -72,13 +68,10 @@ else
         </tr>
         <tr>
                 <th style='background-color: lightgrey;'>Nazwa</th>
-                <th style='background-color: lightgrey;'>Ilość miejsc</th>
-                <th style='background-color: lightgrey;'>Cena</th>
         </tr>
         <tr>
             <td><?php echo $nazwa;?></td>
-            <td><?php echo $ilosc;?></td>
-            <td><?php echo $cena;?></td>
+           
         </tr>
 <?php
 }

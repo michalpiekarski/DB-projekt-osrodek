@@ -79,7 +79,7 @@
 					echo"<td>".$row['BUDYNEK']."</td>";
 					echo"<td>".$row['NUMER']."</td>";
 					echo"<td><a href='edit.php?id=".$row['ID']."&tabela=OBIEKTY'>Edytuj</a></td>";
-					echo"<td><a href='delete.php?id=".$row['ID']."&tabela=OBIEKTY' onclick='show_confirm()';>Usuń</a></td>";
+					echo"<td><a href='delete.php?id=".$row['ID']."&typ=".$row['TYP']."&tabela=OBIEKTY' onclick='show_confirm()';>Usuń</a></td>";
 					echo"</tr>";
 				}
 			?>
