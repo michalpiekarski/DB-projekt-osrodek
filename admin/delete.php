@@ -28,7 +28,22 @@
         $tabela = $_GET['tabela'];
         if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $typ = $_GET['typ'];
+      
+       
+
+        // Uzyskaj nazwy kolumn tabeli
+        $col_names = oci_parse($con, "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = '$tabela'");
+        oci_execute($col_names);
+        $col_count = oci_fetch_all($col_names, $col_names, null, null, OCI_FETCHSTATEMENT_BY_COLUMN + OCI_NUM);
+
+        // Uzyskaj dane rekordu
+        $dane = oci_parse($con, "SELECT * FROM $tabela WHERE ".$col_names[0][0]." = '$id'");
+        oci_execute($dane);
+        $dane = oci_fetch_array($dane);
+
+
+
+
         $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = $id");
         oci_execute($rm_obiekt);
        
@@ -37,42 +52,98 @@
 
     ?>
 
-    <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
-        <tr>
-            <th colspan = '3'style='background-color: lightgrey;'>Usunięto</th>
-        </tr>
-        <tr>
-            <th style='background-color: lightgrey;'>ID</th>
-            <th style='background-color: lightgrey;'>Typ</th>
-                    </tr>
-        <tr>
-            <td><?php echo $id;?></td>
-            <td><?php echo $typ;?></td>
-           
-        </tr>
-        <tr>
-            <th style='background-color: lightgrey;'><a href="obiekty.php">Wróć</a></th>
-        </tr>
-    </table>
+        <div class='basic-grey'>
+        <h1>Usunięto</h1>
+
+        <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
+            <thead>
+                <tr>
+
+                    <?php
+                        for($i=0; $i<$col_count; $i++) {
+                            echo"<th style='background-color: lightgrey;'>".$col_names[0][$i]."</th>";
+                        }
+                    ?>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="remove">
+                    <td>
+                        <?php echo"<div id='".$id."'>".$id."</div>"; ?>
+                    </td>
+
+                    <?php
+                        for($i=1; $i<$col_count; $i++) {
+                            echo "<td><div id='".$col_names[0][$i]."' contenteditable='true'>".$dane[$i]."</div></td>";
+                        }
+                    ?>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>
+            <a href="obiekty.php">Wróć</a>
+        </h3>
+    </div>
 <?php 
 }
 else
 {
     $nazwa = $_GET["nazwa"];
-    $rm_typ_obiektu=oci_parse($con, "DELETE FROM $tabela WHERE NAZWA = $nazwa");
+    
+
+
+    // Uzyskaj nazwy kolumn tabeli
+    $col_names = oci_parse($con, "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = '$tabela'");
+    oci_execute($col_names);
+    $col_count = oci_fetch_all($col_names, $col_names, null, null, OCI_FETCHSTATEMENT_BY_COLUMN + OCI_NUM);
+
+    // Uzyskaj dane rekordu
+    $dane = oci_parse($con, "SELECT * FROM $tabela WHERE ".$col_names[0][0]." = '$nazwa'");
+    oci_execute($dane);
+    $dane = oci_fetch_array($dane);
+
+   
+    $rm_typ_obiektu=oci_parse($con, "DELETE FROM $tabela WHERE NAZWA = '$nazwa'");
     oci_execute($rm_typ_obiektu);
 ?>
-    <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
-        <tr>
-            <th colspan = '3'style='background-color: lightgrey;'>Usunięto</th>
-        </tr>
-        <tr>
-                <th style='background-color: lightgrey;'>Nazwa</th>
-        </tr>
-        <tr>
-            <td><?php echo $nazwa;?></td>
-           
-        </tr>
+        <div class='basic-grey'>
+        <h1>Usunięto</h1>
+
+        <table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
+            <thead>
+                <tr>
+
+                    <?php
+                        for($i=0; $i<$col_count; $i++) {
+                            echo"<th style='background-color: lightgrey;'>".$col_names[0][$i]."</th>";
+                        }
+                    ?>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="remove">
+                    <td>
+                        <?php echo"<div id='".$nazwa."'>".$nazwa."</div>"; ?>
+                    </td>
+
+                    <?php
+                        for($i=1; $i<$col_count; $i++) {
+                            echo "<td><div id='".$col_names[0][$i]."' contenteditable='true'>".$dane[$i]."</div></td>";
+                        }
+                    ?>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>
+            <a href="obiekty.php">Wróć</a>
+        </h3>
+    </div>
 <?php
 }
 ?>

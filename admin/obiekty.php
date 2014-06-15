@@ -11,10 +11,7 @@
 			document.getElementById(hide).style.display = 'none';
 			document.getElementById('title').innerHTML = title;
 		}
-
-		function show_confirm() {
-			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
-		}
+	
 	</script>
 
 	<style type="text/css">
@@ -79,7 +76,7 @@
 					echo"<td>".$row['BUDYNEK']."</td>";
 					echo"<td>".$row['NUMER']."</td>";
 					echo"<td><a href='edit.php?id=".$row['ID']."&tabela=OBIEKTY'>Edytuj</a></td>";
-					echo"<td><a href='delete.php?id=".$row['ID']."&typ=".$row['TYP']."&tabela=OBIEKTY' onclick='show_confirm()';>Usuń</a></td>";
+					echo"<td><a href='delete.php?id=".$row['ID']."&tabela=OBIEKTY'>Usuń</a></td>";
 					echo"</tr>";
 				}
 			?>
@@ -101,7 +98,7 @@
 					echo"<td>".$row['ILOSC_MIEJSC']."</td>";
 					echo"<td>".$row['CENA']." zł/dobę</td>";
 					echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW'>Edytuj</a></td>";
-					echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' onclick='show_confirm()';>Usuń</a></td>";
+					echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW'>Usuń</a></td>";
 					echo"</tr>";
 				}
 			?>
