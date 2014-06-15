@@ -12,23 +12,20 @@
         include ('nav.php');
 
         $con = oci_connect("tomek", "2") or die("could not connect to oracledb");
+
+         if (! isset($_POST['button1'])) {
         $wynik = oci_parse($con, "Select * From klienci");
         oci_execute($wynik);
-        $osrodek = $_POST['selection'];
+        $osrodek = $_POST['osrodek'];
         $id_klienta = $_POST['klient'];
         $klient = oci_parse($con, "Select IMIE, NAZWISKO from KLIENCI where ID= '$id_klienta'");
         oci_execute($klient);
         $row = oci_fetch_array($klient);
         $imie = $row['IMIE'];
         $nazwisko = $row['NAZWISKO'];
-
-
-        if (isset($_POST['selection'])) {
-            $obiekt = oci_parse($con, "Select * from OBIEKTY where OSRODKI_ID = '$osrodek'");
-            oci_execute($obiekt);
-        } else {
-            echo "Brak danych";
-        }
+        $obiekt = oci_parse($con, "Select * from OBIEKTY where OSRODEK = '$osrodek'");
+        oci_execute($obiekt);
+       
     ?>
 
     <form action="add_exist.php" method="post" class="basic-grey">
@@ -52,11 +49,11 @@
 
         <label>
             <span>Obiekt :</span>
-            <select name="sel_ob">
+            <select name="obiekt">
 
                 <?php
                     while ($row = oci_fetch_array($obiekt))
-                        echo "<option value='" . $row['TYPY_OBIEKTOW_NAZWA'] . "'>" . $row['TYPY_OBIEKTOW_NAZWA'] . "</option>";
+                        echo "<option value='" . $row['ID'] . "'>" . $row['TYP'] . "</option>";
                 ?>
 
             </select>
@@ -64,17 +61,17 @@
 
         <?php
             echo "<input type='hidden' name='osrodek2' value='$osrodek'>";
-            echo "<input type='hidden' name='klient2' value='$id_klienta'>";
+            echo "<input type='hidden' name='klient' value='$id_klienta'>";
 
         ?>
 
         <label>
             <span>Przyjazd :</span>
-            <input id="termin" type="date" name="termin_przyj" placeholder="Termin Przyjazdu" />
+            <input id="termin" type="date" name="data_od" placeholder="Termin Przyjazdu" />
         </label>
         <label>
             <span>Wyjazd :</span>
-            <input id="termin" type="date" name="termin_wyj" placeholder="Termin Wyjazdu" />
+            <input id="termin" type="date" name="data_do" placeholder="Termin Wyjazdu" />
         </label>
         <label>
             <span>Ilość Osób :</span>
@@ -86,71 +83,63 @@
         </label>
         <label>
             <span>&nbsp;</span>
-            <input type="submit" class="button" name="button" value="Dodaj Rezerwację" />
+            <input type="submit" class="button" name="button1" value="Dodaj Rezerwację" />
         </label>
 
         <?php
-            if (isset($_POST['button'])) {
+            }
+            else
+            {
 
-                $nz_pok = $_POST['sel_ob'];
-                $osrodek2 = $_POST['osrodek2'];
-                $cena = oci_parse($con, "Select cena from TYPY_OBIEKTOW where NAZWA = '$nz_pok'");
-                oci_execute($cena);
-                $cena2 = oci_fetch_array($cena);
-                $id_klienta = $_POST['klient2'];
-                $przyjazd = $_POST['termin_przyj'];
-                $wyjazd = $_POST['termin_wyj'];
+                $obiekt = $_POST['obiekt'];
+                $osrodek = $_POST['osrodek2'];
+
+                $sql_typ = oci_parse($con, "Select TYP from OBIEKTY where OSRODEK = '$osrodek'");
+                oci_execute($sql_typ);
+                $typ_obiektu = oci_fetch_array($sql_typ);
+                $typ = $typ_obiektu['TYP'];
+
+                                
+                $sql_cena = oci_parse($con, "Select cena from TYPY_OBIEKTOW where NAZWA = '$typ'");
+                oci_execute($sql_cena);
+                $cena = oci_fetch_array($sql_cena);
+                
+                $klient = $_POST['klient'];
+                $data_od = $_POST['data_od'];
+                $data_do = $_POST['data_do'];
                 $iloscosob = $_POST['ilosc_os'];
 
                 //Obliczenie ilości dni pobytu
-                $offset = strtotime($wyjazd) - strtotime($przyjazd);
+                $offset = strtotime($data_do) - strtotime($data_od);
                 $dni = floor($offset / 60 / 60 / 24);
-                $kwota = $cena2['CENA'] * $dni;
+                $kwota = $cena['CENA'] * $dni;
 
 
 
 
                 //Pobieranie ID ostatniego rachunku + Inkrementacja
-                $id_rachunku = oci_parse($con, " select ID FROM rachunki where ID in (select max(ID) from rachunki)");
+                $id_rachunku = oci_parse($con, "Select ID FROM rachunki where ID in (select max(ID) from rachunki)");
                 oci_execute($id_rachunku);
                 $id_rachunku2 = oci_fetch_array($id_rachunku);
                 $rachunek = $id_rachunku2['ID'];
-                $id_rachunek = $rachunek + 1;
-
-                //pobieranie ID obiektu + Inkrementacja
-                $id_obiektu = oci_parse($con, "Select ID from TYPY_OBIEKTOW, OBIEKTY where OBIEKTY.OSRODKI_ID = '$osrodek2' and OBIEKTY.TYPY_OBIEKTOW_NAZWA='$nz_pok'");
-                oci_execute($id_obiektu);
-                $id_obiektu2 = oci_fetch_array($id_obiektu);
-                $id_obiekt = $id_obiektu2['ID'];
-
-                //Pobieranie ID Rezerwacji + Inkrementacja
-                $id_rezerwacji = oci_parse($con, " select ID FROM rezerwacje where ID in (select max(ID) from rezerwacje)");
-                oci_execute($id_rezerwacji);
-                $id_rezerwacji2 = oci_fetch_array($id_rezerwacji);
-                $rezerwacja = $id_rezerwacji2['ID'];
-                $id_rezerwacja = $rezerwacja + 1;
-
-                $sql_rachunek = "Insert into rachunki (ID,klienci_id,Kwota) VALUES ('$id_rachunek','$id_klienta','$kwota')";
+               
+                $sql_rachunek = "Insert into RACHUNKI (KLIENT,KWOTA) VALUES ('$klient','$kwota')";
                 $sql_rachunek2 = oci_parse($con, $sql_rachunek);
+                oci_execute($sql_rachunek2);                
 
-                $sql_rezerwacja = "Insert into rezerwacje (ID,Rachunki_ID, Obiekty_ID, Data_od, Data_do) VALUES ('$id_rezerwacja','$id_rachunek','$id_obiekt','$przyjazd','$wyjazd')";
+                $sql_rezerwacja = "Insert into REZERWACJE (RACHUNEK, OBIEKT, Data_od, Data_do) VALUES ('$rachunek','$obiekt','$data_od','$data_do')";
                 $sql_rezerwacja2 = oci_parse($con, $sql_rezerwacja);
-
-
-                if (!$sql_rachunek2) {
-                    die('Błąd: ' . oci_error($con));
-                }
-                oci_execute($sql_rachunek2);
-                echo "Utworzono rachunek";
-
-                if (!$sql_rezerwacja2) {
-                    die('Błąd: ' . oci_error($con));
-                }
                 oci_execute($sql_rezerwacja2);
-                echo "Dodano rezerwacje";
                 oci_close($con);
-            }
-        ?>
+                ?>
+<center>
+                <label>Dodano rezerwację do istniejącego klienta</label>
+                <label>
+                    <span>&nbsp;</span>
+                    <p><a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a></p>
+                </label>
+      </center>
+           <?php }?>
 
     </form>
 </body>

@@ -164,13 +164,15 @@
                 $sql_rezerwacja2 = oci_parse($con, $sql_rezerwacja);
                 oci_execute($sql_rezerwacja2);
                 oci_close($con);
-            }
-        ?>
+                ?>
+     
         <label>Dodano klienta</label>
         <label>
             <span>&nbsp;</span>
-            <a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a>
+            <p><a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a></p>
         </label>
+          <?php }?>
+
     </form>
 </body>
 </html>
