@@ -34,22 +34,25 @@
 
 			$wypozyczenia_data_od = $_POST['wypozyczenia_data_od'];
 			$wypozyczenia_data_do = $_POST['wypozyczenia_data_do'];
-			$cena_wypozyczenia = oci_parse($con, "Select cena from wypozyczenia where nazwa = '$wypozyczenia_nazwa'");
-			oci_execute($cena_wypozyczenia);
-			$wypozyczenia_cena = oci_fetch_array($cena_wypozyczenia);
 			$id_klienta = $_POST['ID'];
+
+			 
 
 			$cena_wypozyczenia = oci_parse($con, "Select cena from wypozyczenia where nazwa = '$wypozyczenia_nazwa'");
 			oci_execute($cena_wypozyczenia);
 			$cena_wypozyczenia2 = oci_fetch_array($cena_wypozyczenia);
 			$wypozyczenia_cena=$cena_wypozyczenia2['CENA'];
 
+			$offset = strtotime($wypozyczenia_data_od) - strtotime($wypozyczenia_data_do);
+            $dni = floor($offset / 60 / 60 / 24);
+            $kwota = $wypozyczenia_cena * $dni;
+
 			$rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$id_klienta'");
 			oci_execute($rachunek_kwota);
 			$rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
 			$rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
 
-			$nowa_kwota = ($wypozyczenia_cena * $wypozyczenia_ilosc) + $rachunek_kwota3;
+			$nowa_kwota = ($kwota * $wypozyczenia_ilosc) + $rachunek_kwota3;
 			$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
 			oci_execute($dodaj);
 
@@ -68,7 +71,10 @@
 		<label>
 			Wypożyczono
 		</label>
-
+		<label>
+			<span>&nbsp;</span>
+			<a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a>
+		</label>
 	</form>
 
 </body>

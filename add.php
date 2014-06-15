@@ -108,7 +108,14 @@
 
                 $obiekt = $_POST['obiekt'];
                 $osrodek = $_POST['osrodek'];
-                $sql_cena = oci_parse($con, "Select cena from TYPY_OBIEKTOW where NAZWA = '$obiekt'");
+
+                $obiekt_typ = oci_parse($con, "Select TYP from OBIEKTY where OSRODEK = '$osrodek'");
+                oci_execute($obiekt_typ);
+                $typ_obiektu = oci_fetch_array($obiekt_typ);
+                $typ = $typ_obiektu['TYP'];
+
+                
+                $sql_cena = oci_parse($con, "Select cena from TYPY_OBIEKTOW where NAZWA = '$typ'");
                 oci_execute($sql_cena);
                 $cena = oci_fetch_array($sql_cena);
 
@@ -116,7 +123,10 @@
                 $nazwisko = $_POST['nazwisko'];
                 $telefon = $_POST['telefon'];
                 $email = $_POST['email'];
-                $adres = $_POST['adres'];
+                $ulica = $_POST['ulica'];
+                $mieszkanie = $_POST['mieszkanie'];
+                $kod_pocztowy = $_POST['kod_pocztowy'];
+                $miasto = $_POST['miasto'];
                 $data_od = $_POST['data_od'];
                 $data_do = $_POST['data_do'];
                 $iloscosob = $_POST['ilosc_os'];
@@ -126,58 +136,42 @@
                 $dni = floor($offset / 60 / 60 / 24);
                 $kwota = $cena['CENA'] * $dni;
 
-                //Pobieranie id ostatniego klienta + Inkrementacja
-                $id_klienta = oci_parse($con, " select ID FROM klienci where ID in (select max(ID) from klienci)");
+
+
+                $sql_klienci = "Insert into KLIENCI (IMIE, NAZWISKO, ULICA, MIESZKANIE, KOD_POCZTOWY, MIASTO, TELEFON, EMAIL) VALUES ('$imie','$nazwisko','$ulica', '$mieszkanie', '$kod_pocztowy', '$miasto', '$telefon','$email')";
+                $sql_klienci2 = oci_parse($con, $sql_klienci);
+                oci_execute($sql_klienci2);
+
+
+
+                //Pobieranie id ostatniego klienta 
+                $id_klienta = oci_parse($con, "Select ID FROM klienci where ID in (select max(ID) from klienci)");
                 oci_execute($id_klienta);
                 $id_klienta2 = oci_fetch_array($id_klienta);
                 $klient = $id_klienta2['ID'];
-                $id_klient = $klient + 1;
+                
+                $sql_rachunek = "Insert into RACHUNKI (KLIENT,KWOTA) VALUES ('$klient','$kwota')";
+                $sql_rachunek2 = oci_parse($con, $sql_rachunek);
+                oci_execute($sql_rachunek2);
 
-                //Pobieranie ID ostatniego rachunku + Inkrementacja
-                $id_rachunku = oci_parse($con, " select ID FROM rachunki where ID in (select max(ID) from rachunki)");
+                //Pobieranie ID ostatniego rachunku 
+                $id_rachunku = oci_parse($con, "Select ID FROM rachunki where ID in (select max(ID) from rachunki)");
                 oci_execute($id_rachunku);
                 $id_rachunku2 = oci_fetch_array($id_rachunku);
                 $rachunek = $id_rachunku2['ID'];
-                $id_rachunek = $rachunek + 1;
-
-                //pobieranie ID obiektu + Inkrementacja
-                $id_obiektu = oci_parse($con, "Select ID from TYPY_OBIEKTOW, OBIEKTY where OBIEKTY.OSRODKI_ID = '$osrodek2' and OBIEKTY.TYPY_OBIEKTOW_NAZWA='$nz_pok'");
-                oci_execute($id_obiektu);
-                $id_obiektu2 = oci_fetch_array($id_obiektu);
-                $id_obiekt = $id_obiektu2['ID'];
-
-                //Pobieranie ID Rezerwacji + Inkrementacja
-                $id_rezerwacji = oci_parse($con, " select ID FROM rezerwacje where ID in (select max(ID) from rezerwacje)");
-                oci_execute($id_rezerwacji);
-                $id_rezerwacji2 = oci_fetch_array($id_rezerwacji);
-                $rezerwacja = $id_rezerwacji2['ID'];
-                $id_rezerwacja = $rezerwacja + 1;
-
-                $sql_klienci = "Insert into klienci (ID,Imie, Nazwisko, Adres, Telefon, EMAIL) VALUES ('$id_klient','$imie','$nazwisko','$adres','$telefon','$email')";
-                $sql_klienci2 = oci_parse($con, $sql_klienci);
-
-                $sql_rachunek = "Insert into rachunki (ID,klienci_id,Kwota) VALUES ('$id_rachunek','$id_klient','$kwota')";
-                $sql_rachunek2 = oci_parse($con, $sql_rachunek);
-
-                $sql_rezerwacja = "Insert into rezerwacje (ID,Rachunki_ID, Obiekty_ID, Data_od, Data_do) VALUES ('$id_rezerwacja','$id_rachunek','$id_obiekt','$przyjazd','$wyjazd')";
+                       
+                $sql_rezerwacja = "Insert into REZERWACJE (RACHUNEK, OBIEKT, Data_od, Data_do) VALUES ('$rachunek','$obiekt','$data_od','$data_do')";
                 $sql_rezerwacja2 = oci_parse($con, $sql_rezerwacja);
+                oci_execute($sql_rezerwacja2);
 
-                if (!$sql_klienci2) {
-                    die('Błąd: ' . oci_error($con));
-                }
-                oci_execute($sql_klienci2);
+              
+                echo "$obiekt - $osrodek";
                 echo "Dodano klienta";
 
-                if (!$sql_rachunek2) {
-                    die('Błąd: ' . oci_error($con));
-                }
-                oci_execute($sql_rachunek2);
+              
                 echo "Utworzono rachunek";
 
-                if (!$sql_rezerwacja2) {
-                    die('Błąd: ' . oci_error($con));
-                }
-                oci_execute($sql_rezerwacja2);
+              
                 echo "Dodano rezerwacje";
                 oci_close($con);
             }

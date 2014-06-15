@@ -65,9 +65,9 @@
         <label>
             Usługa zamówiona
         </label>
-        <label>
+            <label>
             <span>&nbsp;</span>
-            <input type='SUBMIT' class='button' value='Przejdź do Klienta' />
+            <a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a>
         </label>
     </form>
 </body>
