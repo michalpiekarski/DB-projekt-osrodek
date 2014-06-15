@@ -109,9 +109,9 @@
                 $obiekt = $_POST['obiekt'];
                 $osrodek = $_POST['osrodek'];
 
-                $obiekt_typ = oci_parse($con, "Select TYP from OBIEKTY where OSRODEK = '$osrodek'");
-                oci_execute($obiekt_typ);
-                $typ_obiektu = oci_fetch_array($obiekt_typ);
+                $sql_typ = oci_parse($con, "Select TYP from OBIEKTY where OSRODEK = '$osrodek'");
+                oci_execute($sql_typ);
+                $typ_obiektu = oci_fetch_array($sql_typ);
                 $typ = $typ_obiektu['TYP'];
 
                 
@@ -132,7 +132,7 @@
                 $iloscosob = $_POST['ilosc_os'];
 
                 //Obliczenie ilości dni pobytu
-                $offset = strtotime($data_od) - strtotime($data_do);
+                $offset = strtotime($data_do) - strtotime($data_od);
                 $dni = floor($offset / 60 / 60 / 24);
                 $kwota = $cena['CENA'] * $dni;
 
@@ -163,20 +163,14 @@
                 $sql_rezerwacja = "Insert into REZERWACJE (RACHUNEK, OBIEKT, Data_od, Data_do) VALUES ('$rachunek','$obiekt','$data_od','$data_do')";
                 $sql_rezerwacja2 = oci_parse($con, $sql_rezerwacja);
                 oci_execute($sql_rezerwacja2);
-
-              
-                echo "$obiekt - $osrodek";
-                echo "Dodano klienta";
-
-              
-                echo "Utworzono rachunek";
-
-              
-                echo "Dodano rezerwacje";
                 oci_close($con);
             }
         ?>
-
+        <label>Dodano klienta</label>
+        <label>
+            <span>&nbsp;</span>
+            <a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a>
+        </label>
     </form>
 </body>
 </html>

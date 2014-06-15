@@ -43,7 +43,7 @@
 			$cena_wypozyczenia2 = oci_fetch_array($cena_wypozyczenia);
 			$wypozyczenia_cena=$cena_wypozyczenia2['CENA'];
 
-			$offset = strtotime($wypozyczenia_data_od) - strtotime($wypozyczenia_data_do);
+			$offset = strtotime($wypozyczenia_data_do) - strtotime($wypozyczenia_data_od);
             $dni = floor($offset / 60 / 60 / 24);
             $kwota = $wypozyczenia_cena * $dni;
 
