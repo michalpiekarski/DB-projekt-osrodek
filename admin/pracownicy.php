@@ -77,7 +77,6 @@
 		<table id='pracownicy' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 			<thead>
 				<tr>
-					<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
 					<th style='background-color: lightgrey;'>Imie Nazwisko</th>
 					<th style='background-color: lightgrey;'>Stanowisko - Płaca</th>
 					<th style='background-color: lightgrey;'>Ośrodek</th>
@@ -94,7 +93,6 @@
 				while($row = oci_fetch_array($pracownicy)) {
 					echo"<tbody id='".$row['ID']."'>";
 						echo"<tr>";
-							echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
 							echo"<td>".$row['IMIE']." ".$row['NAZWISKO']."</td>";
 							echo"<td>".$row['STANOWISKO']." - ".$row['PLACA']." zł/mies.</td>";
 							echo"<td>".$row['OSRODEK']."</td>";

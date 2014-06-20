@@ -59,7 +59,6 @@
 
 		<table id='obiekty' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 			<tr>
-				<th style='background-color: lightgrey;'>ID</th>
 				<th style='background-color: lightgrey;'>Ośrodek</th>
 				<th style='background-color: lightgrey;'>Typ</th>
 				<th style='background-color: lightgrey;'>Budynek</th>
@@ -70,7 +69,6 @@
 			<?php
 				while($row = oci_fetch_array($obiekty)) {
 					echo"<tr>";
-					echo"<td>".$row['ID']."</td>";
 					echo"<td>".$row['OSRODEK']."</td>";
 					echo"<td>".$row['TYP']."</td>";
 					echo"<td>".$row['BUDYNEK']."</td>";

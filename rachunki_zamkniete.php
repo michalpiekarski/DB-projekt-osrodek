@@ -78,7 +78,6 @@
 			while($row = oci_fetch_array($rachunki)) {
 				$id_rachunku = $row['ID'];
 				echo "<tr>";
-				echo "<th style='font-size: 1.5em;'>".$id_rachunku."</th>";
 				echo "<th colspan='2' style='background-color: lightgrey;'>Klient</th>";
 				echo "<th colspan='2' style='background-color: lightgrey;'>Pracownik</th>";
 				echo "</tr>";
@@ -94,7 +93,6 @@
 				$pracownik_array = oci_fetch_array($sql_pracownik);
 
 				echo"<tr>";
-				echo"<td></td>";
 				echo"<td>".$klient_array['IMIE']."</td>";
 				echo"<td>".$klient_array['NAZWISKO']."</td>";
 				echo"<td>".$pracownik_array['IMIE']."</td>";
@@ -102,7 +100,6 @@
 				echo"</tr>";
 
 				echo"<tr>";
-				echo"<td></td>";
 				echo"<th colspan='4' style='background-color: lightgrey;'>Posiłki</th>";
 				echo"</tr>";
 
@@ -116,7 +113,6 @@
 					oci_execute($sql_cena_posilku);
 					$cena = oci_fetch_array($sql_cena_posilku);
 					echo"<tr>";
-					echo"<td></td>";
 					echo"<td>".$nazwa_posilku."</td>";
 					echo"<td>".$ilosc_posilku."</td>";
 					echo"<td>".$posilek['DATA']."</td>";
@@ -125,7 +121,6 @@
 				}
 
 				echo"<tr>";
-				echo"<td></td>";
 				echo"<th colspan='4' style='background-color: lightgrey;'>Usługi</th>";
 				echo"</tr>";
 
@@ -140,7 +135,6 @@
 					$cena = oci_fetch_array($sql_cena_uslugi);
 
 					echo"<tr>";
-					echo"<td></td>";
 					echo"<td>".$nazwa_uslugi."</td>";
 					echo"<td>".$ilosc_uslugi."</td>";
 					echo"<td>".$usluga['DATA']."</td>";
@@ -149,7 +143,6 @@
 				}
 
 				echo"<tr>";
-				echo"<td></td>";
 				echo"<th colspan='4' style='background-color: lightgrey;'>Wypożyczenia</th>";
 				echo"</tr>";
 
@@ -163,7 +156,6 @@
 					oci_execute($sql_cena_wypozyczenia);
 					$cena = oci_fetch_array($sql_cena_wypozyczenia);
 					echo"<tr>";
-					echo"<td></td>";
 					echo"<td>".$nazwa_wypozyczenia."</td>";
 					echo"<td>".$ilosc_wypozyczenia."</td>";
 					echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
@@ -172,7 +164,6 @@
 				}
 
 				echo "<tr>";
-				echo "<td></td>";
 				echo "<th colspan='2' style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey;'>Kwota:</th>";
 				echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
 				echo "</tr>";

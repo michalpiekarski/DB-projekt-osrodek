@@ -38,7 +38,6 @@
 		<table class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 			<thead>
 				<tr>
-					<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
 					<th style='background-color: lightgrey;'>Imię</th>
 					<th style='background-color: lightgrey;'>Nazwisko</th>
 					<th style='background-color: lightgrey;'>Telefon</th>
@@ -57,7 +56,6 @@
 				while($row = oci_fetch_array($klienci)) {
 					echo"<tbody id='".$row['ID']."'>";
 						echo"<tr>";
-							echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
 							echo"<td>".$row['IMIE']."</td>";
 							echo"<td>".$row['NAZWISKO']."</td>";
 							echo"<td>".$row['TELEFON']."</td>";

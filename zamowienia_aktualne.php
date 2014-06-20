@@ -27,7 +27,6 @@
 				<th colspan='4' style="font-size: 1.8em;">Zamówienia posiłków</th>
 			</tr>
 			<tr>
-				<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
 				<th colspan='2' style='background-color: lightgrey;'>Klient</th>
 				<th style='background-color: lightgrey;'>Typ</th>
 			</tr>
@@ -48,7 +47,6 @@
 					$klient = oci_fetch_array($klient);
 
 					echo"<tr>";
-					echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
 					echo"<td>".$klient['IMIE']."</td>";
 					echo"<td>".$klient['NAZWISKO']."</td>";
 					echo"<td>".$row['TYP']."</td>";
@@ -64,7 +62,6 @@
 				<th colspan='4' style="font-size: 1.8em;">Zamówienia usług</th>
 			</tr>
 			<tr>
-				<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
 				<th colspan='2' style='background-color: lightgrey;'>Klient</th>
 				<th style='background-color: lightgrey;'>Typ</th>
 			</tr>
@@ -85,7 +82,6 @@
 					$klient = oci_fetch_array($klient);
 
 					echo"<tr>";
-					echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
 					echo"<td>".$klient['IMIE']."</td>";
 					echo"<td>".$klient['NAZWISKO']."</td>";
 					echo"<td>".$row['TYP']."</td>";
@@ -101,7 +97,6 @@
 				<th colspan='4' style="font-size: 1.8em;">Zamówienia wypożyczeń</th>
 			</tr>
 			<tr>
-				<th rowspan='2' style='background-color: lightgrey; font-size: 1.4em;'>ID</th>
 				<th colspan='2' style='background-color: lightgrey;'>Klient</th>
 				<th style='background-color: lightgrey;'>Typ</th>
 			</tr>
@@ -123,7 +118,6 @@
 					$klient = oci_fetch_array($klient);
 
 					echo"<tr>";
-					echo"<td rowspan='2' style='font-size: 1.4em;'>".$row['ID']."</td>";
 					echo"<td>".$klient['IMIE']."</td>";
 					echo"<td>".$klient['NAZWISKO']."</td>";
 					echo"<td>".$row['TYP']."</td>";
