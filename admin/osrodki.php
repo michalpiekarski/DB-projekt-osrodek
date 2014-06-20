@@ -61,12 +61,12 @@
 								echo"<td>Zamknięty <input type='checkbox' disabled /></td>";
 							}
 							echo"<td>".$row['TELEFON']."</td>";
-							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=OSRODKI'>Edytuj</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=OSRODKI' title='Edytuj ośrodek'>Edytuj</a></td>";
 						echo"</tr>";
 						echo"<tr>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA'].", ".$row['KOD_POCZTOWY']." ".$row['MIASTO']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['EMAIL']."</td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=OSRODKI' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=OSRODKI' onclick='show_confirm();' title='Usuń ośrodek'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

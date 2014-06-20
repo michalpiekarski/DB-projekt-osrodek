@@ -11,7 +11,7 @@
 			document.getElementById(hide).style.display = 'none';
 			document.getElementById('title').innerHTML = title;
 		}
-	
+
 	</script>
 
 	<style type="text/css">
@@ -75,8 +75,8 @@
 					echo"<td>".$row['TYP']."</td>";
 					echo"<td>".$row['BUDYNEK']."</td>";
 					echo"<td>".$row['NUMER']."</td>";
-					echo"<td><a href='edit.php?id=".$row['ID']."&tabela=OBIEKTY'>Edytuj</a></td>";
-					echo"<td><a href='delete.php?id=".$row['ID']."&tabela=OBIEKTY'>Usuń</a></td>";
+					echo"<td><a class='edit-button' href='edit.php?id=".$row['ID']."&tabela=OBIEKTY' title='Edytuj obiekt'>Edytuj</a></td>";
+					echo"<td><a class='delete-button' href='delete.php?id=".$row['ID']."&tabela=OBIEKTY' title='Usuń obiekt'>Usuń</a></td>";
 					echo"</tr>";
 				}
 			?>
@@ -97,8 +97,8 @@
 					echo"<td>".$row['NAZWA']."</td>";
 					echo"<td>".$row['ILOSC_MIEJSC']."</td>";
 					echo"<td>".$row['CENA']." zł/dobę</td>";
-					echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW'>Edytuj</a></td>";
-					echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW'>Usuń</a></td>";
+					echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' title='Edytuj typ obiektu'>Edytuj</a></td>";
+					echo"<td><a class='delete-button' href='delete.php?nazwa=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' title='Usuń typ obiektu'>Usuń</a></td>";
 					echo"</tr>";
 				}
 			?>

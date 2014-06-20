@@ -62,14 +62,14 @@
 							echo"<td>".$row['NAZWISKO']."</td>";
 							echo"<td>".$row['TELEFON']."</td>";
 							echo"<td>".$row['EMAIL']."</td>";
-							echo"<td><a href='edit.php?id=".$row['ID']."&tabela=KLIENCI'>Edytuj</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['ID']."&tabela=KLIENCI' title='Edytuj klienta'>Edytuj</a></td>";
 						echo"</tr>";
 						echo"<tr>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['MIESZKANIE']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['KOD_POCZTOWY']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['MIASTO']."</td>";
-							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=KLIENCI' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['ID']."&tabela=KLIENCI' onclick='show_confirm();' title='Usuń klienta'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

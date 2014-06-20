@@ -98,13 +98,13 @@
 							echo"<td>".$row['IMIE']." ".$row['NAZWISKO']."</td>";
 							echo"<td>".$row['STANOWISKO']." - ".$row['PLACA']." zł/mies.</td>";
 							echo"<td>".$row['OSRODEK']."</td>";
-							echo"<td><a href='edit.php?id=".$row['ID']."&tabela=PRACOWNICY'>Edytuj</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['ID']."&tabela=PRACOWNICY' title='Edytuj pracownika'>Edytuj</a></td>";
 						echo"</tr>";
 						echo"<tr>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']." ".$row['MIESZKANIE']." ".$row['KOD_POCZTOWY']." ".$row['MIASTO']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;' style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['EMAIL']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['TELEFON']."</td>";
-							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=PRACOWNICY' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['ID']."&tabela=PRACOWNICY' onclick='show_confirm();' title='Usuń pracownika'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -129,8 +129,8 @@
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['PLACA_OD']." zł/mies.</td>";
 							echo"<td>".$row['PLACA_DO']." zł/mies.</td>";
-							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=STANOWISKA'>Edytuj</a></td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=STANOWISKA' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=STANOWISKA' title='Edytuj stanowisko'>Edytuj</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=STANOWISKA' onclick='show_confirm();' title='Usuń stanowisko'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

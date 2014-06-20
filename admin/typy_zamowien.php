@@ -57,8 +57,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=POSILKI'>Edytuj</a></td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=POSILKI' title='Edytuj typ posiłku'>Edytuj</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' onclick='show_confirm();' title='Usuń typ posiłku'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -81,8 +81,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=USLUGI'>Edytuj</a></td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=USLUGI' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=USLUGI' title='Edytuj typ usługi'>Edytuj</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=USLUGI' onclick='show_confirm();' title='Usuń typ usługi'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -105,8 +105,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA'>Edytuj</a></td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' onclick='show_confirm()';>Usuń</a></td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' title='Edytuj typ wypożyczenia'>Edytuj</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' onclick='show_confirm();' title='Usuń typ wypożyczenia'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
