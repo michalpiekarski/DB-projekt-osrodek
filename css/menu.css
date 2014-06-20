@@ -99,18 +99,19 @@ nav > ul > li > div ul > li:hover > a {
     background-color: rgba(255, 255, 255, 0.1);
 }
 #admin_link {
+  display: block;
   text-decoration: none;
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   bottom: 10px;
   left: 10px;
   background: none;
 }
 #admin_link:hover {
-  background-color: lightgrey;
+  background: url(../images/ustawienia.png) no-repeat center center;
 }
 a {
     text-decoration: none;
-     color: #888; 
+     color: #888;
 }
