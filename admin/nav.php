@@ -1,13 +1,44 @@
+<style type="text/css">
+	<?php
+		echo "nav #".$page;
+	?>
+
+	{
+		font-weight: bold;
+		background-color: lightgrey;
+		color: white;
+		border: solid 3px white;
+	    line-height: 50px;
+	    padding: 0 18px;
+	}
+
+	<?php
+		echo "nav #".$page.":hover";
+	?>
+
+	{
+		background-color: grey;
+	}
+	<?php
+		echo "nav #".$page." > .caret";
+	?>
+
+	{
+		border-top-color: white;
+		border-width: 5px;
+		margin-top: -2px;
+	}
+</style>
 <nav>
 	<ul>
 		<li>
-			<a href="index.php">Home</a>
+			<a id="index" href="index.php">Home</a>
 		</li>
 		<li>
-			<a href="klienci.php">Klienci</a>
+			<a id="klienci" href="klienci.php">Klienci</a>
 		</li>
 		<li>
-			<a href="osrodki.php">Ośrodki<span class="caret"></span></a>
+			<a id="osrodki" href="osrodki.php">Ośrodki<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -17,7 +48,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="obiekty.php">Obiekty<span class="caret"></span></a>
+			<a id="obiekty" href="obiekty.php">Obiekty<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -37,7 +68,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="pracownicy.php">Pracownicy<span class="caret"></span></a>
+			<a id="pracownicy" href="pracownicy.php">Pracownicy<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -51,7 +82,7 @@
 			</div>
 		</li>
 		<li>
-			<a href="typy_zamowien.php">Typy zamówień<span class="caret"></span></a>
+			<a id="typy_zamowien" href="typy_zamowien.php">Typy zamówień<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>

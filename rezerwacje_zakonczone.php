@@ -9,6 +9,7 @@
 <body>
 
 	<?php
+        $page = "rezerwacje";
 		include('nav.php');
 
 		$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");

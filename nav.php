@@ -1,10 +1,31 @@
+<style type="text/css">
+
+	<?php
+		echo "nav #".$page;
+	?>
+
+	{
+		font-weight: bold;
+		background-color: lightgrey;
+		color: white;
+		border: solid 3px white;
+	}
+
+	<?php
+		echo "nav #".$page.":hover";
+	?>
+
+	{
+		background-color: grey;
+	}
+</style>
 <nav>
 	<ul>
 		<li>
-			<a href="index.php">Home</a>
+			<a id="index" href="index.php">Home</a>
 		</li>
 		<li>
-			<a>Rezerwacje<span class="caret"></span></a>
+			<a id="rezerwacje">Rezerwacje<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -21,7 +42,7 @@
 			</div>
 		</li>
 		<li>
-			<a>Zamówienia<span class="caret"></span></a>
+			<a id="zamowienia">Zamówienia<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -44,7 +65,7 @@
 			</div>
 		</li>
 		<li>
-			<a>Rachunki<span class="caret"></span></a>
+			<a id="rachunki">Rachunki<span class="caret"></span></a>
 			<div>
 				<ul>
 					<li>

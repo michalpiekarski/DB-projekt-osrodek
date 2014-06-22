@@ -9,6 +9,7 @@
 <body>
 
     <?php
+        $page = "rezerwacje";
         include ('nav.php');
 
         $con = oci_connect("tomek", "2") or die("could not connect to oracledb");
@@ -25,7 +26,7 @@
         $nazwisko = $row['NAZWISKO'];
         $obiekt = oci_parse($con, "Select * from OBIEKTY where OSRODEK = '$osrodek'");
         oci_execute($obiekt);
-       
+
     ?>
 
     <form action="add_exist.php" method="post" class="basic-grey">
@@ -99,11 +100,11 @@
                 $typ_obiektu = oci_fetch_array($sql_typ);
                 $typ = $typ_obiektu['TYP'];
 
-                                
+
                 $sql_cena = oci_parse($con, "Select cena from TYPY_OBIEKTOW where NAZWA = '$typ'");
                 oci_execute($sql_cena);
                 $cena = oci_fetch_array($sql_cena);
-                
+
                 $klient = $_POST['klient'];
                 $data_od = $_POST['data_od'];
                 $data_do = $_POST['data_do'];
@@ -122,10 +123,10 @@
                 oci_execute($id_rachunku);
                 $id_rachunku2 = oci_fetch_array($id_rachunku);
                 $rachunek = $id_rachunku2['ID'];
-               
+
                 $sql_rachunek = "Insert into RACHUNKI (KLIENT,KWOTA) VALUES ('$klient','$kwota')";
                 $sql_rachunek2 = oci_parse($con, $sql_rachunek);
-                oci_execute($sql_rachunek2);                
+                oci_execute($sql_rachunek2);
 
                 $sql_rezerwacja = "Insert into REZERWACJE (RACHUNEK, OBIEKT, Data_od, Data_do) VALUES ('$rachunek','$obiekt','$data_od','$data_do')";
                 $sql_rezerwacja2 = oci_parse($con, $sql_rezerwacja);

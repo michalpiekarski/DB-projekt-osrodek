@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php
+        $page = "obiekty";
         include('nav.php');
 
         $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
@@ -55,7 +56,7 @@
             $osrodek = $_POST['osrodek'];
             $typy_domkow = oci_parse($con, "SELECT * FROM TYPY_OBIEKTOW WHERE NAZWA LIKE '%domek' OR NAZWA LIKE 'Domek%'");
             oci_execute($typy_domkow);
-            
+
     ?>
 
     <form action="domek.php" method="post" class="basic-grey">
@@ -77,7 +78,7 @@
 
         <?php
             echo"<input type='hidden' name='osrodek' value='$osrodek' />";
-            
+
         ?>
 
         <label>

@@ -51,6 +51,7 @@
 <body>
 
 	<?php
+        $page = "pracownicy";
 		include('nav.php');
 
 		$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
@@ -66,15 +67,15 @@
 		<form id='select' style="font-size: 1.2em; text-align: center; margin: -20px 0 10px;">
 			<label>
 				<span>Pracownicy :</span>
-				<input type="radio" name="select" value="Pracownicy" onclick="SwitchView('pracownicy', 'stanowiska', 'Pracownicy');" checked />
+				<input type="radio" name="select" value="Pracownicy" onclick="SwitchView('tabela_pracownicy', 'tabela_stanowiska', 'Pracownicy');" checked />
 			</label>
 			<label>
 				<span>Stanowiska :</span>
-				<input type="radio" name="select" value="Stanowiska" onclick="SwitchView('stanowiska', 'pracownicy', 'Stanowiska');" />
+				<input type="radio" name="select" value="Stanowiska" onclick="SwitchView('tabela_stanowiska', 'tabela_pracownicy', 'Stanowiska');" />
 			</label>
 		</form>
 
-		<table id='pracownicy' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
+		<table id='tabela_pracownicy' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 			<thead>
 				<tr>
 					<th style='background-color: lightgrey;'>Imie Nazwisko</th>
@@ -110,7 +111,7 @@
 
 		</table>
 
-		<table id='stanowiska' class='basic-grey' style='border: none; padding: 0; text-align: center; display: none;' cellpadding='5em'>
+		<table id='tabela_stanowiska' class='basic-grey' style='border: none; padding: 0; text-align: center; display: none;' cellpadding='5em'>
 			<thead>
 				<tr>
 					<th style='background-color: lightgrey;'>Nazwa</th>

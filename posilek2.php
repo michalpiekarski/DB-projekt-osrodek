@@ -9,6 +9,7 @@
 <body>
 
 	<?php
+		$page = "zamowienia";
 		include('nav.php');
 	?>
 
@@ -50,7 +51,7 @@
 			$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
 			oci_execute($dodaj);
 
-			
+
 
 
 		    $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta'");

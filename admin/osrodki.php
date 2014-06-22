@@ -25,6 +25,7 @@
 <body>
 
 	<?php
+        $page = "osrodki";
 		include('nav.php');
 
 		$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");

@@ -9,6 +9,7 @@
 <body>
 
 	<?php
+        $page = "index";
 		include('nav.php');
 	?>
 

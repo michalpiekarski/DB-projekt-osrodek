@@ -9,6 +9,7 @@
 <body>
 
 	<?php
+		$page = "zamowienia";
 		include('nav.php');
 
 		$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");

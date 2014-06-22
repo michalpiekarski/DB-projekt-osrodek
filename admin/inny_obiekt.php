@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php
+        $page = "obiekty";
         include('nav.php');
 
         $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
@@ -55,7 +56,7 @@
             $osrodek = $_POST['osrodek'];
             $typy_innych_obiektow = oci_parse($con, "SELECT * FROM TYPY_OBIEKTOW WHERE NAZWA NOT LIKE '%domek' AND NAZWA NOT LIKE 'Domek%' AND NAZWA NOT LIKE '%pokój' AND NAZWA NOT LIKE 'Pokój%'");
             oci_execute($typy_innych_obiektow);
-            
+
     ?>
 
     <form action="inny_obiekt.php" method="post" class="basic-grey">
@@ -77,7 +78,7 @@
 
         <?php
             echo"<input type='hidden' name='osrodek' value='$osrodek' />";
-            
+
         ?>
 
         <label>
@@ -110,7 +111,7 @@
         }
         else {
             $osrodek = $_POST['osrodek'];
-            
+
             $budynek = null;
             if(isset($_POST['budynek'])) {
                 $budynek = $_POST['budynek'];

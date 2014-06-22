@@ -8,6 +8,7 @@
 </head>
 <body>
 	<?php
+		$page = "zamowienia";
 		include('nav.php');
 	?>
 
@@ -36,7 +37,7 @@
 			$wypozyczenia_data_do = $_POST['wypozyczenia_data_do'];
 			$id_klienta = $_POST['ID'];
 
-			 
+
 
 			$cena_wypozyczenia = oci_parse($con, "Select cena from wypozyczenia where nazwa = '$wypozyczenia_nazwa'");
 			oci_execute($cena_wypozyczenia);
@@ -56,7 +57,7 @@
 			$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
 			oci_execute($dodaj);
 
-		
+
 
 		    $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta'");
 		    oci_execute($id_rachunku);
