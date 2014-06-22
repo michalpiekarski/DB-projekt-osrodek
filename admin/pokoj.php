@@ -11,10 +11,11 @@
         $page = "obiekty";
         include('nav.php');
 
-        $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
-        if(!isset($_POST['button']) and !isset($_POST['button2'])) {
-            $osrodki = oci_parse($con, "SELECT * FROM OSRODKI");
-            oci_execute($osrodki);
+        if(isset($_COOKIE['logpass'])) {
+            $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
+            if(!isset($_POST['button']) and !isset($_POST['button2'])) {
+                $osrodki = oci_parse($con, "SELECT * FROM OSRODKI");
+                oci_execute($osrodki);
     ?>
 
     <form action="pokoj.php" method="post" class="basic-grey">
@@ -142,7 +143,19 @@
     </div>
 
     <?php
-        oci_close($con); }
+            }
+            oci_close($con);
+        }
+        else {
+    ?>
+
+    <div class='basic-grey'>
+        <h1>Nie jesteś zalogowany</h1>
+        <h3>Aby uzyskać dostęp do systemu zarzdzania ośrodkiem musisz się zalogować</h3>
+    </div>
+
+    <?php
+        }
     ?>
 
 </body>

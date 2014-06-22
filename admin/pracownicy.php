@@ -54,11 +54,12 @@
         $page = "pracownicy";
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
-		$pracownicy = oci_parse($con,"SELECT * FROM PRACOWNICY");
-		oci_execute($pracownicy);
-		$stanowiska = oci_parse($con,"SELECT * FROM STANOWISKA");
-		oci_execute($stanowiska);
+		if(isset($_COOKIE['logpass'])) {
+			$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
+			$pracownicy = oci_parse($con,"SELECT * FROM PRACOWNICY");
+			oci_execute($pracownicy);
+			$stanowiska = oci_parse($con,"SELECT * FROM STANOWISKA");
+			oci_execute($stanowiska);
 	?>
 
 	<div class='basic-grey'>
@@ -138,7 +139,18 @@
 		</table>
 
 		<?php
-			oci_close($con);
+				oci_close($con);
+			}
+			else {
+		?>
+
+	    <div class='basic-grey'>
+	        <h1>Nie jesteś zalogowany</h1>
+	        <h3>Aby uzyskać dostęp do systemu zarzdzania ośrodkiem musisz się zalogować</h3>
+	    </div>
+
+		<?php
+			}
 		?>
 
 	</div>

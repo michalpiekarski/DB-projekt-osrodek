@@ -1,3 +1,8 @@
+<?php
+	if(!isset($_COOKIE['logpass'])) {
+		include('login.php');
+	}
+?>
 <style type="text/css">
 	<?php
 		echo "nav #".$page;
@@ -101,6 +106,17 @@
 		<li style="float: right">
 			<a href="../index.php">Przejdź do strony głównej</a>
 		</li>
+		<li style="float: right;">
 
+			<?php
+				if(isset($_COOKIE['logpass'])) {
+					echo "<a href='login_verify.php?logout=1&url=".urlencode($_SERVER['PHP_SELF'])."'>Wyloguj</a>";
+				}
+				else {
+					echo "<a href='#' onclick=\"LoginDialog('block');\">Zaloguj</a>";
+				}
+			?>
+
+		</li>
 	</ul>
 </nav>

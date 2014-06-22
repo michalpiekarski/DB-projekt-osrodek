@@ -105,6 +105,7 @@
 					echo "<a href='#' onclick=\"LoginDialog('block');\">Zaloguj</a>";
 				}
 			?>
+
 		</li>
 	</ul>
 </nav>
