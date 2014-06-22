@@ -9,6 +9,8 @@
 		background-color: lightgrey;
 		color: white;
 		border: solid 3px white;
+	    line-height: 50px;
+	    padding: 0 18px;
 	}
 
 	<?php
@@ -17,6 +19,16 @@
 
 	{
 		background-color: grey;
+	}
+
+	<?php
+		echo "nav #".$page." > .caret";
+	?>
+
+	{
+		border-top-color: white;
+		border-width: 5px;
+		margin-top: -2px;
 	}
 </style>
 <nav>

@@ -19,6 +19,7 @@
 	{
 		background-color: grey;
 	}
+
 	<?php
 		echo "nav #".$page." > .caret";
 	?>
