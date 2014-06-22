@@ -11,6 +11,8 @@
 	<?php
         $page = "index";
 		include('nav.php');
+
+        if(isset($_COOKIE['logpass'])) {
 	?>
 
     <div class="basic-grey">
@@ -37,5 +39,20 @@
             <img src="images/wypozycz.PNG" alt="Wypożycz" class="imagelink" onmouseover="this.src='images/wypozycz_hov.PNG'" onmouseout="this.src='images/wypozycz.PNG'" />
         </a>
     </div>
+
+    <?php
+        }
+        else {
+    ?>
+
+    <div class='basic-grey'>
+        <h1>Nie jesteś zalogowany</h1>
+        <h3>Aby uzyskać dostęp do systemu zarzdzania ośrodkiem musisz się zalogować</h3>
+    </div>
+
+    <?php
+        }
+    ?>
+
 </body>
 </html>

@@ -12,11 +12,12 @@
 		$page = "rachunki";
 		include('nav.php');
 
-		$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
-		$klient = oci_parse($con,"SELECT ID, IMIE, NAZWISKO FROM KLIENCI");
-		oci_execute($klient);
+		if(isset($_COOKIE['logpass'])) {
+			$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
+			$klient = oci_parse($con,"SELECT ID, IMIE, NAZWISKO FROM KLIENCI");
+			oci_execute($klient);
 
-		if(!isset($_POST['button'])) {
+			if(!isset($_POST['button'])) {
 	?>
 
 	<form action='rachunki_zamkniete.php' method='post' class='basic-grey'>
@@ -169,11 +170,26 @@
 				echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
 				echo "</tr>";
 			}
-			oci_close($con); }
 		?>
 
 		</table>
 	</div>
+
+	<?php
+			}
+			oci_close($con);
+		}
+		else {
+	?>
+
+    <div class='basic-grey'>
+        <h1>Nie jesteś zalogowany</h1>
+        <h3>Aby uzyskać dostęp do systemu zarzdzania ośrodkiem musisz się zalogować</h3>
+    </div>
+
+	<?php
+		}
+	?>
 
 </body>
 </html>
