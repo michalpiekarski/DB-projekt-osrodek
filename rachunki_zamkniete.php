@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="css/form.css" />
-	<link rel="stylesheet" type="text/css" href="css/progres.css">
+	<link rel="stylesheet" type="text/css" href="css/progres.css" />
 </head>
 <body>
 
@@ -34,7 +34,7 @@
 
 			<label>
 				<span>Klient :</span>
-				<select name='selection'>
+				<select name='klient'>
 
 					<?php
 						while($row = oci_fetch_array($klient))
@@ -53,7 +53,7 @@
 		}
 
 		if(isset($_POST['button'])) {
-			$id_klienta = $_POST['selection'];
+			$id_klienta = $_POST['klient'];
 			$rachunki = oci_parse($con,"SELECT * FROM RACHUNKI WHERE KLIENT = $id_klienta AND ZAPLACONY != 0");
 			oci_execute($rachunki);
 	?>
