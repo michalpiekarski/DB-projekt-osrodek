@@ -60,7 +60,7 @@
 	?>
 
 	<div class='basic-grey'>
-		<h1>Zamknięte rachunki klienta</h1>
+		<h1>Zamknięte rachunki</h1>
 
 		<h2>
 			<div class="wizard-steps">

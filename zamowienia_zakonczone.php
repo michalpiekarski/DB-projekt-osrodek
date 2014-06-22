@@ -60,7 +60,7 @@
 	?>
 
 	<div class='basic-grey'>
-		<h1>Zamówienia</h1>
+		<h1>Zakończone zamówienia</h1>
 
 		<h2>
 			<div class="wizard-steps">

@@ -60,7 +60,7 @@
 	?>
 
 	<div class='basic-grey'>
-		<h1>Aktualne rezerwacje</h1>
+		<h1>Zakończone rezerwacje</h1>
 
 		<h2>
 			<div class="wizard-steps">
