@@ -34,7 +34,6 @@
 			$posilek_nazwa = $_POST['posilek'];
 			$posilek_ilosc = $_POST['posilek_ilosc'];
 			$posilek_data = $_POST['posilek_data'];
-
 			$id_klienta = $_POST['ID'];
 
 			$rachunek_stan = oci_parse($con, "Select ZAPLACONY from RACHUNKI where klient = $id_klienta and ZAPLACONY = 0");
