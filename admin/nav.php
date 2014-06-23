@@ -1,6 +1,6 @@
 <?php
 	if(!isset($_COOKIE['logpass'])) {
-		include('login.php');
+		include('../login.php');
 	}
 ?>
 <style type="text/css">
@@ -110,10 +110,10 @@
 
 			<?php
 				if(isset($_COOKIE['logpass'])) {
-					echo "<a href='login_verify.php?logout=1&url=".urlencode($_SERVER['PHP_SELF'])."'>Wyloguj</a>";
+					echo "<a href='../login_verify.php?logout=1&url=".urlencode($_SERVER['PHP_SELF'])."'>Wyloguj</a>";
 				}
 				else {
-					echo "<a href='#' onclick=\"LoginDialog('block');\">Zaloguj</a>";
+					echo "<a href='#' onclick=\"LoginDialog('block', 0);\">Zaloguj</a>";
 				}
 			?>
 

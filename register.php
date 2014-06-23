@@ -119,7 +119,7 @@
         <input type="hidden" name="login" value="<?php echo $login; ?>" />
         <input type="hidden" name="password" value="<?php echo $haslo; ?>" />
         <input type="hidden" name="url" value="<?php echo $url; ?>" />
-        <input type="submit" class="button" name="confirm" value="Przejdź do strony głównej" />
+        <input type="submit" class="button" name="register" value="Przejdź do strony głównej" />
     </form>
 
     <?php

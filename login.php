@@ -10,7 +10,15 @@
     }
     #login .dialog{
         width: 200px;
-        height: 250px;
+        <?php
+            $url = parse_url($_SERVER['PHP_SELF']);
+            if(!strpos($url['path'], "admin")) {
+                echo "height: 250px;";
+            }
+            else {
+                echo "height: 180px;";
+            }
+        ?>
         margin: 100px auto 0px;
         border-radius: 10px;
         background: #EEE;
@@ -116,7 +124,7 @@
 <div id="login" onclick="LoginDialog('none', 1);">
     <div id="dialog_login" class="dialog">
         <h1>Zaloguj</h1>
-        <form action="login_verify.php" method="post">
+        <form action="/bazy/login_verify.php" method="post">
             <label>
                 <span>Login: </span>
                 <input type="text" name="login" placeholder="Login" autofocus tabindex=1 />
@@ -132,13 +140,24 @@
             <input type="hidden" name="url" value="<?php echo $_SERVER['PHP_SELF']; ?>" />
             <div class="buttons">
                 <input type="button" class="button" name="cancel" value="Anuluj" onclick="LoginDialog('none', 0);" tabindex=5 />
-                <input type="submit" class="button main_button" name="login_button" value="Zaloguj" tabindex=4 />
+                <input type="submit" class="button main_button" name="confirm" value="Zaloguj" tabindex=4 />
             </div>
         </form>
+
+        <?php
+            $url = parse_url($_SERVER['PHP_SELF']);
+            if(!strpos($url['path'], "admin")) {
+        ?>
+
         <hr />
         <div class="mode">
             <input type="button" class="button" name="mode" value="Zarejestruj..." onclick="ChangeMode('register');" tabindex=6 />
         </div>
+
+        <?php
+            }
+        ?>
+
     </div>
     <div id="dialog_register" class="dialog">
         <h1>Zarejestruj</h1>
