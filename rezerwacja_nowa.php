@@ -29,7 +29,7 @@
 
     ?>
 
-    <form action="add_exist.php" method="post" class="basic-grey">
+    <form action="rezerwacja_nowa.php" method="post" class="basic-grey">
         <h1>
             Rezerwacja dla: <?php echo "$imie $nazwisko"; ?> <span>Wypełnij wszystkie pola</span>
         </h1>
