@@ -37,7 +37,7 @@
 
 			$id_klienta = $_POST['ID'];
 
-			$rachunek_stan = oci_parse($con, "Select ZAPLACONY from RACHUNKI where klient = $id and ZAPLACONY = 0");
+			$rachunek_stan = oci_parse($con, "Select ZAPLACONY from RACHUNKI where klient = $id_klienta and ZAPLACONY = 0");
 			oci_execute($rachunek_stan);
 			$rachunek_stan2 = oci_fetch_array($rachunek_stan);
 			$stan_rachunku = $rachunek_stan2['ZAPLACONY'];
@@ -47,16 +47,17 @@
 			$cena_posilki2 = oci_fetch_array($cena_posilki);
 			$posilki_cena=$cena_posilki2['CENA'];
 
-			$rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$id_klienta'");
-			oci_execute($rachunek_kwota);
-			$rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
-			$rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
-			$nowa_kwota = ($posilki_cena * $posilek_ilosc) + $rachunek_kwota3;
 			
 			if(isset($stan_rachunku))
 			{
-	
-				$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
+				
+				$rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$id_klienta' and ZAPLACONY = 0");
+				oci_execute($rachunek_kwota);
+				$rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
+				$rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
+				$nowa_kwota = ($posilki_cena * $posilek_ilosc) + $rachunek_kwota3;
+
+				$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta' AND ZAPLACONY = '0'");
 				oci_execute($dodaj);
 
 			    $id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta' and ZAPLACONY = 0");
@@ -70,12 +71,14 @@
 			} 
 			else
 			{
-			
+				
+				$nowa_kwota = $posilki_cena * $posilek_ilosc;
+
 				$sql_klient = oci_parse($con, "Insert into RACHUNKI (KLIENT, KWOTA) VALUES ('$id_klienta', '$nowa_kwota')");
 				oci_execute($sql_klient);
-				oci_close($con);
+				
 
-				$id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta' AND ZAPLACONY = 0");
+				$id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta' AND ZAPLACONY = '0'");
 			    oci_execute($id_rachunku);
 			    $id_rachunku2 = oci_fetch_array($id_rachunku);
 			    $id_rachunek = $id_rachunku2['ID'];
