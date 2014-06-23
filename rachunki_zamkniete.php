@@ -180,14 +180,7 @@
 			oci_close($con);
 		}
 		else {
-	?>
-
-    <div class='basic-grey'>
-        <h1>Nie jesteś zalogowany</h1>
-        <h3>Aby uzyskać dostęp do systemu zarzdzania ośrodkiem musisz się zalogować</h3>
-    </div>
-
-	<?php
+            include('login_error.php');
 		}
 	?>
 

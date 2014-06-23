@@ -12,7 +12,7 @@
         $page = "index";
         include('nav.php');
 
-        if(isset($_COOKIE['logpass'])) {
+        if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
     ?>
 
     <div class="basic-grey admin">
@@ -67,14 +67,7 @@
     <?php
         }
         else {
-    ?>
-
-    <div class='basic-grey'>
-        <h1>Nie jesteś zalogowany</h1>
-        <h3>Aby uzyskać dostęp do systemu zarzdzania ośrodkiem musisz się zalogować</h3>
-    </div>
-
-    <?php
+            include('../login_error.php');
         }
     ?>
 
