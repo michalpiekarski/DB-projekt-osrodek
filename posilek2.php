@@ -37,7 +37,7 @@
 
 			$id_klienta = $_POST['ID'];
 
-			$rachunek_stan = oci_parse($con, "Select ZAPLACONY from RACHUNKI where klient = $id");
+			$rachunek_stan = oci_parse($con, "Select ZAPLACONY from RACHUNKI where klient = $id and ZAPLACONY = 0");
 			oci_execute($rachunek_stan);
 			$rachunek_stan2 = oci_fetch_array($rachunek_stan);
 			$stan_rachunku = $rachunek_stan2['ZAPLACONY'];
@@ -53,7 +53,7 @@
 			$rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
 			$nowa_kwota = ($posilki_cena * $posilek_ilosc) + $rachunek_kwota3;
 			
-			if($stan_rachunku = 0)
+			if(isset($stan_rachunku))
 			{
 	
 				$dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$id_klienta'");
