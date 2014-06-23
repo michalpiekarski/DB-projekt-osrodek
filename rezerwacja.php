@@ -5,18 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="css/menu.css" />
 	<link rel="stylesheet" type="text/css" href="css/form.css" />
 	<link rel="stylesheet" type="text/css" href="css/progres.css" />
-	<script type="text/javascript">
-		function showStuff() {
-			document.getElementById('klient').style.display = 'block';
-			document.getElementById('form').action = 'add_exist.php';
-		}
-		function hideStuff() {
-			document.getElementById('klient').style.display = 'none';
-			document.getElementById('form').action = 'add.php';
-		}
-	</script>
-</head>
-<body onload="hideStuff();">
+	
+<body>
 
 	<?php
         $page = "rezerwacje";
@@ -31,9 +21,9 @@
 			oci_execute($klient);
 	?>
 
-	<form id='form' action='add.php' method='post' class='basic-grey'>
+	<form id='form' action='rezerwacja_nowa.php' method='post' class='basic-grey'>
 
-		<h1>Wybierz ośrodek lub istniejącego klienta</h1>
+		<h1>Wybierz ośrodek i istniejącego klienta</h1>
 
 		<h2>
 			<div class="wizard-steps">
@@ -49,13 +39,6 @@
 			</div>
 		</h2>
 
-		<h3>Czy klient znajduje się w bazie?
-			<span style="float: right; margin-right: 2em;">
-				<input type="radio" onclick="showStuff();" name="radio1" value="tak" />Tak
-				<input type="radio" onclick="hideStuff();" name="radio1" value="nie" checked/>Nie
-			</span>
-		</h3>
-
 		<label>
 			<span>Ośrodek :</span>
 			<select name='osrodek' >
@@ -67,7 +50,7 @@
 
 			</select>
 		</label>
-		<label id='klient'>
+		<label>
 			<span >Klient: </span>
 			<select name='klient'>
 
