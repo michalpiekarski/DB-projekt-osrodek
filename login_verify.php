@@ -1,7 +1,7 @@
 <?php
     if(isset($_GET['logout'])) {
-        setcookie("logpass", "", time()-3600, '/');
-        header('Location: '.urldecode($_GET['url']));
+        setcookie("logpass", "", time()-60*60*24, '/');
+        header('Location: '.urldecode($_GET['url']), true, 302);
     }
     else {
         if(isset($_POST['login']) and isset($_POST['password']) and isset($_POST['url'])) {
