@@ -41,6 +41,16 @@
 			<a id="index" href="index.php">Home</a>
 		</li>
 		<li>
+			<a id="konta" href="konta.php">Konta<span class="caret"></span></a>
+			<div>
+				<ul>
+					<li>
+						<a href="konto.php">Dodaj konto</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li>
 			<a id="klienci" href="klienci.php">Klienci</a>
 		</li>
 		<li>

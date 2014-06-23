@@ -9,11 +9,11 @@
         background-color: rgba(0, 0, 0, 0.75);
     }
     #login .dialog{
-        width: 200px;
+        width: 250px;
         <?php
             $url = parse_url($_SERVER['PHP_SELF']);
             if(!strpos($url['path'], "admin")) {
-                echo "height: 250px;";
+                echo "height: 270px;";
             }
             else {
                 echo "height: 180px;";
