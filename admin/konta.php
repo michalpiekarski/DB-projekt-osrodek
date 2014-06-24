@@ -43,6 +43,7 @@
 					<th style='background-color: lightgrey;'>Login</th>
 					<th style='background-color: lightgrey;'>Hasło</th>
 					<th style='background-color: lightgrey;'>Typ</th>
+					<th style='background-color: lightgrey;' colspan="2" rowspan="2">Edycja</th
 				</tr>
 			</thead>
 
@@ -53,6 +54,8 @@
 							echo"<td>".$row['LOGIN']."</td>";
 							echo"<td>".$row['HASLO']."</td>";
 							echo"<td>".$row['TYP']."</td>";
+							echo"<td><a class='edit-button' href='edit.php?id=".$row['LOGIN']."&tabela=DANE_LOGOWANIA' title='Edytuj konto'>Edytuj</a></td>";
+							echo"<td><a class='delete-button' href='delete.php?id=".$row['LOGIN']."&tabela=DANE_LOGOWANIA' onclick='show_confirm();' title='Usuń konto'>Usuń</a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
