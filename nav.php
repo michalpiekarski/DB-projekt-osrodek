@@ -14,7 +14,8 @@
 		font-weight: bold;
 		background-color: lightgrey;
 		color: white;
-		border: solid 3px white;
+		border-top: solid 3px white;
+		border-bottom: solid 3px white;
 	    line-height: 50px;
 	    padding: 0 18px;
 	}
@@ -31,61 +32,57 @@
 	<ul>
 		<li>
 			<a id="index" href="index.php">Home</a>
-		</li>
-		<li>
+		</li><li>
 			<a id="rezerwacje">Rezerwacje<span class="octicon octicon-chevron-down caret" style="min-width: 16px;"></span></a>
 			<div>
 				<ul>
 					<li>
-						<a href="rezerwacja.php">Dodaj rezerwację</a>
+						<a href="rezerwacja.php">Dodaj rezerwację<span class="octicon octicon-plus caret" style="min-width: 16px;"></span></a>
 					</li>
 					<hr/>
 					<li>
-						<a href="rezerwacje_aktualne.php">Aktualne</a>
+						<a href="rezerwacje_aktualne.php">Aktualne<span class="octicon octicon-clock caret" style="min-width: 16px;"></span></a>
 					</li>
 					<li>
-						<a href="rezerwacje_zakonczone.php">Zakończone</a>
+						<a href="rezerwacje_zakonczone.php">Zakończone<span class="octicon octicon-clock caret" style="min-width: 16px;"></span></a>
 					</li>
 				</ul>
 			</div>
-		</li>
-		<li>
+		</li><li>
 			<a id="zamowienia">Zamówienia<span class="octicon octicon-chevron-down caret" style="min-width: 16px;"></span></a>
 			<div>
 				<ul>
 					<li>
-						<a href="posilek.php">Zamów posiłek</a>
+						<a href="posilek.php">Zamów posiłek<span class="octicon octicon-plus caret" style="min-width: 16px;"></span></a>
 					</li>
 					<li>
-						<a href="uslugi.php">Zamów usługę</a>
+						<a href="uslugi.php">Zamów usługę<span class="octicon octicon-plus caret" style="min-width: 16px;"></span></a>
 					</li>
 					<li>
-						<a href="wypozyczenie.php">Wypożycz</a>
+						<a href="wypozyczenie.php">Wypożycz<span class="octicon octicon-plus caret" style="min-width: 16px;"></span></a>
 					</li>
 					<hr/>
 					<li>
-						<a href="zamowienia_aktualne.php">Aktualne</a>
+						<a href="zamowienia_aktualne.php">Aktualne<span class="octicon octicon-list-unordered caret" style="min-width: 16px;"></span></a>
 					</li>
 					<li>
-						<a href="zamowienia_zakonczone.php">Zakończone</a>
+						<a href="zamowienia_zakonczone.php">Zakończone<span class="octicon octicon-list-unordered caret" style="min-width: 16px;"></span></a>
 					</li>
 				</ul>
 			</div>
-		</li>
-		<li>
+		</li><li>
 			<a id="rachunki">Rachunki<span class="octicon octicon-chevron-down caret" style="min-width: 16px;"></span></a>
 			<div>
 				<ul>
 					<li>
-						<a href="rachunki_otwarte.php">Otwarte</a>
+						<a href="rachunki_otwarte.php">Otwarte<span class="octicon octicon-credit-card caret" style="min-width: 16px;"></span></a>
 					</li>
 					<li>
-						<a href="rachunki_zamkniete.php">Zamknięte</a>
+						<a href="rachunki_zamkniete.php">Zamknięte<span class="octicon octicon-credit-card caret" style="min-width: 16px;"></span></a>
 					</li>
 				</ul>
 			</div>
-		</li>
-		<li style="float: right;">
+		</li><li style="float: right;">
 
 			<?php
 				if(isset($_COOKIE['logpass'])) {
