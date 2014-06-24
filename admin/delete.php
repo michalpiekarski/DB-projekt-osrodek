@@ -42,19 +42,12 @@
         oci_execute($dane);
         $dane = oci_fetch_array($dane);
 
-
-
-        if(is_numeric($id))
-        {
+       
+        
         $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = '$id'");
         oci_execute($rm_obiekt);
-        }
-        else
-        {
-        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE NAZWA = '$id'");
-        oci_execute($rm_obiekt);
-        }
-
+        
+       
         
 
     ?>

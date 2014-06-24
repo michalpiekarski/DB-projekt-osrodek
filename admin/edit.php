@@ -31,7 +31,8 @@
         if(!isset($_GET['zapis'])) {
             $tabela = $_GET['tabela'];
             $id = $_GET['id'];
-
+           // $page = document.referrer;
+            echo 'document.write("'.$_SERVER['REQUEST_URI'].'")';
             // Uzyskaj nazwy kolumn tabeli
             $col_names = oci_parse($con, "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = '$tabela'");
             oci_execute($col_names);
@@ -91,6 +92,7 @@
                 }
 
                 window.location.href="edit.php?zapis=1&tabela=<?php echo $tabela; ?>&id=<?php echo $id; ?>&json="+JSON.stringify(CellValues);
+
             }
         }
     </script>
@@ -118,6 +120,15 @@
             $sql .= "WHERE ".$col_names[0][0]." = '".$id."'";
             $sql = oci_parse($con, $sql);
             oci_execute($sql);
+    ?>  <div class='basic-grey'>
+      
+            <h1>Zapisano zmiany</h1>
+        <h3> 
+           <center><button onclick="history.go(-2);">Wróć</button></center>
+        </h3>  
+        </div>
+    <?php
+
         }
     ?>
 
