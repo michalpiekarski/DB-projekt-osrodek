@@ -75,7 +75,7 @@
         </table>
 
         <h3>
-            <a href="obiekty.php">Wróć</a>
+            <button onclick="history.go(-1);">Wróć</button>
             <input type='submit' name='button' onclick="ZapiszZmiany();" value='Zapisz'>
         </h3>
     </div>
@@ -96,6 +96,7 @@
     </script>
 
     <?php
+       
         } else {
             $tabela = $_GET['tabela'];
             $id = $_GET['id'];

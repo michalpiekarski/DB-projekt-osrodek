@@ -20,11 +20,11 @@
         }
     </style>
 </head>
-<body>
+<body onload="document.refresh();">
 
     <?php
         include('nav.php');
-        include('../../db_connect.php');
+        include('../db_connect.php');
         
         $tabela = $_GET['tabela'];
         if(isset($_GET['id'])){
@@ -44,10 +44,16 @@
 
 
 
-
-        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = $id");
+        if(is_numeric($id))
+        {
+        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = '$id'");
         oci_execute($rm_obiekt);
-       
+        }
+        else
+        {
+        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE NAZWA = '$id'");
+        oci_execute($rm_obiekt);
+        }
 
         
 
@@ -85,7 +91,7 @@
         </table>
 
         <h3>
-            <a href="obiekty.php">Wróć</a>
+             <button onclick="history.go(-1);">Wróć</button>
         </h3>
     </div>
 <?php 
@@ -142,7 +148,7 @@ else
         </table>
 
         <h3>
-            <a href="obiekty.php">Wróć</a>
+           <button onclick="history.go(-1);">Wróć</button>
         </h3>
     </div>
 <?php
