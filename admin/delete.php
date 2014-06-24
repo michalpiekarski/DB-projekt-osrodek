@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body onload="document.refresh();">
+<body>
 
     <?php
         include('nav.php');
@@ -91,7 +91,7 @@
         </table>
 
         <h3>
-             <button onclick="history.go(-1);">Wróć</button>
+             <a href="#" onclick="location.href = document.referrer; return false;">Wróć</a>
         </h3>
     </div>
 <?php 
@@ -148,7 +148,7 @@ else
         </table>
 
         <h3>
-           <button onclick="history.go(-1);">Wróć</button>
+           <a href="#" onclick="location.href = document.referrer; return false;">Wróć</a>
         </h3>
     </div>
 <?php

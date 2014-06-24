@@ -75,7 +75,7 @@
         </table>
 
         <h3>
-            <button onclick="history.go(-1);">Wróć</button>
+            <a href="#" onclick="location.href = document.referrer; return false;">Wróć</a>
             <input type='submit' name='button' onclick="ZapiszZmiany();" value='Zapisz'>
         </h3>
     </div>
