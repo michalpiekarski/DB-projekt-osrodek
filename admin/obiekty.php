@@ -38,7 +38,7 @@
 		include('nav.php');
 
 		if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] != 'klient') {
-			include('db_connect.php');
+			include('../db_connect.php');
 			
 			$obiekty = oci_parse($con,"SELECT * FROM OBIEKTY");
 			oci_execute($obiekty);

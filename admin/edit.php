@@ -26,7 +26,7 @@
     <?php
         include('nav.php');
 
-        include('db_connect.php');
+        include('../db_connect.php');
 
         if(!isset($_GET['zapis'])) {
             $tabela = $_GET['tabela'];

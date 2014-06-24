@@ -12,7 +12,7 @@
         include('nav.php');
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
-            include('db_connect.php');
+            include('../db_connect.php');
             
             if(!isset($_POST['button'])) {
     ?>

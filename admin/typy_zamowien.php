@@ -29,7 +29,7 @@
 		include('nav.php');
 
 		if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] != 'klient') {
-			include('db_connect.php');
+			include('../db_connect.php');
 			
 			$posilki = oci_parse($con,"SELECT * FROM POSILKI");
 			oci_execute($posilki);

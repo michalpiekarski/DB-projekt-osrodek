@@ -55,7 +55,7 @@
 		include('nav.php');
 
 		if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] != 'klient') {
-			include('db_connect.php');
+			include('../db_connect.php');
 			
 			$pracownicy = oci_parse($con,"SELECT * FROM PRACOWNICY");
 			oci_execute($pracownicy);

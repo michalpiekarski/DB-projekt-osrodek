@@ -24,7 +24,7 @@
 
     <?php
         include('nav.php');
-        include('db_connect.php');
+        include('../../db_connect.php');
         
         $tabela = $_GET['tabela'];
         if(isset($_GET['id'])){
