@@ -7,7 +7,7 @@
     else {
         if(isset($_POST['login']) and isset($_POST['password']) and isset($_POST['url'])) {
             if(!isset($_POST['register'])) {
-                $con = oci_connect("tomek", "2")or die ("could not connect to oracledb");
+                include('db_connect.php');
 
                 $login = $_POST['login'];
                 $password = $_POST['password'];

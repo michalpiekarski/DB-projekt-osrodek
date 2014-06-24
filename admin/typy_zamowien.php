@@ -29,7 +29,8 @@
 		include('nav.php');
 
 		if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] != 'klient') {
-			$con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
+			include('db_connect.php');
+			
 			$posilki = oci_parse($con,"SELECT * FROM POSILKI");
 			oci_execute($posilki);
 			$uslugi = oci_parse($con,"SELECT * FROM USLUGI");

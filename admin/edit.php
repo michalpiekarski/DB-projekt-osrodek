@@ -25,7 +25,8 @@
 
     <?php
         include('nav.php');
-        $con = oci_connect("tomek", "2") or die ("could not connect to oracledb");
+
+        include('db_connect.php');
 
         if(!isset($_GET['zapis'])) {
             $tabela = $_GET['tabela'];

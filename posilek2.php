@@ -29,7 +29,7 @@
 		</h2>
 
 		<?php
-			$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");
+			include('db_connect.php');
 
 			$posilek_nazwa = $_POST['posilek'];
 			$posilek_ilosc = $_POST['posilek_ilosc'];

@@ -28,7 +28,7 @@
 		</h2>
 
 		<?php
-			$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");
+			include('db_connect.php');
 
 			$wypozyczenia_nazwa = $_POST['wypozyczenia'];
 			$wypozyczenia_ilosc = $_POST['wypozyczenia_ilosc'];

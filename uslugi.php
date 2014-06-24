@@ -13,7 +13,7 @@
 		include('nav.php');
 
 		if(isset($_COOKIE['logpass'])) {
-			$con = oci_connect("tomek", "2")or die ("could not connect to oracledb");
+			include('db_connect.php');
 
 			$klient = oci_parse($con,"Select ID,imie, nazwisko from klienci");
 			oci_execute($klient);
