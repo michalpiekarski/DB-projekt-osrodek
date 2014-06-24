@@ -24,7 +24,7 @@
 
     <?php
         include('nav.php');
-        include('../../db_connect.php');
+        include('../db_connect.php');
         
         $tabela = $_GET['tabela'];
         if(isset($_GET['id'])){
@@ -42,13 +42,12 @@
         oci_execute($dane);
         $dane = oci_fetch_array($dane);
 
-
-
-
-        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = $id");
-        oci_execute($rm_obiekt);
        
-
+        
+        $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = '$id'");
+        oci_execute($rm_obiekt);
+        
+       
         
 
     ?>
@@ -85,7 +84,7 @@
         </table>
 
         <h3>
-            <a href="obiekty.php">Wróć</a>
+             <a href="#" onclick="location.href = document.referrer; return false;">Wróć</a>
         </h3>
     </div>
 <?php 
@@ -142,7 +141,7 @@ else
         </table>
 
         <h3>
-            <a href="obiekty.php">Wróć</a>
+           <a href="#" onclick="location.href = document.referrer; return false;">Wróć</a>
         </h3>
     </div>
 <?php

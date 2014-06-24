@@ -132,8 +132,8 @@
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['PLACA_OD']." zł/mies.</td>";
 							echo"<td>".$row['PLACA_DO']." zł/mies.</td>";
-							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=STANOWISKA' title='Edytuj stanowisko'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=STANOWISKA' onclick='show_confirm();' title='Usuń stanowisko'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
+							echo"<td><a href='edit.php?nazwa=".$row['NAZWA']."&tabela=STANOWISKA' title='Edytuj stanowisko'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+							echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&tabela=STANOWISKA' onclick='show_confirm();' title='Usuń stanowisko'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
