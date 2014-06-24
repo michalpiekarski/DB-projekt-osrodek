@@ -26,16 +26,6 @@
 	{
 		background-color: grey;
 	}
-
-	<?php
-		echo "nav #".$page." > .caret";
-	?>
-
-	{
-		border-top-color: white;
-		border-width: 5px;
-		margin-top: -2px;
-	}
 </style>
 <nav>
 	<ul>
@@ -43,7 +33,7 @@
 			<a id="index" href="index.php">Home</a>
 		</li>
 		<li>
-			<a id="rezerwacje">Rezerwacje<span class="caret"></span></a>
+			<a id="rezerwacje">Rezerwacje<span class="octicon octicon-chevron-down caret" style="min-width: 16px;"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -60,7 +50,7 @@
 			</div>
 		</li>
 		<li>
-			<a id="zamowienia">Zamówienia<span class="caret"></span></a>
+			<a id="zamowienia">Zamówienia<span class="octicon octicon-chevron-down caret" style="min-width: 16px;"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -83,7 +73,7 @@
 			</div>
 		</li>
 		<li>
-			<a id="rachunki">Rachunki<span class="caret"></span></a>
+			<a id="rachunki">Rachunki<span class="octicon octicon-chevron-down caret" style="min-width: 16px;"></span></a>
 			<div>
 				<ul>
 					<li>
@@ -99,10 +89,10 @@
 
 			<?php
 				if(isset($_COOKIE['logpass'])) {
-					echo "<a href='login_verify.php?logout=1&url=".urlencode($_SERVER['PHP_SELF'])."'>Wyloguj</a>";
+					echo "<a href='login_verify.php?logout=1&url=".urlencode($_SERVER['PHP_SELF'])."'>Wyloguj <span class='mega-octicon octicon-sign-out' style='min-width: 28px; font-size: 28px; vertical-align: middle; margin: 0 -0.3em 0 0.3em;'></span></a>";
 				}
 				else {
-					echo "<a id='register' href='#' onclick=\"LoginDialog('block', 0);\">Zaloguj</a>";
+					echo "<a id='register' href='#' onclick=\"LoginDialog('block', 0);\">Zaloguj <span class='mega-octicon octicon-sign-in' style='min-width: 28px; font-size: 28px; vertical-align: middle; margin: 0 -0.3em 0 0.3em;'></span></a>";
 				}
 			?>
 

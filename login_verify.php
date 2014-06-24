@@ -1,8 +1,7 @@
 <?php
     if(isset($_GET['logout'])) {
         setcookie("logpass", "", time()-60*60*24, '/');
-        header('Refresh: 0; url='.urldecode($_GET['url']), true);
-        exit;
+        header("Refresh: 0; url=".urldecode($_GET['url']));
     }
     else {
         if(isset($_POST['login']) and isset($_POST['password']) and isset($_POST['url'])) {
@@ -29,8 +28,7 @@
                 }
                 setcookie("logpass", $value, $expire, '/');
             }
-            header('Refresh: 0; url='.$_POST['url'], true);
-            exit;
+            header("Refresh:0; url=".$_POST['url']);
         }
     }
 ?>

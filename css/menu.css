@@ -29,19 +29,9 @@ nav ul li {
     -o-transition: all 0.2s;
     transition: all 0.2s;
 }
-nav > ul > li > a > .caret {
-    border-top: 4px solid #aaa;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
-    content: "";
-    display: inline-block;
-    height: 0;
-    width: 0;
-    vertical-align: middle;
-    -webkit-transition: color 0.1s linear;
-    -moz-transition: color 0.1s linear;
-    -o-transition: color 0.1s linear;
-    transition: color 0.1s linear;
+nav .caret {
+    margin-left: 0.5em;
+    margin-right: -1em;
 }
 nav > ul > li > a {
     color: #aaa;
@@ -55,9 +45,6 @@ nav > ul > li:hover {
 }
 nav > ul > li:hover > a {
     color: rgb(255, 255, 255);
-}
-nav > ul > li:hover > a > .caret {
-    border-top-color: rgb(255, 255, 255);
 }
 nav > ul > li > div {
     background-color: rgb(40, 44, 47);
