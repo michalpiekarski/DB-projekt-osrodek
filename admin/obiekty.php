@@ -54,15 +54,15 @@
 		<form id='select' style="font-size: 1.2em; text-align: center; margin: -20px 0 10px;">
 			<label>
 				<span>Obiekty :</span>
-				<input type='radio' name='select' onclick="SwitchView('obiekty', 'typy_obiektow', 'Obiekty');" checked />
+				<input type='radio' name='select' onclick="SwitchView('tabela_obiekty', 'tabela_typy_obiektow', 'Obiekty');" checked />
 			</label>
 			<label>
 				<span>Typy obiektów :</span>
-				<input type='radio' name='select' onclick="SwitchView('typy_obiektow', 'obiekty', 'Typy obiektów');" />
+				<input type='radio' name='select' onclick="SwitchView('tabela_typy_obiektow', 'tabela_obiekty', 'Typy obiektów');" />
 			</label>
 		</form>
 
-		<table id='obiekty' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
+		<table id='tabela_obiekty' class='basic-grey' style='border: none; padding: 0; text-align: center;' cellpadding='5em'>
 			<tr>
 				<th style='background-color: lightgrey;'>Ośrodek</th>
 				<th style='background-color: lightgrey;'>Typ</th>
@@ -78,15 +78,15 @@
 					echo"<td>".$row['TYP']."</td>";
 					echo"<td>".$row['BUDYNEK']."</td>";
 					echo"<td>".$row['NUMER']."</td>";
-					echo"<td><a class='edit-button' href='edit.php?id=".$row['ID']."&tabela=OBIEKTY' title='Edytuj obiekt'>Edytuj</a></td>";
-					echo"<td><a class='delete-button' href='delete.php?id=".$row['ID']."&tabela=OBIEKTY' title='Usuń obiekt'>Usuń</a></td>";
+					echo"<td><a href='edit.php?id=".$row['ID']."&tabela=OBIEKTY' title='Edytuj obiekt'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+					echo"<td><a href='delete.php?id=".$row['ID']."&tabela=OBIEKTY' title='Usuń obiekt'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 					echo"</tr>";
 				}
 			?>
 
 		</table>
 
-		<table id='typy_obiektow' class='basic-grey' style='border: none; padding: 0; text-align: center; display: none;' cellpadding='5em'>
+		<table id='tabela_typy_obiektow' class='basic-grey' style='border: none; padding: 0; text-align: center; display: none;' cellpadding='5em'>
 			<tr>
 				<th style='background-color: lightgrey;'>Nazwa</th>
 				<th style='background-color: lightgrey;'>Ilość miejsc</th>
@@ -100,8 +100,8 @@
 					echo"<td>".$row['NAZWA']."</td>";
 					echo"<td>".$row['ILOSC_MIEJSC']."</td>";
 					echo"<td>".$row['CENA']." zł/dobę</td>";
-					echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' title='Edytuj typ obiektu'>Edytuj</a></td>";
-					echo"<td><a class='delete-button' href='delete.php?nazwa=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' title='Usuń typ obiektu'>Usuń</a></td>";
+					echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' title='Edytuj typ obiektu'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+					echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&tabela=TYPY_OBIEKTOW' title='Usuń typ obiektu'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 					echo"</tr>";
 				}
 			?>

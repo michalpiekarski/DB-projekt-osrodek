@@ -101,15 +101,13 @@ nav > ul > li > div ul > li:hover > a {
 #admin_link {
   display: block;
   text-decoration: none;
-  width: 30px;
-  height: 30px;
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background: none;
+  color: transparent;
 }
 #admin_link:hover {
-  background: url(../images/ustawienia.png) no-repeat center center;
+    color: black;
 }
 a {
     text-decoration: none;

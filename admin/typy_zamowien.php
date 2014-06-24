@@ -62,8 +62,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=POSILKI' title='Edytuj typ posiłku'>Edytuj</a></td>";
-							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' onclick='show_confirm();' title='Usuń typ posiłku'>Usuń</a></td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=POSILKI' title='Edytuj typ posiłku'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' onclick='show_confirm();' title='Usuń typ posiłku'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -86,8 +86,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=USLUGI' title='Edytuj typ usługi'>Edytuj</a></td>";
-							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=USLUGI' onclick='show_confirm();' title='Usuń typ usługi'>Usuń</a></td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=USLUGI' title='Edytuj typ usługi'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=USLUGI' onclick='show_confirm();' title='Usuń typ usługi'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -110,8 +110,8 @@
 						echo"<tr>";
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
-							echo"<td><a class='edit-button' href='edit.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' title='Edytuj typ wypożyczenia'>Edytuj</a></td>";
-							echo"<td><a class='delete-button' href='delete.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' onclick='show_confirm();' title='Usuń typ wypożyczenia'>Usuń</a></td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' title='Edytuj typ wypożyczenia'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=WYPOZYCZENIA' onclick='show_confirm();' title='Usuń typ wypożyczenia'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

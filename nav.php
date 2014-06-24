@@ -109,4 +109,4 @@
 		</li>
 	</ul>
 </nav>
-<a id="admin_link" href="admin/index.php"></a>
+<a id="admin_link" href="admin/index.php"><span class="mega-octicon octicon-gear" style="min-width: 32px;"></span></a>

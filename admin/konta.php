@@ -57,8 +57,8 @@
 							echo"<td>".$row['LOGIN']."</td>";
 							echo"<td>".$row['HASLO']."</td>";
 							echo"<td>".$row['TYP']."</td>";
-							echo"<td><a class='edit-button' href='edit.php?id=".$row['LOGIN']."&tabela=DANE_LOGOWANIA' title='Edytuj konto'>Edytuj</a></td>";
-							echo"<td><a class='delete-button' href='delete.php?id=".$row['LOGIN']."&tabela=DANE_LOGOWANIA' onclick='show_confirm();' title='Usuń konto'>Usuń</a></td>";
+							echo"<td><a href='edit.php?id=".$row['LOGIN']."&tabela=DANE_LOGOWANIA' title='Edytuj konto'><span class='octicon octicon-pencil' style='min-width: 32px;'></span></a></td>";
+							echo"<td><a href='delete.php?id=".$row['LOGIN']."&tabela=DANE_LOGOWANIA' onclick='show_confirm();' title='Usuń konto'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
