@@ -6,30 +6,27 @@
     <?php
         include('head_css.php');
     ?>
-    <script type="text/javascript">
-$(document).ready(function () {
+<script src="validation/lib/jquery.js"></script>
+<script src="validation/dist/jquery.validate.js"></script>
 
-    $('#rezerwacja').validate({ // initialize the plugin
+<script>
+$().ready(function () {
+
+    $("#rejestracja").validate({ // initialize the plugin
         rules: {
             email: {
                 required: true,
                 email: true
             },
-            imie: {
-                required: true
+            imie: "required",
+            nazwisko: "required",
+            ulica:  "required",
+            mieszkanie: {
+                required: false,
+                number: true
             },
-            nazwisko: {
-                required: true
-            },
-            ulica: {
-                required: true
-            },
-            kod_pocztowy: {
-                required: true
-            },
-            miasto: {
-                required: true
-            },
+            kod_pocztowy: "required",
+            miasto: "required",
             telefon: {
                 required: true,
                 number: true
@@ -37,14 +34,30 @@ $(document).ready(function () {
             
 
         },
-        submitHandler: function (form) { // for demo
-            alert('valid form submitted'); // for demo
-            return false; // for demo
+        messages: {
+            imie: "Popraw",
+            nazwisko: "Popraw",
+            ulica: "Popraw",
+            kod_pocztowy: "Popraw",
+            miasto: "Popraw",
+            telefon: "Popraw",
+            email: "Popraw",
+            mieszkanie: "Popraw"
         }
-    });
+      
 
 });
+});
 </script>
+<style type="text/css">
+    #rejestracja label.error {
+    margin-left: 8px;
+    width: auto;
+    display: inline;
+    color: red;
+    font-style: italic;
+}
+</style>
 </head>
 <body>
 
@@ -78,7 +91,7 @@ $(document).ready(function () {
         </label>
         <label>
             <span>Nazwisko:</span>
-            <input type="text" name="nazwisko" placeholder="Pełne nazwisko" />
+            <input type="text"  name="nazwisko" placeholder="Pełne nazwisko" />
         </label>
         <label>
             <span>Ulica :</span>
