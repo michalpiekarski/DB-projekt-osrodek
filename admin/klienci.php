@@ -9,11 +9,6 @@
 
 	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
 
-	<script type="text/javascript">
-		function show_confirm() {
-			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
-		}
-	</script>
 
 	<style type="text/css">
 		.mode a {
@@ -72,7 +67,7 @@
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['MIESZKANIE']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['KOD_POCZTOWY']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['MIASTO']."</td>";
-							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=KLIENCI' onclick='show_confirm();' title='Usuń klienta'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
+							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=KLIENCI' title='Usuń klienta'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

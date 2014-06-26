@@ -9,11 +9,7 @@
 
 	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
 
-	<script type="text/javascript">
-		function show_confirm() {
-			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
-		}
-	</script>
+	
 
 	<style type="text/css">
 		.mode a {
@@ -63,7 +59,7 @@
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['CENA']." zł/os.</td>";
 							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=POSILKI' title='Edytuj typ posiłku'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
-							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' onclick='show_confirm();' title='Usuń typ posiłku'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
+							echo"<td><a href='delete.php?id=".$row['NAZWA']."&tabela=POSILKI' title='Usuń typ posiłku'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}

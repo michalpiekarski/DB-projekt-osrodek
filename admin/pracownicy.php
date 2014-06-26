@@ -9,12 +9,7 @@
 
 	<script src="edit-delete.js" type="text/javascript" charset="utf-8"></script>
 
-	<script type="text/javascript">
-		function show_confirm() {
-			var r=confirm("Usunięcie jest bezpowrotne. Kontynuować?");
-		}
-	</script>
-
+	
 	<style type="text/css">
 		.mode a {
 			text-decoration: none;
@@ -107,7 +102,7 @@
 							echo"<td style='border-bottom: solid 1px lightgrey;'>".$row['ULICA']." ".$row['MIESZKANIE']." ".$row['KOD_POCZTOWY']." ".$row['MIASTO']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey;' style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['EMAIL']."</td>";
 							echo"<td style='border-bottom: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['TELEFON']."</td>";
-							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=PRACOWNICY' onclick='show_confirm();' title='Usuń pracownika'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
+							echo"<td><a href='delete.php?id=".$row['ID']."&tabela=PRACOWNICY' title='Usuń pracownika'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
@@ -132,8 +127,8 @@
 							echo"<td>".$row['NAZWA']."</td>";
 							echo"<td>".$row['PLACA_OD']." zł/mies.</td>";
 							echo"<td>".$row['PLACA_DO']." zł/mies.</td>";
-							echo"<td><a href='edit.php?nazwa=".$row['NAZWA']."&tabela=STANOWISKA' title='Edytuj stanowisko'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
-							echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&tabela=STANOWISKA' onclick='show_confirm();' title='Usuń stanowisko'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
+							echo"<td><a href='edit.php?id=".$row['NAZWA']."&tabela=STANOWISKA' title='Edytuj stanowisko'><span class='octicon octicon-pencil' style='min-width: 32px;'></a></td>";
+							echo"<td><a href='delete.php?nazwa=".$row['NAZWA']."&tabela=STANOWISKA' title='Usuń stanowisko'><span class='octicon octicon-trashcan' style='min-width: 32px;'></span></a></td>";
 						echo"</tr>";
 					echo"</tbody>";
 				}
