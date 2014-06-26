@@ -6,7 +6,45 @@
     <?php
         include('head_css.php');
     ?>
+    <script type="text/javascript">
+$(document).ready(function () {
 
+    $('#rezerwacja').validate({ // initialize the plugin
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            imie: {
+                required: true
+            },
+            nazwisko: {
+                required: true
+            },
+            ulica: {
+                required: true
+            },
+            kod_pocztowy: {
+                required: true
+            },
+            miasto: {
+                required: true
+            },
+            telefon: {
+                required: true,
+                number: true
+            }
+            
+
+        },
+        submitHandler: function (form) { // for demo
+            alert('valid form submitted'); // for demo
+            return false; // for demo
+        }
+    });
+
+});
+</script>
 </head>
 <body>
 
@@ -18,7 +56,7 @@
         if(isset($_POST['register']) and !isset($_POST['button'])) {
     ?>
 
-    <form action="register.php" method="post" class="basic-grey">
+    <form action="register.php" id="rejestracja" method="post" class="basic-grey">
         <h1>
             Rejestracja
         </h1>

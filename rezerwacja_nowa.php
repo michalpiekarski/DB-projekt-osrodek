@@ -81,10 +81,6 @@
             <input id="ilosc" type="number" name="ilosc_os" placeholder="Ilość osób " min="2" max="8"/>
         </label>
         <label>
-            <span>Uwagi :</span>
-            <textarea id="message" name="uwagi" placeholder="Dodatkowe uwagi"></textarea>
-        </label>
-        <label>
             <span>&nbsp;</span>
             <input type="submit" class="button" name="button1" value="Dodaj Rezerwację" />
         </label>
