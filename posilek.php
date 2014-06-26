@@ -94,7 +94,7 @@
 		</label>
 		<label>
 			<span>Ilość :</span>
-			<input type='number' name='posilek_ilosc' min='0' max='8'>
+			<input type='number' name='posilek_ilosc' value="1" min='1' max='8'>
 		</label>
 		<label>
 			<span>Data :</span>

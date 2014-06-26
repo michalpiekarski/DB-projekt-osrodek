@@ -78,7 +78,7 @@
         </label>
         <label>
             <span>Ilość Osób :</span>
-            <input id="ilosc" type="number" name="ilosc_os" placeholder="Ilość osób " min="2" max="8"/>
+            <input id="ilosc" type="number" name="ilosc_os" placeholder="Ilość osób " value="2" min="2" max="8"/>
         </label>
         <label>
             <span>&nbsp;</span>
