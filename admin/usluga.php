@@ -6,7 +6,38 @@
 	<?php
 		include('../head_css.php');
 	?>
+<script src="../validation/lib/jquery.js"></script>
+<script src="../validation/dist/jquery.validate.js"></script>
+<script>
+$().ready(function () {
 
+    $("#usluga").validate({ // initialize the plugin
+        rules: {
+           
+            nazwa: "required",
+            cena: {
+                required: true,
+                number: true
+            }
+        },
+        messages: {
+            nazwa: "Popraw",
+            cena: "Popraw"
+        }
+      
+
+});
+});
+</script>
+<style type="text/css">
+    #usluga label.error {
+    margin-left: 8px;
+    width: auto;
+    display: inline;
+    color: red;
+    font-style: italic;
+}
+</style>
 </head>
 <body>
 
@@ -20,7 +51,7 @@
             if(!isset($_POST['button'])) {
     ?>
 
-    <form action="usluga.php" method="post" class="basic-grey">
+    <form action="usluga.php" id="usluga" method="post" class="basic-grey">
         <h1>Dodaj typ usługi</h1>
 
         <h2>

@@ -98,7 +98,7 @@
 		</label>
 		<label>
 			<span>Data :</span>
-			<input type='date' name='posilek_data'>
+			<input type='date' name='posilek_data' value="<?php echo date('Y-m-d'); ?>">
 		</label>
 
 		<?php

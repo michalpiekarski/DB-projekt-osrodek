@@ -70,11 +70,11 @@
 
         <label>
             <span>Przyjazd :</span>
-            <input id="termin" type="date" name="data_od" placeholder="Termin Przyjazdu" />
+            <input id="termin" type="date" name="data_od" value="<?php echo date('Y-m-d'); ?>" />
         </label>
         <label>
             <span>Wyjazd :</span>
-            <input id="termin" type="date" name="data_do" placeholder="Termin Wyjazdu" />
+            <input id="termin" type="date" name="data_do" value="<?php echo date("Y-m-d",strtotime("+1 week")); ?>" />
         </label>
         <label>
             <span>Ilość Osób :</span>

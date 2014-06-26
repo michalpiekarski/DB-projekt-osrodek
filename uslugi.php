@@ -99,7 +99,7 @@
 			<input type='number' name='usluga_ilosc' value='1' min='1' max='5'></label>
 		<label>
 			<span>Data :</span>
-			<input type='date' name='usluga_data'>
+			<input type='date' name='usluga_data' value="<?php echo date('Y-m-d'); ?>">
 		</label>
 
 		<?php

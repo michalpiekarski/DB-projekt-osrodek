@@ -99,11 +99,11 @@
 		</label>
 		<label>
 			<span>Data od:</span>
-			<input type='date' name='wypozyczenia_data_od'>
+			<input type='date' name='wypozyczenia_data_od' value="<?php echo date('Y-m-d'); ?>">
 		</label>
 		<label>
 			<span>Data do:</span>
-			<input type='date' name='wypozyczenia_data_do'>
+			<input type='date' name='wypozyczenia_data_do' value="<?php echo date('Y-m-d'); ?>">
 		</label>
 
 		<?php
