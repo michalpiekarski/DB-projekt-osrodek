@@ -32,7 +32,7 @@
             $tabela = $_GET['tabela'];
             $id = $_GET['id'];
            // $page = document.referrer;
-            echo 'document.write("'.$_SERVER['REQUEST_URI'].'")';
+            
             // Uzyskaj nazwy kolumn tabeli
             $col_names = oci_parse($con, "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = '$tabela'");
             oci_execute($col_names);
