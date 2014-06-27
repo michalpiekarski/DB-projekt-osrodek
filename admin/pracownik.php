@@ -7,6 +7,46 @@
 		include('../head_css.php');
 	?>
 
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#pracownik_form")) {
+                $("#pracownik_form").validate({ // initialize the plugin
+                    rules: {
+                        imie: "required",
+                        nazwisko: "required",
+                        ulica: "required",
+                        kod_pocztowy: "required",
+                        miasto: "required",
+                        placa: {
+                            required: true,
+                            number: true
+                        }
+                    },
+                    messages: {
+                        imie: "Popraw",
+                        nazwisko: "Popraw",
+                        ulica: "Popraw",
+                        kod_pocztowy: "Popraw",
+                        miasto: "Popraw",
+                        placa: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -16,7 +56,7 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button'])) {
                 $osrodki = oci_parse($con, "SELECT * FROM OSRODKI");
                 oci_execute($osrodki);
@@ -27,7 +67,7 @@
                 $maxid = oci_fetch_array($sql_maxid);
     ?>
 
-    <form action="pracownik.php" method="post" class="basic-grey">
+    <form id="pracownik_form" action="pracownik.php" method="post" class="basic-grey">
         <h1>Dodaj pracownika</h1>
 
         <h2>
@@ -45,28 +85,28 @@
             echo"<input type='hidden' name='id' value='".$maxid['MAXID']."' />";
         ?>
 
-        <label>
-            <span>Imię :</span>
+        <label title="Pole jest wymagane">
+            <span>Imię* :</span>
             <input type="text" name="imie" placeholder="Imię" />
         </label>
-        <label>
-            <span>Nazwisko :</span>
+        <label title="Pole jest wymagane">
+            <span>Nazwisko* :</span>
             <input type="text" name="nazwisko" placeholder="Nazwisko" />
         </label>
-        <label>
-            <span>Ulica :</span>
+        <label title="Pole jest wymagane">
+            <span>Ulica* :</span>
             <input type="text" name="ulica" placeholder="Ulica" />
         </label>
         <label>
             <span>Mieszkanie :</span>
             <input type="text" name="mieszkanie" placeholder="Mieszkanie" />
         </label>
-        <label>
-            <span>Kod pocztowy :</span>
+        <label title="Pole jest wymagane">
+            <span>Kod pocztowy* :</span>
             <input type="text" name="kod_pocztowy" placeholder="Kod pocztowy" />
         </label>
-        <label>
-            <span>Miasto :</span>
+        <label title="Pole jest wymagane">
+            <span>Miasto* :</span>
             <input type="text" name="miasto" placeholder="Miasto" />
         </label>
         <label>
@@ -80,6 +120,7 @@
         <label>
             <span>Stanowisko :</span>
             <select name="stanowisko">
+                <option value='' selected></option>
 
                 <?php
                     while($row = oci_fetch_array($stanowiska)) {
@@ -89,13 +130,14 @@
 
             </select>
         </label>
-        <label>
-            <span>Płaca :</span>
-            <input type="number" name="placa" value="200" step="0.01" />
+        <label title="Pole jest wymagane">
+            <span>Płaca* :</span>
+            <input type="number" name="placa" placeholder="Płaca" step="0.01" />
         </label>
         <label>
             <span>Ośrodek :</span>
             <select name="osrodek">
+                <option value='' selected></option>
 
                 <?php
                     while($row = oci_fetch_array($osrodki)) {

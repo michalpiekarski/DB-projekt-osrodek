@@ -7,6 +7,40 @@
 		include('../head_css.php');
 	?>
 
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#typ_obiektu_form")) {
+                $("#typ_obiektu_form").validate({ // initialize the plugin
+                    rules: {
+                        nazwa: "required",
+                        kategoria: "required",
+                        cena: {
+                            required: true,
+                            number: true
+                        }
+                    },
+                    messages: {
+                        nazwa: "Popraw",
+                        kategoria: "Popraw",
+                        cena: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
 </head>
 <body>
     <?php
@@ -15,11 +49,11 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button'])) {
     ?>
 
-    <form action="typ_obiektu.php" method="post" class="basic-grey">
+    <form id="typ_obiektu_form" action="typ_obiektu.php" method="post" class="basic-grey">
         <h1>Dodaj typ obiektu</h1>
 
         <h2>
@@ -33,24 +67,26 @@
             </div>
         </h2>
 
-        <label>
-            <span>Nazwa :</span>
+        <label title="Pole jest wymagane">
+            <span>Nazwa* :</span>
             <input type="text" name="nazwa" placeholder="Nazwa typu obiektu" />
         </label>
         <label>
             <span>Ilość miejsc :</span>
-            <input type="number" name="ilosc_miejsc" value="1" />
+            <input type="number" name="ilosc_miejsc" placeholder="Ilość miejsc" />
         </label>
-         <label>
-            <span>Typ :</span><select name="kategoria">
-            <option value="domek">Domek</option>
-            <option value="pokój">Pokój</option>
-            <option value="inny">Inny</option>
+        <label title="Pole jest wymagane">
+            <span>Typ* :</span>
+            <select name="kategoria">
+                <option value='' selected></option>
+                <option value="domek">Domek</option>
+                <option value="pokój">Pokój</option>
+                <option value="inny">Inny</option>
             </select>
         </label>
-        <label>
-            <span>Cena :</span>
-            <input type="number" name="cena" value="10" />
+        <label title="Pole jest wymagane">
+            <span>Cena* :</span>
+            <input type="number" name="cena" placeholder="Cena" />
         </label>
         <label>
             <span>&nbsp;</span>

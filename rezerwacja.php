@@ -7,6 +7,33 @@
 		include('head_css.php');
 	?>
 
+	<script src="validation/lib/jquery.js"></script>
+    <script src="validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#form")) {
+                $("#form").validate({ // initialize the plugin
+                    rules: {
+                        osrodek: "required",
+                        klient: "required"                    },
+                    messages: {
+                        osrodek: "Popraw",
+                        klient: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
 
 <body>
 
@@ -16,7 +43,7 @@
 
 		if(isset($_COOKIE['logpass'])) {
 			include('db_connect.php');
-			
+
 			$osrodek = oci_parse($con,"Select * from OSRODKI");
 			oci_execute($osrodek);
 			$klient = oci_parse($con, "Select ID, IMIE, NAZWISKO from KLIENCI");
@@ -41,9 +68,10 @@
 			</div>
 		</h2>
 
-		<label>
-			<span>Ośrodek :</span>
+		<label title="Pole jest wymagane">
+			<span>Ośrodek* :</span>
 			<select name='osrodek' >
+				<option value='' selected></option>
 
 				<?php
 					while($row = oci_fetch_array($osrodek))
@@ -52,9 +80,10 @@
 
 			</select>
 		</label>
-		<label>
-			<span >Klient: </span>
+		<label title="Pole jest wymagane">
+			<span>Klient* :</span>
 			<select name='klient'>
+				<option value='' selected></option>
 
 				<?php
 					while($row = oci_fetch_array($klient))

@@ -7,6 +7,58 @@
 		include('head_css.php');
 	?>
 
+	<script src="validation/lib/jquery.js"></script>
+	<script src="validation/dist/jquery.validate.js"></script>
+
+	<script>
+	    $().ready(function () {
+	        if($("#wypozyczenie_klient_form")) {
+	            $("#wypozyczenie_klient_form").validate({ // initialize the plugin
+	                rules: {
+	                    selection: "required"
+	                },
+	                messages: {
+	                    selection: "Popraw"
+	                }
+	            });
+	        }
+	        if($("#wypozyczenie_form")) {
+	            $("#wypozyczenie_form").validate({ // initialize the plugin
+	                rules: {
+	                    wypozyczenia: "required",
+	                    wypozyczenia_ilosc: {
+	                    	required: true,
+	                    	number: true
+	                    },
+	                    wypozyczenia_data_od: {
+	                    	required: true,
+	                    	date: true
+	                    },
+	                    wypozyczenia_data_do: {
+	                    	required: true,
+	                    	date: true
+	                    }
+	                },
+	                messages: {
+	                    wypozyczenia: "Popraw",
+	                    wypozyczenia_ilosc: "Popraw",
+	                    wypozyczenia_data_od: "Popraw",
+	                    wypozyczenia_data_do: "Popraw"
+	                }
+	            });
+	        }
+	    });
+	</script>
+	<style type="text/css">
+	    form label.error {
+	        margin-left: 8px;
+	        width: auto;
+	        display: inline;
+	        color: red;
+	        font-style: italic;
+	    }
+	</style>
+
 </head>
 <body>
 
@@ -22,7 +74,7 @@
 			if(!isset($_POST['button'])) {
 	?>
 
-	<form action='wypozyczenie.php' method='post' class='basic-grey'>
+	<form id="wypozyczenie_klient_form" action='wypozyczenie.php' method='post' class='basic-grey'>
 		<h1>Wybierz klienta</h1>
 
 		<h2>
@@ -42,6 +94,7 @@
 		<label>
 			<span>Klient :</span>
 			<select name='selection'>
+				<option value='' selected></option>
 
 				<?php
 					while($row = oci_fetch_array($klient))
@@ -65,7 +118,7 @@
 			oci_execute($wypozyczenia);
 	?>
 
-	<form action='wypozyczenia2.php' method='post' class='basic-grey'>
+	<form id="wypozyczenie_form" action='wypozyczenia2.php' method='post' class='basic-grey'>
 		<h1>Wybierz Wypożyczenie</h1>
 
 		<h2>
@@ -82,9 +135,10 @@
 			</div>
 		</h2>
 
-		<label>
-			<span>Wypożyczenie :</span>
+		<label title="Pole jest wymagane">
+			<span>Wypożyczenie* :</span>
 			<select name='wypozyczenia'>
+				<option value='' selected></option>
 
 				<?php
 					while($row = oci_fetch_array($wypozyczenia))
@@ -93,16 +147,16 @@
 
 			</select>
 		</label>
-		<label>
-			<span>Ilość :</span>
-			<input type='number' name='wypozyczenia_ilosc' value="1" min='1' max='8'>
+		<label title="Pole jest wymagane">
+			<span>Ilość* :</span>
+			<input type='number' name='wypozyczenia_ilosc' placeholder="Ilość" min='1' max='8'>
 		</label>
-		<label>
-			<span>Data od:</span>
+		<label title="Pole jest wymagane">
+			<span>Data od* :</span>
 			<input type='date' name='wypozyczenia_data_od' value="<?php echo date('Y-m-d'); ?>">
 		</label>
-		<label>
-			<span>Data do:</span>
+		<label title="Pole jest wymagane">
+			<span>Data do* :</span>
 			<input type='date' name='wypozyczenia_data_do' value="<?php echo date('Y-m-d'); ?>">
 		</label>
 

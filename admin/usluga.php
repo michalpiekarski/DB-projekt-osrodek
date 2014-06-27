@@ -13,7 +13,7 @@ $().ready(function () {
 
     $("#usluga").validate({ // initialize the plugin
         rules: {
-           
+
             nazwa: "required",
             cena: {
                 required: true,
@@ -24,7 +24,7 @@ $().ready(function () {
             nazwa: "Popraw",
             cena: "Popraw"
         }
-      
+
 
 });
 });
@@ -47,7 +47,7 @@ $().ready(function () {
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button'])) {
     ?>
 
@@ -71,7 +71,7 @@ $().ready(function () {
         </label>
         <label>
             <span>Cena :</span>
-            <input type="number" name="cena" value="10" step="0.01" />
+            <input type="number" name="cena" placeholder="Cena" step="0.01" />
         </label>
         <label>
             <span>&nbsp;</span>

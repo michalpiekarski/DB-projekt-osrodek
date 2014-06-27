@@ -2,70 +2,68 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
+
     <?php
         include('head_css.php');
     ?>
-<script src="validation/lib/jquery.js"></script>
-<script src="validation/dist/jquery.validate.js"></script>
 
-<script>
-    $.validator.addMethod(
-        "regex",
-        function (value, element, regexp) {
-            var re = new RegExp(regexp);
-            return this.optional(element) || re.test(value);
-        },
-        "Please check your input."
-    );
+    <script src="validation/lib/jquery.js"></script>
+    <script src="validation/dist/jquery.validate.js"></script>
 
-$().ready(function () {
-
-    $("#rejestracja").validate({ // initialize the plugin
-        rules: {
-            imie: "required",
-            nazwisko: "required",
-            ulica:  "required",
-            mieszkanie: {
-                required: false,
-                number: true
+    <script>
+        $.validator.addMethod(
+            "regex",
+            function (value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
             },
-            kod_pocztowy: {
-                required: true//,
-                //regex: /^\d{2}-\d{3}$/
-            },
-            miasto: "required",
-            telefon: {
-                number: true
-            },
-            email: {
-                email: true
-            }
-        },
-        messages: {
-            imie: "Popraw",
-            nazwisko: "Popraw",
-            ulica: "Popraw",
-            mieszkanie: "Popraw",
-            kod_pocztowy: "Popraw",
-            miasto: "Popraw",
-            telefon: "Popraw",
-            email: "Popraw"
-        }
-      
+            "Please check your input."
+        );
 
-});
-});
-</script>
-<style type="text/css">
-    #rejestracja label.error {
-    margin-left: 8px;
-    width: auto;
-    display: inline;
-    color: red;
-    font-style: italic;
-}
-</style>
+        $().ready(function () {
+
+            $("#rejestracja").validate({ // initialize the plugin
+                rules: {
+                    imie: "required",
+                    nazwisko: "required",
+                    ulica:  "required",
+                    mieszkanie: {
+                        required: false,
+                        number: true
+                    },
+                    kod_pocztowy: {
+                        required: true,
+                        regex: /^\d{2}-\d{3}$/
+                    },
+                    miasto: "required",
+                    email: {
+                        email: true
+                    }
+                },
+                messages: {
+                    imie: "Popraw",
+                    nazwisko: "Popraw",
+                    ulica: "Popraw",
+                    mieszkanie: "Popraw",
+                    kod_pocztowy: {
+                        requred: "Popraw",
+                        regex: "Zły format"
+                    },
+                    miasto: "Popraw",
+                    email: "Popraw"
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        #rejestracja label.error {
+        margin-left: 8px;
+        width: auto;
+        display: inline;
+        color: red;
+        font-style: italic;
+    }
+    </style>
 </head>
 <body>
 

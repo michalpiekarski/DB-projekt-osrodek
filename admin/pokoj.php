@@ -7,6 +7,47 @@
 		include('../head_css.php');
 	?>
 
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#pokoj_osrodek_form")) {
+                $("#pokoj_osrodek_form").validate({ // initialize the plugin
+                    rules: {
+                        osrodek: "required"
+                    },
+                    messages: {
+                        osrodek: "Popraw"
+                    }
+                });
+            }
+            if($("#pokoj_form")) {
+                $("#pokoj_form").validate({ // initialize the plugin
+                    rules: {
+                        typ: "required",
+                        budynek: "required",
+                        numer: "required"
+                    },
+                    messages: {
+                        typ: "Popraw",
+                        budynek: "Popraw",
+                        numer: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
 </head>
 <body>
     <?php
@@ -15,13 +56,13 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button']) and !isset($_POST['button2'])) {
                 $osrodki = oci_parse($con, "SELECT * FROM OSRODKI");
                 oci_execute($osrodki);
     ?>
 
-    <form action="pokoj.php" method="post" class="basic-grey">
+    <form id="pokoj_osrodek_form" action="pokoj.php" method="post" class="basic-grey">
         <h1>Dodaj pokoj</h1>
 
         <h2>
@@ -38,14 +79,17 @@
             </div>
         </h2>
 
-        <label>
-            <span>Ośrodek :</span>
+        <label title="Pole jest wymagane">
+            <span>Ośrodek* :</span>
             <select name="osrodek">
+                <option value='' selected></option>
+
                 <?php
                     while($row = oci_fetch_array($osrodki)) {
                         echo "<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
                     }
                 ?>
+
             </select>
         </label>
         <label>
@@ -63,7 +107,7 @@
 
     ?>
 
-    <form action="pokoj.php" method="post" class="basic-grey">
+    <form id="pokoj_form" action="pokoj.php" method="post" class="basic-grey">
         <h1>Dodaj domek</h1>
 
         <h2>
@@ -85,24 +129,27 @@
 
         ?>
 
-        <label>
-            <span>Typ obiektu :</span>
+        <label title="Poje jest wymagane">
+            <span>Typ obiektu* :</span>
             <select name="typ">
+                <option value='' selected></option>
+
                 <?php
                     while($row = oci_fetch_array($typy_pokojow)) {
                         echo "<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
                     }
                 ?>
+
             </select>
         </label>
         <!-- Do zmiany na sekwencję SQL czy coś -->
-        <label>
-            <span>Budynek :</span>
+        <label title="Pole jest wymagane">
+            <span>Budynek* :</span>
             <input type="text" name="budynek" placeholder="Budynek" />
         </label>
         <!-- Do zmiany na sekwencję SQL czy coś -->
-        <label>
-            <span>Numer :</span>
+        <label title="Pole jest wymagane">
+            <span>Numer* :</span>
             <input type="text" name="numer" placeholder="Numer pokoju" />
         </label>
         <label>

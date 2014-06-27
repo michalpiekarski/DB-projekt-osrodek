@@ -7,6 +7,43 @@
 		include('../head_css.php');
 	?>
 
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#stanowisko_form")) {
+                $("#stanowisko_form").validate({ // initialize the plugin
+                    rules: {
+                        nazwa: "required",
+                        placa_od: {
+                            required: true,
+                            number: true
+                        },
+                        placa_do: {
+                            required: true,
+                            number: true
+                        }
+                    },
+                    messages: {
+                        nazwa: "Popraw",
+                        placa_od: "Popraw",
+                        placa_do: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
 </head>
 <body>
     <?php
@@ -15,11 +52,11 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button'])) {
     ?>
 
-    <form action="stanowisko.php" method="post" class="basic-grey">
+    <form id="stanowisko_form" action="stanowisko.php" method="post" class="basic-grey">
         <h1>Dodaj stanowisko</h1>
 
             <h2>
@@ -33,17 +70,17 @@
                 </div>
             </h2>
 
-        <label>
-            <span>Nazwa :</span>
+        <label title="Pole jest wymagane">
+            <span>Nazwa* :</span>
             <input type="text" name="nazwa" placeholder="Nazwa stanowiska" />
         </label>
-        <label>
-            <span>Płaca od :</span>
-            <input type="number" name="placa_od" value="100.0" step="0.01"/>
+        <label title="Pole jest wymagane">
+            <span>Płaca od* :</span>
+            <input type="number" name="placa_od" placeholder="Płaca od" step="0.01"/>
         </label>
-        <label>
-            <span>Płaca do :</span>
-            <input type="number" name="placa_do" value="2000.0"  step="0.01"/>
+        <label title="Pole jest wymagane">
+            <span>Płaca do* :</span>
+            <input type="number" name="placa_do" placeholder="Płaca do"  step="0.01"/>
         </label>
         <label>
             <span>&nbsp;</span>

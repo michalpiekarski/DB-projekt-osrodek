@@ -121,16 +121,58 @@
     }
 </script>
 
+<script src="validation/lib/jquery.js"></script>
+<script src="validation/dist/jquery.validate.js"></script>
+
+<script>
+    $().ready(function () {
+        if($("#login_form").css("display") == "block") {
+            $("#login_form").validate({ // initialize the plugin
+                rules: {
+                    login: "required",
+                    password: "required"
+                },
+                messages: {
+                    login: "Popraw",
+                    password: "Popraw"
+                }
+            });
+        }
+        if($("#register_form").css("display") == "block") {
+            $("#register_form").validate({ // initialize the plugin
+                rules: {
+                    login: "required",
+                    password: "required"
+                },
+                messages: {
+                    login: "Popraw",
+                    password: "Popraw"
+                }
+            });
+        }
+
+    });
+</script>
+<style type="text/css">
+    form label.error {
+        margin-left: 8px;
+        width: auto;
+        display: inline;
+        color: red;
+        font-style: italic;
+    }
+</style>
+
 <div id="login" onclick="LoginDialog('none', 1);">
     <div id="dialog_login" class="dialog">
         <h1>Zaloguj</h1>
-        <form action="/bazy/login_verify.php" method="post">
-            <label>
-                <span>Login: </span>
+        <form id="login_form" action="/bazy/login_verify.php" method="post">
+            <label title="Pole jest wymagane">
+                <span>Login*: </span>
                 <input type="text" name="login" placeholder="Login" autofocus tabindex=1 />
             </label>
-            <label>
-                <span>Hasło: </span>
+            <label title="Pole jest wymagane">
+                <span>Hasło*: </span>
                 <input type="password" name="password" placeholder="Hasło" tabindex=2 />
             </label>
             <label class="remember" title="Zapamiętaj login i hasło na tym komputerze przez 30 dni">
@@ -161,7 +203,7 @@
     </div>
     <div id="dialog_register" class="dialog">
         <h1>Zarejestruj</h1>
-        <form action="register.php" method="post">
+        <form id="register_form" action="register.php" method="post">
             <label>
                 <span>Login: </span>
                 <input type="text" name="login" placeholder="Login" autofocus tabindex=1 />

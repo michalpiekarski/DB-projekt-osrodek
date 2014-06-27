@@ -7,6 +7,45 @@
 		include('../head_css.php');
 	?>
 
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#inny_obiekt_osrodek_form")) {
+                $("#inny_obiekt_osrodek_form").validate({ // initialize the plugin
+                    rules: {
+                        osrodek: "required"
+                    },
+                    messages: {
+                        osrodek: "Popraw"
+                    }
+                });
+            }
+            if($("#inny_obiekt_form")) {
+                $("#inny_obiekt_form").validate({ // initialize the plugin
+                    rules: {
+                        typ: "required",
+                        numer: "required"
+                    },
+                    messages: {
+                        typ: "Popraw",
+                        numer: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
 </head>
 <body>
     <?php
@@ -15,13 +54,13 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button']) and !isset($_POST['button2'])) {
                 $osrodki = oci_parse($con, "SELECT * FROM OSRODKI");
                 oci_execute($osrodki);
     ?>
 
-    <form action="inny_obiekt.php" method="post" class="basic-grey">
+    <form id="inny_obiekt_osrodek_form" action="inny_obiekt.php" method="post" class="basic-grey">
         <h1>Dodaj inny obiekt</h1>
 
         <h2>
@@ -38,14 +77,17 @@
             </div>
         </h2>
 
-        <label>
-            <span>Ośrodek :</span>
+        <label title="Pole jest wymagane">
+            <span>Ośrodek* :</span>
             <select name="osrodek">
+                <option value='' selected></option>
+
                 <?php
                     while($row = oci_fetch_array($osrodki)) {
                         echo "<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
                     }
                 ?>
+
             </select>
         </label>
         <label>
@@ -63,7 +105,7 @@
 
     ?>
 
-    <form action="inny_obiekt.php" method="post" class="basic-grey">
+    <form id="inny_obiekt_form" action="inny_obiekt.php" method="post" class="basic-grey">
         <h1>Dodaj inny obiekt</h1>
 
         <h2>
@@ -85,14 +127,17 @@
 
         ?>
 
-        <label>
-            <span>Typ obiektu :</span>
+        <label title="Pole jest wymagane">
+            <span>Typ obiektu* :</span>
             <select name="typ">
+                <option value='' selected></option>
+
                 <?php
                     while($row = oci_fetch_array($typy_innych_obiektow)) {
                         echo "<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
                     }
                 ?>
+
             </select>
         </label>
         <!-- Do zmiany na sekwencję SQL czy coś -->
@@ -101,8 +146,8 @@
             <input type="text" name="budynek" placeholder="Budynek" />
         </label>
         <!-- Do zmiany na sekwencję SQL czy coś -->
-        <label>
-            <span>Numer :</span>
+        <label title="Pole jest wymagane">
+            <span>Numer* :</span>
             <input type="text" name="numer" placeholder="Numer obiektu" />
         </label>
         <label>

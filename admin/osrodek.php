@@ -6,7 +6,42 @@
     <?php
         include('../head_css.php');
     ?>
-    
+
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#osrodek_form")) {
+                $("#osrodek_form").validate({ // initialize the plugin
+                    rules: {
+                        nazwa: "required",
+                        ulica: "required",
+                        kod_pocztowy: "required",
+                        miasto: "required",
+                        otwarty: "required"
+                    },
+                    messages: {
+                        nazwa: "Popraw",
+                        ulica: "Popraw",
+                        kod_pocztowy: "Popraw",
+                        miasto: "Popraw",
+                        otwarty: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
 </head>
 <body>
     <?php
@@ -15,11 +50,11 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button'])) {
     ?>
 
-    <form action="osrodek.php" method="post" class="basic-grey">
+    <form id="osrodek_form" action="osrodek.php" method="post" class="basic-grey">
         <h1>Dodaj ośrodek</h1>
 
         <h2>
@@ -33,20 +68,20 @@
             </div>
         </h2>
 
-        <label>
-            <span>Nazwa :</span>
+        <label title="Pole jest wymagane">
+            <span>Nazwa* :</span>
             <input type="text" name="nazwa" placeholder="Nazwa ośrodka" />
         </label>
-        <label>
-            <span>Ulica :</span>
+        <label title="Pole jest wymagane">
+            <span>Ulica* :</span>
             <input type="text" name="ulica" placeholder="Ulica" />
         </label>
-        <label>
-            <span>Kod pocztowy :</span>
+        <label title="Pole jest wymagane">
+            <span>Kod pocztowy* :</span>
             <input type="text" name="kod_pocztowy" placeholder="Kod pocztowy" />
         </label>
-        <label>
-            <span>Miasto :</span>
+        <label title="Pole jest wymagane">
+            <span>Miasto* :</span>
             <input type="text" name="miasto" placeholder="Miasto" />
         </label>
         <label>
@@ -57,8 +92,8 @@
             <span>E-mail :</span>
             <input type="text" name="email" placeholder="E-mail" />
         </label>
-        <label>
-            <span>Otwarty :</span>
+        <label title="Pole jest wymagane">
+            <span>Otwarty* :</span>
             <input type="checkbox" name="otwarty"/>
         </label>
         <label>

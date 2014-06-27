@@ -6,7 +6,38 @@
     <?php
         include('../head_css.php');
     ?>
-    
+
+    <script src="../validation/lib/jquery.js"></script>
+    <script src="../validation/dist/jquery.validate.js"></script>
+
+    <script>
+        $().ready(function () {
+            if($("#konto_form")) {
+                $("#konto_form").validate({ // initialize the plugin
+                    rules: {
+                        login: "required",
+                        password: "required",
+                        typ: "required"
+                    },
+                    messages: {
+                        login: "Popraw",
+                        password: "Popraw",
+                        typ: "Popraw"
+                    }
+                });
+            }
+        });
+    </script>
+    <style type="text/css">
+        form label.error {
+            margin-left: 8px;
+            width: auto;
+            display: inline;
+            color: red;
+            font-style: italic;
+        }
+    </style>
+
     <style type="text/css">
         .basic-grey #pass {
             border: 1px solid #DADADA;
@@ -29,11 +60,11 @@
 
         if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
             include('../db_connect.php');
-            
+
             if(!isset($_POST['button'])) {
     ?>
 
-    <form action="konto.php" method="post" class="basic-grey">
+    <form id="konto_form" action="konto.php" method="post" class="basic-grey">
         <h1>Zarejestruj</h1>
 
         <h2>
@@ -47,16 +78,16 @@
             </div>
         </h2>
 
-        <label>
-            <span>Login: </span>
+        <label title="Pole jest wymagane">
+            <span>Login* :</span>
             <input type="text" name="login" placeholder="Login" />
         </label>
-        <label>
-            <span>Hasło: </span>
+        <label title="Pole jest wymagane">
+            <span>Hasło* :</span>
             <input id="pass" type="password" name="password" placeholder="Hasło" />
         </label>
-        <label>
-            <span>Typ: </span>
+        <label title="Pole jest wymagane">
+            <span>Typ* :</span>
             <select name="typ">
                 <option value="pracownik">Pracownik</option>
                 <option value="admin">Admin</option>
