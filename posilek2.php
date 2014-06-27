@@ -42,16 +42,16 @@
 			oci_execute($rachunek_stan);
 			$rachunek_stan2 = oci_fetch_array($rachunek_stan);
 			$stan_rachunku = $rachunek_stan2['ZAPLACONY'];
-			
+
 			$cena_posilki = oci_parse($con, "Select cena from posilki where nazwa = '$posilek_nazwa'");
 			oci_execute($cena_posilki);
 			$cena_posilki2 = oci_fetch_array($cena_posilki);
 			$posilki_cena=$cena_posilki2['CENA'];
 
-			
+
 			if(isset($stan_rachunku))
 			{
-				
+
 				$rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$id_klienta' and ZAPLACONY = 0");
 				oci_execute($rachunek_kwota);
 				$rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
@@ -69,15 +69,15 @@
 			    $dodaj_usluge = oci_parse($con, "Insert into ZAMOWIENIA_POSILKOW (RACHUNEK,ILOSC,TYP,DATA) VALUES ('$id_rachunek','$posilek_ilosc','$posilek_nazwa','$posilek_data')");
 			    oci_execute($dodaj_usluge);
 				oci_close($con);
-			} 
+			}
 			else
 			{
-				
+
 				$nowa_kwota = $posilki_cena * $posilek_ilosc;
 
 				$sql_klient = oci_parse($con, "Insert into RACHUNKI (KLIENT, KWOTA) VALUES ('$id_klienta', '$nowa_kwota')");
 				oci_execute($sql_klient);
-				
+
 
 				$id_rachunku = oci_parse($con, "Select ID from rachunki where KLIENT = '$id_klienta' AND ZAPLACONY = '0'");
 			    oci_execute($id_rachunku);

@@ -5,10 +5,8 @@
 
 	<?php
 		include('../head_css.php');
+        include('validation.php');
 	?>
-
-    <script src="../validation/lib/jquery.js"></script>
-    <script src="../validation/dist/jquery.validate.js"></script>
 
     <script>
         $().ready(function () {
@@ -36,15 +34,6 @@
             }
         });
     </script>
-    <style type="text/css">
-        form label.error {
-            margin-left: 8px;
-            width: auto;
-            display: inline;
-            color: red;
-            font-style: italic;
-        }
-    </style>
 </head>
 <body>
     <?php

@@ -5,8 +5,23 @@
 
 	<?php
 		include('head_css.php');
+		include('validation.php');
 	?>
 
+	<script>
+	    $().ready(function () {
+	        if($("#rachunki_zamkniete_klient_form")) {
+	            $("#rachunki_zamkniete_klient_form").validate({ // initialize the plugin
+	                rules: {
+	                    klient: "required"
+	                },
+	                messages: {
+	                    klient: "Popraw"
+	                }
+	            });
+	        }
+	    });
+	</script>
 </head>
 <body>
 
@@ -16,14 +31,14 @@
 
 		if(isset($_COOKIE['logpass'])) {
 			include('db_connect.php');
-			
+
 			$klient = oci_parse($con,"SELECT ID, IMIE, NAZWISKO FROM KLIENCI");
 			oci_execute($klient);
 
 			if(!isset($_POST['button'])) {
 	?>
 
-	<form action='rachunki_zamkniete.php' method='post' class='basic-grey'>
+	<form id="rachunki_zamkniete_klient_form" action='rachunki_zamkniete.php' method='post' class='basic-grey'>
 			<h1>Wybierz klienta</h1>
 
 			<h2>
@@ -37,8 +52,8 @@
 				</div>
 			</h2>
 
-			<label>
-				<span>Klient :</span>
+			<label title="Pole jest wymagane">
+				<span>Klient* :</span>
 				<select name='klient'>
 
 					<?php

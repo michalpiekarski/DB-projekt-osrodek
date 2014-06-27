@@ -5,8 +5,23 @@
 
 	<?php
 		include('head_css.php');
+		include('validation.php');
 	?>
 
+	<script>
+	    $().ready(function () {
+	        if($("#zamowienia_zakonczone_klient_form")) {
+	            $("#zamowienia_zakonczone_klient_form").validate({ // initialize the plugin
+	                rules: {
+	                    klient: "required"
+	                },
+	                messages: {
+	                    klient: "Popraw"
+	                }
+	            });
+	        }
+	    });
+	</script>
 </head>
 <body>
 
@@ -22,7 +37,7 @@
 				oci_execute($klient);
 	?>
 
-	<form action='zamowienia_zakonczone.php' method='post' class='basic-grey'>
+	<form id="zamowienia_zakonczone_klient_form" action='zamowienia_zakonczone.php' method='post' class='basic-grey'>
 			<h1>Wybierz klienta</h1>
 
 			<h2>
@@ -36,9 +51,10 @@
 				</div>
 			</h2>
 
-			<label>
-				<span>Klient :</span>
+			<label title="Pole jest wymagane">
+				<span>Klient* :</span>
 				<select name='klient'>
+					<option value='' selected></option>
 
 					<?php
 						while($row = oci_fetch_array($klient))

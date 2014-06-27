@@ -1,111 +1,99 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-	<?php
-		include('head_css.php');
-	?>
+    	<?php
+    		include('head_css.php');
+            include('validation.php');
+    	?>
 
-	<script src="validation/lib/jquery.js"></script>
-    <script src="validation/dist/jquery.validate.js"></script>
+        <script>
+            $().ready(function () {
+                if($("#form")) {
+                    $("#form").validate({ // initialize the plugin
+                        rules: {
+                            osrodek: "required",
+                            klient: "required"                    },
+                        messages: {
+                            osrodek: "Popraw",
+                            klient: "Popraw"
+                        }
+                    });
+                }
+            });
+        </script>
+    <body>
 
-    <script>
-        $().ready(function () {
-            if($("#form")) {
-                $("#form").validate({ // initialize the plugin
-                    rules: {
-                        osrodek: "required",
-                        klient: "required"                    },
-                    messages: {
-                        osrodek: "Popraw",
-                        klient: "Popraw"
-                    }
-                });
-            }
-        });
-    </script>
-    <style type="text/css">
-        form label.error {
-            margin-left: 8px;
-            width: auto;
-            display: inline;
-            color: red;
-            font-style: italic;
-        }
-    </style>
+    	<?php
+            $page = "rezerwacje";
+    		include('nav.php');
 
-<body>
+    		if(isset($_COOKIE['logpass'])) {
+    			include('db_connect.php');
 
-	<?php
-        $page = "rezerwacje";
-		include('nav.php');
+    			$osrodek = oci_parse($con,"Select * from OSRODKI");
+    			oci_execute($osrodek);
+    			$klient = oci_parse($con, "Select ID, IMIE, NAZWISKO from KLIENCI");
+    			oci_execute($klient);
+    	?>
 
-		if(isset($_COOKIE['logpass'])) {
-			include('db_connect.php');
+    	<form id='form' action='rezerwacja_nowa.php' method='post' class='basic-grey'>
 
-			$osrodek = oci_parse($con,"Select * from OSRODKI");
-			oci_execute($osrodek);
-			$klient = oci_parse($con, "Select ID, IMIE, NAZWISKO from KLIENCI");
-			oci_execute($klient);
-	?>
+    		<h1>Wybierz ośrodek i istniejącego klienta</h1>
 
-	<form id='form' action='rezerwacja_nowa.php' method='post' class='basic-grey'>
+    		<h2>
+    			<div class="wizard-steps">
+    				<div class="active-step">
+    					<a><span>1</span> Ośrodek / Klient</a>
+    				</div>
+    				<div>
+    					<a><span>2</span> Formularz dodania</a>
+    				</div>
+    				<div>
+    					<a><span>3</span> Podsumowanie</a>
+    				</div>
+    			</div>
+    		</h2>
 
-		<h1>Wybierz ośrodek i istniejącego klienta</h1>
+    		<label title="Pole jest wymagane">
+    			<span>Ośrodek* :</span>
+    			<select name='osrodek' >
+    				<option value='' selected></option>
 
-		<h2>
-			<div class="wizard-steps">
-				<div class="active-step">
-					<a><span>1</span> Ośrodek / Klient</a>
-				</div>
-				<div>
-					<a><span>2</span> Formularz dodania</a>
-				</div>
-				<div>
-					<a><span>3</span> Podsumowanie</a>
-				</div>
-			</div>
-		</h2>
+    				<?php
+    					while($row = oci_fetch_array($osrodek))
+    						echo"<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
+    				?>
 
-		<label title="Pole jest wymagane">
-			<span>Ośrodek* :</span>
-			<select name='osrodek' >
-				<option value='' selected></option>
+    			</select>
+    		</label>
+    		<label title="Pole jest wymagane">
+    			<span>Klient* :</span>
+    			<select name='klient'>
+    				<option value='' selected></option>
 
-				<?php
-					while($row = oci_fetch_array($osrodek))
-						echo"<option value='".$row['NAZWA']."'>".$row['NAZWA']."</option>";
-				?>
+    				<?php
+    					while($row = oci_fetch_array($klient))
+    						echo"<option value='".$row['ID']."'>".$row['IMIE']." ".$row['NAZWISKO']."</option>";
 
-			</select>
-		</label>
-		<label title="Pole jest wymagane">
-			<span>Klient* :</span>
-			<select name='klient'>
-				<option value='' selected></option>
+    				?>
 
-				<?php
-					while($row = oci_fetch_array($klient))
-						echo"<option value='".$row['ID']."'>".$row['IMIE']." ".$row['NAZWISKO']."</option>";
+    			</select>
+    		</label>
+    		<label>
+    			<span>&nbsp;</span>
+    			<input type="SUBMIT" class="button" value="Dalej" />
+    		</label>
+    	</form>
 
-				?>
+    	<?php
+    			oci_close($con);
+    		}
+    		else {
+                include('login_error.php');
+    		}
+    	?>
 
-			</select>
-		</label>
-		<label>
-			<span>&nbsp;</span>
-			<input type="SUBMIT" class="button" value="Dalej" />
-		</label>
-	</form>
-
-	<?php
-			oci_close($con);
-		}
-		else {
-            include('login_error.php');
-		}
-	?>
-
-</body>
+    </body>
 </html>

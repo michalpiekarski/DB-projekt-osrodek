@@ -1,120 +1,108 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8;">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8;">
 
-	<?php
-		include('../head_css.php');
-	?>
-<script src="../validation/lib/jquery.js"></script>
-<script src="../validation/dist/jquery.validate.js"></script>
-<script>
-$().ready(function () {
+    	<?php
+    		include('../head_css.php');
+            include('validation.php');
+    	?>
 
-    $("#usluga").validate({ // initialize the plugin
-        rules: {
+        <script>
+            $().ready(function () {
+                $("#usluga").validate({ // initialize the plugin
+                    rules: {
 
-            nazwa: "required",
-            cena: {
-                required: true,
-                number: true
+                        nazwa: "required",
+                        cena: {
+                            required: true,
+                            number: true
+                        }
+                    },
+                    messages: {
+                        nazwa: "Popraw",
+                        cena: "Popraw"
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <?php
+            $page = "typy_zamowien";
+            include('nav.php');
+
+            if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
+                include('../db_connect.php');
+
+                if(!isset($_POST['button'])) {
+        ?>
+
+        <form action="usluga.php" id="usluga" method="post" class="basic-grey">
+            <h1>Dodaj typ usługi</h1>
+
+            <h2>
+                <div class="wizard-steps">
+                    <div class="active-step">
+                        <a><span>1</span> Usługa</a>
+                    </div>
+                    <div>
+                        <a><span>2</span> Podsumowanie</a>
+                    </div>
+                </div>
+            </h2>
+
+            <label>
+                <span>Nazwa :</span>
+                <input type="text" name="nazwa" placeholder="Nazwa" />
+            </label>
+            <label>
+                <span>Cena :</span>
+                <input type="number" name="cena" placeholder="Cena" step="0.01" />
+            </label>
+            <label>
+                <span>&nbsp;</span>
+                <input type="submit" class="button" name="button" value="Dodaj typ usługi" />
+            </label>
+        </form>
+
+        <?php
             }
-        },
-        messages: {
-            nazwa: "Popraw",
-            cena: "Popraw"
-        }
+            else {
+                $nazwa = $_POST['nazwa'];
+                $cena = $_POST['cena'];
 
+                $sql = "INSERT INTO USLUGI (NAZWA, CENA) VALUES ('$nazwa', $cena)";
+                $sql_parsed = oci_parse($con, $sql);
+                oci_execute($sql_parsed);
+        ?>
 
-});
-});
-</script>
-<style type="text/css">
-    #usluga label.error {
-    margin-left: 8px;
-    width: auto;
-    display: inline;
-    color: red;
-    font-style: italic;
-}
-</style>
-</head>
-<body>
+        <div class="basic-grey">
+            <h1>Podsumowanie</h1>
 
-    <?php
-        $page = "typy_zamowien";
-        include('nav.php');
-
-        if(isset($_COOKIE['logpass']) and $_COOKIE['logpass'] == 'admin') {
-            include('../db_connect.php');
-
-            if(!isset($_POST['button'])) {
-    ?>
-
-    <form action="usluga.php" id="usluga" method="post" class="basic-grey">
-        <h1>Dodaj typ usługi</h1>
-
-        <h2>
-            <div class="wizard-steps">
-                <div class="active-step">
-                    <a><span>1</span> Usługa</a>
+            <h2>
+                <div class="wizard-steps">
+                    <div class="completed-step hoverable">
+                        <a href="usluga.php"><span>1</span> Usługa</a>
+                    </div>
+                    <div class="active-step">
+                        <a><span>2</span> Podsumowanie</a>
+                    </div>
                 </div>
-                <div>
-                    <a><span>2</span> Podsumowanie</a>
-                </div>
-            </div>
-        </h2>
+            </h2>
 
-        <label>
-            <span>Nazwa :</span>
-            <input type="text" name="nazwa" placeholder="Nazwa" />
-        </label>
-        <label>
-            <span>Cena :</span>
-            <input type="number" name="cena" placeholder="Cena" step="0.01" />
-        </label>
-        <label>
-            <span>&nbsp;</span>
-            <input type="submit" class="button" name="button" value="Dodaj typ usługi" />
-        </label>
-    </form>
+            <h3>Dodano typ usługi</h3>
+        </div>
 
-    <?php
-        }
-        else {
-            $nazwa = $_POST['nazwa'];
-            $cena = $_POST['cena'];
-
-            $sql = "INSERT INTO USLUGI (NAZWA, CENA) VALUES ('$nazwa', $cena)";
-            $sql_parsed = oci_parse($con, $sql);
-            oci_execute($sql_parsed);
-    ?>
-
-    <div class="basic-grey">
-        <h1>Podsumowanie</h1>
-
-        <h2>
-            <div class="wizard-steps">
-                <div class="completed-step hoverable">
-                    <a href="usluga.php"><span>1</span> Usługa</a>
-                </div>
-                <div class="active-step">
-                    <a><span>2</span> Podsumowanie</a>
-                </div>
-            </div>
-        </h2>
-
-        <h3>Dodano typ usługi</h3>
-    </div>
-
-    <?php
+        <?php
+                }
+                oci_close($con);
             }
-            oci_close($con);
-        }
-        else {
-            include('../login_error.php');
-        }
-    ?>
+            else {
+                include('../login_error.php');
+            }
+        ?>
 
-</body>
+    </body>
 </html>
