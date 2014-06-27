@@ -10,14 +10,19 @@
 <script src="validation/dist/jquery.validate.js"></script>
 
 <script>
+    $.validator.addMethod(
+        "regex",
+        function (value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        },
+        "Please check your input."
+    );
+
 $().ready(function () {
 
     $("#rejestracja").validate({ // initialize the plugin
         rules: {
-            email: {
-                required: true,
-                email: true
-            },
             imie: "required",
             nazwisko: "required",
             ulica:  "required",
@@ -25,24 +30,27 @@ $().ready(function () {
                 required: false,
                 number: true
             },
-            kod_pocztowy: "required",
+            kod_pocztowy: {
+                required: true//,
+                //regex: /^\d{2}-\d{3}$/
+            },
             miasto: "required",
             telefon: {
-                required: true,
                 number: true
+            },
+            email: {
+                email: true
             }
-            
-
         },
         messages: {
             imie: "Popraw",
             nazwisko: "Popraw",
             ulica: "Popraw",
+            mieszkanie: "Popraw",
             kod_pocztowy: "Popraw",
             miasto: "Popraw",
             telefon: "Popraw",
-            email: "Popraw",
-            mieszkanie: "Popraw"
+            email: "Popraw"
         }
       
 
@@ -85,28 +93,28 @@ $().ready(function () {
             </div>
         </h2>
 
-        <label>
-            <span>Imię:</span>
+        <label title="Poje jest wymagane">
+            <span>Imię* :</span>
             <input type="text" name="imie" placeholder="Pełne imię" />
         </label>
-        <label>
-            <span>Nazwisko:</span>
+        <label title="Poje jest wymagane">
+            <span>Nazwisko* :</span>
             <input type="text"  name="nazwisko" placeholder="Pełne nazwisko" />
         </label>
-        <label>
-            <span>Ulica :</span>
+        <label title="Poje jest wymagane">
+            <span>Ulica* :</span>
             <input type="text" name="ulica" placeholder="Ulica" />
         </label>
         <label>
             <span>Mieszkanie :</span>
             <input type="text" name="mieszkanie" placeholder="Numer mieszkania" />
         </label>
-        <label>
-            <span>Kod pocztowy :</span>
+        <label title="Poje jest wymagane">
+            <span>Kod pocztowy* :</span>
             <input type="text" name="kod_pocztowy" placeholder="Kod Pocztowy" />
         </label>
-        <label>
-            <span>Miasto :</span>
+        <label title="Poje jest wymagane">
+            <span>Miasto* :</span>
             <input type="text" name="miasto" placeholder="Miasto" />
         </label>
         <label>
