@@ -3,6 +3,7 @@
 		include('../login.php');
 	}
 ?>
+
 <style type="text/css">
 	<?php
 		echo "nav #".$page;

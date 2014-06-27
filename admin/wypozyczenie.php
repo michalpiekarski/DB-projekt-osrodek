@@ -8,24 +8,7 @@
             include('validation.php');
         ?>
 
-        <script>
-            $().ready(function () {
-
-                $("#wypozyczenie").validate({ // initialize the plugin
-                    rules: {
-                        nazwa: "required",
-                        cena: {
-                            required: true,
-                            number: true
-                        }
-                    },
-                    messages: {
-                        nazwa: "Popraw",
-                        cena: "Popraw"
-                    }
-                });
-            });
-        </script>
+        <script type="text/javascript" src="/bazy/js/validation_admin_wypozyczenie.js"></script>
     </head>
     <body>
 

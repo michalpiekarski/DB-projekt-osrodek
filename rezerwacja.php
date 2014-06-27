@@ -8,21 +8,8 @@
             include('validation.php');
     	?>
 
-        <script>
-            $().ready(function () {
-                if($("#form")) {
-                    $("#form").validate({ // initialize the plugin
-                        rules: {
-                            osrodek: "required",
-                            klient: "required"                    },
-                        messages: {
-                            osrodek: "Popraw",
-                            klient: "Popraw"
-                        }
-                    });
-                }
-            });
-        </script>
+        <script type="text/javascript" src="/bazy/js/validation_rezerwacja.js"></script>
+    </head>
     <body>
 
     	<?php
@@ -39,7 +26,6 @@
     	?>
 
     	<form id='form' action='rezerwacja_nowa.php' method='post' class='basic-grey'>
-
     		<h1>Wybierz ośrodek i istniejącego klienta</h1>
 
     		<h2>

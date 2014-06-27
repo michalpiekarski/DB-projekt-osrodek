@@ -8,20 +8,7 @@
 			include('validation.php');
 		?>
 
-		<script>
-		    $().ready(function () {
-		        if($("#rachunki_otwarte_klient_form")) {
-		            $("#rachunki_otwarte_klient_form").validate({ // initialize the plugin
-		                rules: {
-		                    klient: "required"
-		                },
-		                messages: {
-		                    klient: "Popraw"
-		                }
-		            });
-		        }
-		    });
-		</script>
+		<script tyle="text/javascript" src="/bazy/js/validation_rachunki_otwarte.js"></script>
 	</head>
 	<body>
 
@@ -38,34 +25,34 @@
 		?>
 
 		<form action='rachunki_otwarte.php' method='post' class='basic-grey'>
-				<h1>Wybierz klienta</h1>
+			<h1>Wybierz klienta</h1>
 
-				<h2>
-					<div class="wizard-steps">
-						<div class="active-step">
-							<a><span>1</span> Klient</a>
-						</div>
-						<div>
-							<a><span>2</span> Otwarte rachunki klienta</a>
-						</div>
+			<h2>
+				<div class="wizard-steps">
+					<div class="active-step">
+						<a><span>1</span> Klient</a>
 					</div>
-				</h2>
+					<div>
+						<a><span>2</span> Otwarte rachunki klienta</a>
+					</div>
+				</div>
+			</h2>
 
-				<label title="Pole jest wymagane">
-					<span>Klient* :</span>
-					<select name='klient'>
+			<label title="Pole jest wymagane">
+				<span>Klient* :</span>
+				<select name='klient'>
 
-						<?php
-							while($row = oci_fetch_array($klient))
-								echo"<option value='".$row['ID']."'>".$row['IMIE']." ".$row['NAZWISKO']."</option>";
-						?>
+					<?php
+						while($row = oci_fetch_array($klient))
+							echo"<option value='".$row['ID']."'>".$row['IMIE']." ".$row['NAZWISKO']."</option>";
+					?>
 
-					</select>
-				</label>
-				<label>
-					<span>&nbsp;</span>
-					<input type="SUBMIT" name="button" class="button" value="Wyślij" />
-				</label>
+				</select>
+			</label>
+			<label>
+				<span>&nbsp;</span>
+				<input type="SUBMIT" name="button" class="button" value="Wyślij" />
+			</label>
 		</form>
 
 		<?php
@@ -97,8 +84,8 @@
 				while($row = oci_fetch_array($rachunki)) {
 					$id_rachunku = $row['ID'];
 					echo "<tr>";
-					echo "<th colspan='2' style='background-color: lightgrey;'>Klient</th>";
-					echo "<th colspan='2' style='background-color: lightgrey;'>Pracownik</th>";
+						echo "<th colspan='2' style='background-color: lightgrey;'>Klient</th>";
+						echo "<th colspan='2' style='background-color: lightgrey;'>Pracownik</th>";
 					echo "</tr>";
 
 					$id_klienta = $row['KLIENT'];
@@ -112,14 +99,14 @@
 					$pracownik_array = oci_fetch_array($sql_pracownik);
 
 					echo"<tr>";
-					echo"<td>".$klient_array['IMIE']."</td>";
-					echo"<td>".$klient_array['NAZWISKO']."</td>";
-					echo"<td>".$pracownik_array['IMIE']."</td>";
-					echo"<td>".$pracownik_array['NAZWISKO']."</td>";
+						echo"<td>".$klient_array['IMIE']."</td>";
+						echo"<td>".$klient_array['NAZWISKO']."</td>";
+						echo"<td>".$pracownik_array['IMIE']."</td>";
+						echo"<td>".$pracownik_array['NAZWISKO']."</td>";
 					echo"</tr>";
 
 					echo"<tr>";
-					echo"<th colspan='4' style='background-color: lightgrey;'>Posiłki</th>";
+						echo"<th colspan='4' style='background-color: lightgrey;'>Posiłki</th>";
 					echo"</tr>";
 
 					$zamowienia_posilkow = oci_parse($con, "SELECT * FROM ZAMOWIENIA_POSILKOW WHERE RACHUNEK = '$id_rachunku'");
@@ -132,15 +119,15 @@
 						oci_execute($sql_cena_posilku);
 						$cena = oci_fetch_array($sql_cena_posilku);
 						echo"<tr>";
-						echo"<td>".$nazwa_posilku."</td>";
-						echo"<td>".$ilosc_posilku."</td>";
-						echo"<td>".$posilek['DATA']."</td>";
-						echo"<td>".$cena['CENA_RAZEM']." zł</td>";
+							echo"<td>".$nazwa_posilku."</td>";
+							echo"<td>".$ilosc_posilku."</td>";
+							echo"<td>".$posilek['DATA']."</td>";
+							echo"<td>".$cena['CENA_RAZEM']." zł</td>";
 						echo"</tr>";
 					}
 
 					echo"<tr>";
-					echo"<th colspan='4' style='background-color: lightgrey;'>Usługi</th>";
+						echo"<th colspan='4' style='background-color: lightgrey;'>Usługi</th>";
 					echo"</tr>";
 
 					$zamowienia_uslug = oci_parse($con, "SELECT * FROM ZAMOWIENIA_USLUG WHERE RACHUNEK = '$id_rachunku'");
@@ -154,15 +141,15 @@
 						$cena = oci_fetch_array($sql_cena_uslugi);
 
 						echo"<tr>";
-						echo"<td>".$nazwa_uslugi."</td>";
-						echo"<td>".$ilosc_uslugi."</td>";
-						echo"<td>".$usluga['DATA']."</td>";
-						echo"<td>".$cena['CENA_RAZEM']." zł</td>";
+							echo"<td>".$nazwa_uslugi."</td>";
+							echo"<td>".$ilosc_uslugi."</td>";
+							echo"<td>".$usluga['DATA']."</td>";
+							echo"<td>".$cena['CENA_RAZEM']." zł</td>";
 						echo"</tr>";
 					}
 
 					echo"<tr>";
-					echo"<th colspan='4' style='background-color: lightgrey;'>Wypożyczenia</th>";
+						echo"<th colspan='4' style='background-color: lightgrey;'>Wypożyczenia</th>";
 					echo"</tr>";
 
 					$zamowienia_wypozyczen = oci_parse($con, "SELECT * FROM ZAMOWIENIA_WYPOZYCZEN WHERE RACHUNEK = '$id_rachunku'");
@@ -175,16 +162,16 @@
 						oci_execute($sql_cena_wypozyczenia);
 						$cena = oci_fetch_array($sql_cena_wypozyczenia);
 						echo"<tr>";
-						echo"<td>".$nazwa_wypozyczenia."</td>";
-						echo"<td>".$ilosc_wypozyczenia."</td>";
-						echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
-						echo"<td>".$cena['CENA_RAZEM']." zł/dzień</td>";
+							echo"<td>".$nazwa_wypozyczenia."</td>";
+							echo"<td>".$ilosc_wypozyczenia."</td>";
+							echo"<td>".$wypozyczenie['DATA_OD']."-".$wypozyczenie['DATA_DO']."</td>";
+							echo"<td>".$cena['CENA_RAZEM']." zł/dzień</td>";
 						echo"</tr>";
 					}
 
 					echo "<tr>";
-					echo "<th colspan='2' style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey;'>Kwota:</th>";
-					echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
+						echo "<th colspan='2' style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey;'>Kwota:</th>";
+						echo "<td colspan='2'  style='border-bottom: solid 1px lightgrey; border-top: solid 1px lightgrey; border-right: solid 1px lightgrey;'>".$row['KWOTA']." zł</td>";
 					echo "</tr>";
 				}
 			?>

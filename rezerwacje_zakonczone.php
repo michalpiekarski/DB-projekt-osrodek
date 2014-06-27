@@ -8,20 +8,7 @@
 		include('validate.php');
 	?>
 
-	<script>
-	    $().ready(function () {
-	        if($("#rezerwacje_zakonczone_klient_form")) {
-	            $("#rezerwacje_zakonczone_klient_form").validate({ // initialize the plugin
-	                rules: {
-	                    klient: "required"
-	                },
-	                messages: {
-	                    klient: "Popraw"
-	                }
-	            });
-	        }
-	    });
-	</script>
+	<script type="text/javascript" src="/bazy/js/rezerwacje_zakonczone.js"></script>
 </head>
 <body>
 

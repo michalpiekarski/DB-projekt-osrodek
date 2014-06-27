@@ -96,4 +96,4 @@
 		</li>
 	</ul>
 </nav>
-<a id="admin_link" href="admin/index.php"><span class="mega-octicon octicon-gear" style="min-width: 32px;"></span></a>
+<a id="admin_link" href="admin/index.php"><span class="mega-octicon octicon-gear" style="min-width: 36px; font-size: 36px;"></span></a>
