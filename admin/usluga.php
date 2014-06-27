@@ -5,7 +5,7 @@
 
     	<?php
     		include('../head_css.php');
-            include('validation.php');
+            include('../validation.php');
     	?>
 
         <script type="text/javascript" src="/bazy/js/validation_admin_usluga.js"></script>
