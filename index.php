@@ -19,28 +19,14 @@
 	?>
 
     <div class="basic-grey">
-        <a href="rezerwacje_aktualne.php">
-            <img src="images/aktualne_rezerwacje.PNG" alt="Aktualne Rezerwacje" class="imagelink" onmouseover="this.src='images/aktualne_rezerwacje_hov.PNG'" onmouseout="this.src='images/aktualne_rezerwacje.PNG'"/>
-        </a>
-        <a href="zamowienia_aktualne.php">
-            <img src="images/aktualne_zamowienia.PNG" alt="Aktualne Zamówienia" class="imagelink" onmouseover="this.src='images/aktualne_zamowienia_hov.PNG'" onmouseout="this.src='images/aktualne_zamowienia.PNG'" />
-        </a>
-        <a href="rachunki_otwarte.php">
-            <img src="images/rachunki_otwarte.PNG" alt="Otwarte Rachunki" class="imagelink" onmouseover="this.src='images/rachunki_otwarte_hov.PNG'" onmouseout="this.src='images/rachunki_otwarte.PNG'" />
-        </a>
-        <a href="rezerwacja.php">
-            <img src="images/nowa_rezerwacja.PNG" alt="Zarezerwuj" class="imagelink" onmouseover="this.src='images/nowa_rezerwacja_hov.PNG'" onmouseout="this.src='images/nowa_rezerwacja.PNG'" />
-        </a>
+        <a href="rezerwacje_aktualne.php"><div class="imagelink">AKTUALNE<br>REZERWACJE</div></a>
+        <a href="zamowienia_aktualne.php"><div class="imagelink">AKTUALNE<br>ZAMÓWIENIA</div></a>
+        <a href="rachunki_otwarte.php"><div class="imagelink">OTWARTE<br>RACHUNKI</div></a>
+        <a href="rezerwacja.php"><div class="imagelink">DODAJ<br>REZERWACJĘ</div></a>
         <img id="logo" src="images/logo.PNG" alt="Logo" />
-        <a href="posilek.php">
-            <img src="images/zamow_posilek.PNG" alt="Zamów Posiłek" class="imagelink" onmouseover="this.src='images/zamow_posilek_hov.PNG'" onmouseout="this.src='images/zamow_posilek.PNG'" />
-        </a>
-        <a href="uslugi.php">
-            <img src="images/zamow_usluge.PNG" alt="Zamów Usługę" class="imagelink" onmouseover="this.src='images/zamow_usluge_hov.PNG'" onmouseout="this.src='images/zamow_usluge.PNG'" />
-        </a>
-        <a href="wypozyczenie.php">
-            <img src="images/wypozycz.PNG" alt="Wypożycz" class="imagelink" onmouseover="this.src='images/wypozycz_hov.PNG'" onmouseout="this.src='images/wypozycz.PNG'" />
-        </a>
+        <a href="posilek.php"><div class="imagelink">ZAMÓW<br>POSIŁEK</div></a>
+        <a href="uslugi.php"><div class="imagelink">ZAMÓW<br>USŁUGĘ</div></a>
+        <a href="wypozyczenie.php"><div class="imagelink">ZAMÓW<br>WYPOŻYCZENIE</div></a>
     </div>
 
     <?php

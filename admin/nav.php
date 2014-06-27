@@ -97,9 +97,9 @@
 					</li>
 				</ul>
 			</div>
-		</li><li style="float: right">
+		</li><li style="float:right;">
 			<a href="../index.php" title="Przejdź do strony głównej"><span class="mega-octicon octicon-home" style="min-width: 32px; vertical-align: -15%;"></span></a>
-		</li><li style="float: right;">
+		</li><li style="float:right;">
 
 			<?php
 				if(isset($_COOKIE['logpass'])) {
