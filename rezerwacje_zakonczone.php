@@ -5,7 +5,7 @@
 
 	<?php
 		include('head_css.php');
-		include('validate.php');
+		include('validation.php');
 	?>
 
 	<script type="text/javascript" src="/bazy/js/rezerwacje_zakonczone.js"></script>

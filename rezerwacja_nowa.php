@@ -8,7 +8,7 @@
             include('validation.php');
         ?>
 
-        <script type="type/javascript" src="/bazy/js/validation_rezerwacja_nowa.js"></script>
+        <script type="text/javascript" src="/bazy/js/validation_rezerwacja_nowa.js"></script>
     </head>
     <body>
 
@@ -19,7 +19,7 @@
             include('db_connect.php');
 
             if(isset($_COOKIE['logpass']))  {
-                if (! isset($_POST['button1'])) {
+                if (!isset($_POST['button1'])) {
                     $wynik = oci_parse($con, "Select * From klienci");
                     oci_execute($wynik);
                     $osrodek = $_POST['osrodek'];
@@ -34,7 +34,7 @@
 
         ?>
 
-        <form id="reservation" action="rezerwacja_nowa.php" method="post" class="basic-grey">
+        <form id="rezerwacja_nowa_form" action="rezerwacja_nowa.php" method="post" class="basic-grey">
             <h1>
                 Rezerwacja dla: <?php echo "$imie $nazwisko"; ?> <span>Wypełnij wszystkie pola</span>
             </h1>
@@ -55,33 +55,28 @@
 
             <label title="Pole jest wymagane">
                 <span>Obiekt* :</span>
-                <select name="obiekt">
+                <select name='obiekt'>
                     <option value='' selected></option>
 
                     <?php
                         while ($row = oci_fetch_array($obiekt))
-                            echo "<option value='" . $row['ID'] . "'>" . $row['TYP'] . "</option>";
+                            echo "<option value='" . $row['ID'] . "'>TYP:" . $row['TYP'] . " BUDYNEK: ".$row['BUDYNEK']." NUMER:".$row['NUMER']." </option>";
                     ?>
 
                 </select>
             </label>
 
-            <?php
-                echo "<input type='hidden' name='osrodek2' value='$osrodek'>";
-                echo "<input type='hidden' name='klient' value='$id_klienta'>";
-            ?>
-
             <label title="Pole jest wymagane">
-                <span>Przyjazd* :</span>
-                <input id="termin" type="date" name="data_od" value="<?php echo date('Y-m-d'); ?>" />
+                <span>Od* :</span>
+                <input type="date" name='data_od' value="<?php echo date('Y-m-d'); ?>" />
             </label>
             <label title="Pole jest wymagane">
-                <span>Wyjazd* :</span>
-                <input id="termin" type="date" name="data_do" value="<?php echo date("Y-m-d",strtotime("+1 week")); ?>" />
+                <span>Do* :</span>
+                <input type="date" name='data_do' value="<?php echo date('Y-m-d',strtotime('+1 week')); ?>" />
             </label>
             <label title="Pole jest wymagane">
                 <span>Ilość Osób* :</span>
-                <input id="ilosc" type="number" name="ilosc_os" placeholder="Ilość osób" min="2" max="8"/>
+                <input type="number" name='ilosc_os' placeholder="Ilość osób" min="2" max="8" />
             </label>
             <label>
                 <span>&nbsp;</span>
@@ -89,8 +84,14 @@
             </label>
 
             <?php
+                echo "<input type='hidden' name='osrodek2' value='$osrodek'>";
+                echo "<input type='hidden' name='klient' value='$id_klienta'>";
+            ?>
+        </form>
+            <?php
                 }
                 else {
+
                     $obiekt = $_POST['obiekt'];
                     $osrodek = $_POST['osrodek2'];
 
@@ -114,14 +115,21 @@
                     $kwota = $cena['CENA'] * $dni;
 
                     //Pobieranie ID ostatniego rachunku + Inkrementacja
-                    $id_rachunku = oci_parse($con, "Select ID FROM rachunki where ID in (select max(ID) from rachunki)");
+                    $id_rachunku = oci_parse($con, "Select ID FROM RACHUNKI where KLIENT=$klient AND ZAPLACONY = 0");
                     oci_execute($id_rachunku);
                     $id_rachunku2 = oci_fetch_array($id_rachunku);
                     $rachunek = $id_rachunku2['ID'];
 
-                    $sql_rachunek = "Insert into RACHUNKI (KLIENT,KWOTA) VALUES ('$klient','$kwota')";
-                    $sql_rachunek2 = oci_parse($con, $sql_rachunek);
-                    oci_execute($sql_rachunek2);
+
+
+                   $rachunek_kwota = oci_parse($con, "Select kwota from RACHUNKI where KLIENT = '$klient' and ZAPLACONY = 0");
+                    oci_execute($rachunek_kwota);
+                    $rachunek_kwota2 = oci_fetch_array($rachunek_kwota);
+                    $rachunek_kwota3 = $rachunek_kwota2['KWOTA'];
+
+                    $nowa_kwota = $kwota + $rachunek_kwota3;
+                    $dodaj = oci_parse($con, "UPDATE RACHUNKI SET KWOTA = $nowa_kwota where KLIENT = '$klient'AND ZAPLACONY = 0");
+                    oci_execute($dodaj);
 
                     $sql_rezerwacja = "Insert into REZERWACJE (RACHUNEK, OBIEKT, Data_od, Data_do) VALUES ('$rachunek','$obiekt','$data_od','$data_do')";
                     $sql_rezerwacja2 = oci_parse($con, $sql_rezerwacja);
@@ -129,22 +137,20 @@
                     oci_close($con);
                 ?>
 
-            <center>
-                    <label>Dodano rezerwację do istniejącego klienta</label>
-                    <label>
-                        <span>&nbsp;</span>
-                        <p><a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a></p>
-                    </label>
-            </center>
+            <form class="basic-grey">
+                <center>
+                        <label>Dodano rezerwację do istniejącego klienta</label>
+                        <label>
+                            <span>&nbsp;</span>
+                            <p><a href="rachunki_otwarte.php" class='button' >Przejdź do Rachunku Klienta</a></p>
+                        </label>
+                </center>
+            </form>
 
            <?php
                }
-           ?>
-
-        </form>
-
-        <?php
             }
-        ?>
+            ?>
+
     </body>
 </html>

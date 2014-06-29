@@ -1,6 +1,7 @@
 $().ready(function () {
-    if($("#reservation")) {
-        $("#reservation").validate({ // initialize the plugin
+    if($("#rezerwacja_nowa_form")) {
+        alert('Formularz znaleziony');
+        $("#rezerwacja_nowa_form").validate({ // initialize the plugin
             rules: {
                 obiekt: "required",
                 data_od: {

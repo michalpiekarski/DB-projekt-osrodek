@@ -41,7 +41,7 @@
             oci_execute($dane);
             $dane = oci_fetch_array($dane);
 
-            $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ID = '$id'");
+            $rm_obiekt = oci_parse($con,"DELETE FROM $tabela WHERE ".$col_names[0][0]." = '$id'");
             oci_execute($rm_obiekt);
         ?>
 
@@ -96,7 +96,7 @@
             oci_execute($dane);
             $dane = oci_fetch_array($dane);
 
-            $rm_typ_obiektu=oci_parse($con, "DELETE FROM $tabela WHERE NAZWA = '$nazwa'");
+            $rm_typ_obiektu=oci_parse($con, "DELETE FROM $tabela WHERE ".$col_names[0][0]." = '$nazwa'");
             oci_execute($rm_typ_obiektu);
         ?>
 
