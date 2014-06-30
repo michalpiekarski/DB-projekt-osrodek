@@ -12,7 +12,7 @@ $().ready(function () {
     if($("#posilek")) {
         $("#posilek").validate({ // initialize the plugin
             rules: {
-                posilki: "required",
+                posilek: "required",
                 posilek_ilosc: {
                     required: true,
                     number: true
@@ -23,7 +23,7 @@ $().ready(function () {
                 }
             },
             messages: {
-                posilki: "Popraw",
+                posilek: "Popraw",
                 posilek_ilosc: "Popraw",
                 posilek_data: "Popraw"
             }

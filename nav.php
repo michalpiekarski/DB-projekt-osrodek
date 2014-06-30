@@ -1,6 +1,6 @@
 <?php
 	if(!isset($_COOKIE['logpass'])) {
-		include('login.php');
+		include 'login.php';
 	}
 ?>
 

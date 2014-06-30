@@ -1,11 +1,11 @@
 <?php
-    include("login_css.php");
+    include 'login_css.php';
 ?>
 
 <script type="text/javascript" src="/bazy/js/login.js"></script>
 
 <?php
-    include('validation.php');
+    include 'validation.php';
 ?>
 
 <script type="text/javascript" src="/bazy/js/validation_login.js"></script>

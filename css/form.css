@@ -81,13 +81,8 @@
 .basic-grey .button:hover {
     background: #CF7A7A
 }
-table.basic-grey a.delete-button {
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
-    background: url(../images/usun.png) no-repeat center center;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+.basic-grey.error {
+    margin-top: 100px;
+    width: 50%;
+    text-align: center;
 }
